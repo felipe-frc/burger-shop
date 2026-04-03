@@ -159,6 +159,22 @@ npm run dev
 
 ---
 
+## 🧠 Decisões de Desenvolvimento
+
+Durante o desenvolvimento deste projeto, algumas decisões técnicas foram tomadas para garantir melhor organização, desempenho e experiência do usuário:
+
+- **Uso de localStorage:** utilizado para persistir o carrinho de compras, garantindo que os itens não sejam perdidos ao atualizar a página;
+- **Separação de responsabilidades:** divisão clara entre estrutura (HTML), estilização (CSS/Tailwind) e lógica (JavaScript);
+- **Validações no front-end:** implementação de validações para impedir ações inválidas, como finalizar pedido com carrinho vazio;
+- **Integração com ViaCEP:** automatização do preenchimento de endereço para melhorar a experiência do usuário;
+- **Fluxo de pedido estruturado:** organização em etapas (carrinho → endereço → revisão) simulando um sistema real de delivery;
+- **Feedback visual:** uso de animações e notificações para tornar a interação mais intuitiva e agradável;
+- **Controle de horário da loja:** lógica para simular funcionamento real (aberto/fechado).
+
+Essas decisões foram pensadas para aproximar o projeto de um cenário real de aplicação web.
+
+---
+
 ## 📈 Melhorias Futuras
 
 * Integração com backend para gerenciamento de pedidos
