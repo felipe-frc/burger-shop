@@ -68,7 +68,9 @@ function getCartTotalWithDelivery() {
 }
 
 function isStoreOpenNow() {
-  return true;
+  const now = new Date();
+  const hour = now.getHours();
+  return hour >= 18 && hour < 23;
 }
 
 // ===== SCROLL REVEAL =====
