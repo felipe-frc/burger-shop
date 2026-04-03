@@ -18,405 +18,713 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@400;500;700;800;900&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="output.css" />
     <link rel="shortcut icon" href="assets/icon.ico" type="image/x-icon" />
-    <title>The Burger House</title>
+    <title>The Burger House - Hamburgueria Artesanal</title>
+
+    <style>
+      #cart-items::-webkit-scrollbar {
+        width: 6px;
+      }
+      #cart-items::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+      }
+      #cart-items::-webkit-scrollbar-thumb {
+        background: #fbbf24;
+        border-radius: 10px;
+      }
+      #cart-items::-webkit-scrollbar-thumb:hover {
+        background: #f59e0b;
+      }
+
+      .products-list-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        width: 100%;
+      }
+
+      .product-item-card {
+        display: flex;
+        align-items: center;
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 1rem;
+        padding: 1rem;
+        gap: 1.5rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+      }
+
+      .product-item-card:hover {
+        border-color: #fbbf24;
+        box-shadow: 0 10px 25px rgba(251, 191, 36, 0.1);
+        transform: translateY(-3px);
+      }
+
+      .product-item-img-wrapper {
+        flex-shrink: 0;
+        width: 110px;
+        height: 110px;
+        border-radius: 0.75rem;
+        overflow: hidden;
+        background: #f9fafb;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .product-item-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.5s ease;
+      }
+
+      .product-item-card:hover .product-item-img {
+        transform: scale(1.1);
+      }
+
+      .product-item-info {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+      }
+
+      .product-item-name-row {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+
+      .product-item-name {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #111827;
+        margin: 0;
+      }
+
+      .product-item-tag {
+        font-size: 0.65rem;
+        font-weight: 700;
+        padding: 0.25rem 0.6rem;
+        background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+        color: #000;
+        border-radius: 99px;
+        text-transform: uppercase;
+        letter-spacing: 0.025em;
+      }
+
+      .product-item-desc {
+        font-size: 0.875rem;
+        color: #6b7280;
+        line-height: 1.4;
+        margin: 0;
+        max-width: 500px;
+      }
+
+      .product-item-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 0.5rem;
+      }
+
+      .product-item-price {
+        font-size: 1.15rem;
+        font-weight: 800;
+        color: #f59e0b;
+      }
+
+      .btn-add-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        background: #111827;
+        color: #fbbf24;
+        border-radius: 0.75rem;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .btn-add-item:hover {
+        background: #fbbf24;
+        color: #111827;
+        transform: scale(1.05);
+      }
+
+      .btn-add-item:active {
+        transform: scale(0.95);
+      }
+
+      @media (max-width: 640px) {
+        .product-item-card {
+          padding: 0.875rem;
+          gap: 1rem;
+        }
+
+        .product-item-img-wrapper {
+          width: 85px;
+          height: 85px;
+        }
+
+        .product-item-name {
+          font-size: 0.95rem;
+        }
+
+        .product-item-desc {
+          font-size: 0.8rem;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+
+        .product-item-price {
+          font-size: 1.05rem;
+        }
+
+        .btn-add-item {
+          width: 38px;
+          height: 38px;
+        }
+      }
+
+      @media (max-width: 400px) {
+        .product-item-card {
+          gap: 0.75rem;
+        }
+
+        .product-item-img-wrapper {
+          width: 75px;
+          height: 75px;
+        }
+      }
+
+      .section-header {
+        margin-bottom: 2.5rem;
+      }
+
+      .section-title {
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: #111827;
+        display: flex;
+        align-items: center;
+      }
+
+      .section-subtitle {
+        color: #6b7280;
+        margin-top: 0.25rem;
+      }
+    </style>
   </head>
 
-  <body class="bg-stone-100 font-sans">
-    <header class="w-full h-[420px] bg-zinc-900 bg-home bg-cover bg-center">
-      <div class="w-full h-full flex flex-col justify-center items-center">
-        <img
-          src="./assets/logo burger.png"
-          alt="Logo da hamburgueria The Burger House"
-          class="w-32 h-32 rounded-full shadow-lg hover:scale-110 duration-200"
-        />
-        <h1 class="text-4xl mt-4 mb-2 font-bold text-white">
-          The Burger House
-        </h1>
-        <p class="text-white font-medium">Rua Dev 25, Uberlândia - MG</p>
-        <div class="bg-amber-600 px-4 py-1 rounded-lg mt-5" id="date-span">
-          <p class="text-white font-medium">Seg à Dom - 18:00 as 23:00</p>
+  <body>
+    <header
+      class="hero-overlay w-full min-h-screen bg-zinc-900 bg-home bg-cover bg-center bg-fixed flex items-start justify-center relative"
+    >
+      <div
+        class="hero-content w-full h-full flex flex-col justify-start items-center text-center px-4 pb-20"
+      >
+        <div class="hero-logo-wrap animate-float">
+          <img
+            src="./assets/logo-burger.png"
+            alt="Logo da hamburgueria The Burger House"
+            class="w-32 h-32 md:w-40 md:h-40 rounded-full shadow-2xl border-4 border-amber-400 object-cover"
+          />
+        </div>
+
+        <div class="hero-info-stack">
+          <h1 class="hero-title font-black font-poppins">The Burger House</h1>
+
+          <div class="hero-meta-row text-white">
+            <i
+              class="fas fa-map-marker-alt text-amber-400 text-xl"
+              aria-hidden="true"
+            ></i>
+            <p class="text-lg font-medium">Rua Dev 25, Uberlândia - MG</p>
+          </div>
+
+          <div class="hero-meta-row text-white">
+            <i
+              class="fas fa-clock text-amber-400 text-lg"
+              aria-hidden="true"
+            ></i>
+            <p class="text-base font-medium">Seg à Dom • 18h às 23h</p>
+          </div>
+
+          <div id="date-span" class="badge-status badge-open" aria-live="polite">
+            <span class="status-dot"></span>
+            <span id="status-text">Aberto agora</span>
+          </div>
+
+          <a
+            href="#menu"
+            class="hero-cta inline-flex items-center gap-2 bg-gradient-to-r from-amber-400 to-amber-500 text-zinc-900 px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+            aria-label="Ir para o cardápio"
+          >
+            <i class="fas fa-utensils" aria-hidden="true"></i>
+            Explorar Cardápio
+          </a>
+        </div>
+
+        <div
+          class="hero-scroll-indicator absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"
+          aria-hidden="true"
+        >
+          <i class="fas fa-chevron-down text-amber-400 text-2xl"></i>
         </div>
       </div>
     </header>
-    <h2
-      class="text-2xl md:text-3xl font-bold text-center mt-9 mb-10 text-zinc-800"
-    >
-      Conheça o nosso cardápio
-    </h2>
 
-    <main id="menu">
-      <section class="mb-16 max-w-7xl mx-auto px-4">
-        <h3 class="font-bold text-3xl mb-10 text-zinc-800">Hambúrgueres</h3>
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 md:gap-10"
-        >
-          <article class="flex gap-2">
-            <img
-              src="./assets/praiano burguer.png"
-              alt="O Praiano"
-              class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300 object-cover"
-            />
-            <div class="w-full flex flex-col justify-between">
-              <div>
-                <p class="font-bold text-zinc-800">O Praiano</p>
-                <p class="text-sm text-zinc-700 font-text">
-                  Uma combinação ousada no pão brioche: nosso suculento burger
-                  de 150g com o sabor inconfundível do queijo coalho grelhado
-                  com um fio de mel, a doçura da banana-da-terra frita, fatias
-                  de bacon crocante e um toque de maionese defumada.
-                </p>
+    <main class="py-20 pb-32">
+      <section id="menu" class="mb-24 max-w-5xl mx-auto px-4">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i class="fas fa-burger text-amber-500" aria-hidden="true"></i>
+            <span class="section-title-text">Nossos Hambúrgueres</span>
+          </h2>
+          <p class="section-subtitle">
+            Combinações irresistíveis de sabor e qualidade
+          </p>
+        </div>
+
+        <div class="products-list-container">
+          <div class="product-item-card reveal">
+            <div class="product-item-img-wrapper">
+              <img src="./assets/praiano-burguer.webp" alt="O Praiano" class="product-item-img" loading="lazy" />
+            </div>
+            <div class="product-item-info">
+              <div class="product-item-name-row">
+                <h3 class="product-item-name">O Praiano</h3>
+                <span class="product-item-tag">Mais Pedido</span>
               </div>
-              <div class="flex items-center justify-between mt-2">
-                <p class="font-bold text-lg text-amber-600">R$ 43,90</p>
-                <button
-                  class="bg-zinc-800 px-5 rounded add-to-cart-btn"
-                  data-name="O Praiano"
-                  data-price="43.90"
-                >
-                  <i class="fa fa-cart-plus text-lg text-white"></i>
+              <p class="product-item-desc">Queijo coalho grelhado com fio de mel, banana-da-terra frita, bacon crocante e maionese defumada.</p>
+              <div class="product-item-footer">
+                <span class="product-item-price">R$ 43,90</span>
+                <button type="button" class="btn-add-item add-to-cart-btn" data-id="burger-praiano" data-name="O Praiano" data-price="43.90" aria-label="Adicionar ao carrinho">
+                  <i class="fa fa-plus"></i>
                 </button>
               </div>
             </div>
-          </article>
-          <article class="flex gap-2">
-            <img
-              src="./assets/onion rings - burguer 2.0 .png"
-              alt="O Famoso Onion Ring"
-              class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300 object-cover"
-            />
-            <div class="w-full flex flex-col justify-between">
-              <div>
-                <p class="font-bold text-zinc-800">O Famoso Onion Ring</p>
-                <p class="text-sm text-zinc-700 font-text">
-                  O queridinho da casa no pão brioche: um cremoso aioli de alho
-                  assado, nosso burger de 150g coberto pela suavidade do queijo
-                  suíço derretido e fatias de bacon, tudo isso coroado por dois
-                  anéis de cebola gigantes, dourados e monumentais na crocância.
-                </p>
+          </div>
+
+          <div class="product-item-card reveal">
+            <div class="product-item-img-wrapper">
+              <img src="./assets/onion-rings-burguer.webp" alt="O Famoso Onion Ring" class="product-item-img" loading="lazy" />
+            </div>
+            <div class="product-item-info">
+              <div class="product-item-name-row">
+                <h3 class="product-item-name">O Famoso Onion Ring</h3>
+                <span class="product-item-tag">Destaque</span>
               </div>
-              <div class="flex items-center justify-between mt-2">
-                <p class="font-bold text-lg text-amber-600">R$ 43,90</p>
-                <button
-                  class="bg-zinc-800 px-5 rounded add-to-cart-btn"
-                  data-name="O Famoso Onion Ring"
-                  data-price="43.90"
-                >
-                  <i class="fa fa-cart-plus text-lg text-white"></i>
+              <p class="product-item-desc">Aioli de alho assado, queijo suíço derretido, bacon e anéis de cebola gigantes crocantes.</p>
+              <div class="product-item-footer">
+                <span class="product-item-price">R$ 43,90</span>
+                <button type="button" class="btn-add-item add-to-cart-btn" data-id="burger-onion-rings" data-name="O Famoso Onion Ring" data-price="43.90" aria-label="Adicionar ao carrinho">
+                  <i class="fa fa-plus"></i>
                 </button>
               </div>
             </div>
-          </article>
-          <article class="flex gap-2">
-            <img
-              src="./assets/Frango Crocante Defumado - burguer.png"
-              alt="Crispy Chicken Cheddar"
-              class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300 object-cover"
-            />
-            <div class="w-full flex flex-col justify-between">
-              <div>
-                <p class="font-bold text-zinc-800">Crispy Chicken Cheddar</p>
-                <p class="text-sm text-zinc-700 font-text">
-                  A potência do frango crocante no pão brioche. Um filé de
-                  frango super crocante abraçado por duas fatias generosas de
-                  queijo cheddar derretido, acompanhado de bacon, alface crespa,
-                  tomate fresco e um toque final de maionese defumada.
-                </p>
+          </div>
+
+          <div class="product-item-card reveal">
+            <div class="product-item-img-wrapper">
+              <img src="./assets/crispy-chicken-burguer.webp" alt="Crispy Chicken Cheddar" class="product-item-img" loading="lazy" />
+            </div>
+            <div class="product-item-info">
+              <div class="product-item-name-row">
+                <h3 class="product-item-name">Crispy Chicken Cheddar</h3>
               </div>
-              <div class="flex items-center justify-between mt-2">
-                <p class="font-bold text-lg text-amber-600">R$ 35,90</p>
-                <button
-                  class="bg-zinc-800 px-5 rounded add-to-cart-btn"
-                  data-name="Crispy Chicken Cheddar"
-                  data-price="35.90"
-                >
-                  <i class="fa fa-cart-plus text-lg text-white"></i>
+              <p class="product-item-desc">Filé de frango crocante com cheddar derretido, bacon, alface, tomate e maionese defumada.</p>
+              <div class="product-item-footer">
+                <span class="product-item-price">R$ 35,90</span>
+                <button type="button" class="btn-add-item add-to-cart-btn" data-id="burger-crispy-chicken-cheddar" data-name="Crispy Chicken Cheddar" data-price="35.90" aria-label="Adicionar ao carrinho">
+                  <i class="fa fa-plus"></i>
                 </button>
               </div>
             </div>
-          </article>
-          <article class="flex gap-2">
-            <img
-              src="./assets/australiano - burguer.png"
-              alt="O Outback King"
-              class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300 object-cover"
-            />
-            <div class="w-full flex flex-col justify-between">
-              <div>
-                <p class="font-bold text-zinc-800">O Outback King</p>
-                <p class="text-sm text-zinc-700 font-text">
-                  Uma majestade de sabor no pão australiano. Nosso burger de
-                  150g mergulhado em um creme de cheddar artesanal e cebola
-                  caramelizada, finalizado com cubos de bacon crocante e nosso
-                  molho barbecue especial.
-                </p>
+          </div>
+
+          <div class="product-item-card reveal">
+            <div class="product-item-img-wrapper">
+              <img src="./assets/outback-king-burguer.webp" alt="O Outback King" class="product-item-img" loading="lazy" />
+            </div>
+            <div class="product-item-info">
+              <div class="product-item-name-row">
+                <h3 class="product-item-name">O Outback King</h3>
+                <span class="product-item-tag">Premium</span>
               </div>
-              <div class="flex items-center justify-between mt-2">
-                <p class="font-bold text-lg text-amber-600">R$ 43,90</p>
-                <button
-                  class="bg-zinc-800 px-5 rounded add-to-cart-btn"
-                  data-name="O Outback King"
-                  data-price="43.90"
-                >
-                  <i class="fa fa-cart-plus text-lg text-white"></i>
+              <p class="product-item-desc">Creme de cheddar artesanal, cebola caramelizada, cubos de bacon crocante e molho barbecue especial.</p>
+              <div class="product-item-footer">
+                <span class="product-item-price">R$ 43,90</span>
+                <button type="button" class="btn-add-item add-to-cart-btn" data-id="burger-outback-king" data-name="O Outback King" data-price="43.90" aria-label="Adicionar ao carrinho">
+                  <i class="fa fa-plus"></i>
                 </button>
               </div>
             </div>
-          </article>
-          <article class="flex gap-2">
-            <img
-              src="./assets/frabacon - burguer2.0.png"
-              alt="Chicken Grill Supreme"
-              class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300 object-cover"
-            />
-            <div class="w-full flex flex-col justify-between">
-              <div>
-                <p class="font-bold text-zinc-800">Chicken Grill Supreme</p>
-                <p class="text-sm text-zinc-700 font-text">
-                  Sabor de grelha no pão com gergelim: um suculento filé de
-                  frango com marcas de grelha, coberto por queijo cheddar
-                  derretido, fatias de bacon, o frescor da alface crespa e do
-                  tomate, e a crocância da cebola crispy com nossa maionese
-                  defumada.
-                </p>
+          </div>
+
+          <div class="product-item-card reveal">
+            <div class="product-item-img-wrapper">
+              <img src="./assets/chicken-supreme-burguer.webp" alt="Chicken Grill Supreme" class="product-item-img" loading="lazy" />
+            </div>
+            <div class="product-item-info">
+              <div class="product-item-name-row">
+                <h3 class="product-item-name">Chicken Grill Supreme</h3>
               </div>
-              <div class="flex items-center justify-between mt-2">
-                <p class="font-bold text-lg text-amber-600">R$ 35,90</p>
-                <button
-                  class="bg-zinc-800 px-5 rounded add-to-cart-btn"
-                  data-name="Chicken Grill Supreme"
-                  data-price="35.90"
-                >
-                  <i class="fa fa-cart-plus text-lg text-white"></i>
+              <p class="product-item-desc">Filé de frango grelhado com cheddar, bacon, alface, tomate, cebola crispy e maionese defumada.</p>
+              <div class="product-item-footer">
+                <span class="product-item-price">R$ 35,90</span>
+                <button type="button" class="btn-add-item add-to-cart-btn" data-id="burger-chicken-grill-supreme" data-name="Chicken Grill Supreme" data-price="35.90" aria-label="Adicionar ao carrinho">
+                  <i class="fa fa-plus"></i>
                 </button>
               </div>
             </div>
-          </article>
-          <article class="flex gap-2">
-            <img
-              src="./assets/joia-burguer.png"
-              alt="A Joia da Coroa"
-              class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300 object-cover"
-            />
-            <div class="w-full flex flex-col justify-between">
-              <div>
-                <p class="font-bold text-zinc-800">A Joia da Coroa</p>
-                <p class="text-sm text-zinc-700 font-text">
-                  A nossa joia premium: um imponente burger de picanha de 180g
-                  no pão de batata artesanal. Coberto com lascas de queijo
-                  Canastra Real derretidas, um mix de cogumelos salteados e o
-                  aroma sofisticado do nosso aioli de trufas brancas.
-                </p>
+          </div>
+
+          <div class="product-item-card reveal">
+            <div class="product-item-img-wrapper">
+              <img src="./assets/joia-burguer.webp" alt="A Joia da Coroa" class="product-item-img" loading="lazy" />
+            </div>
+            <div class="product-item-info">
+              <div class="product-item-name-row">
+                <h3 class="product-item-name">A Joia da Coroa</h3>
+                <span class="product-item-tag">Exclusivo</span>
               </div>
-              <div class="flex items-center justify-between mt-2">
-                <p class="font-bold text-lg text-amber-600">R$ 58,90</p>
-                <button
-                  class="bg-zinc-800 px-5 rounded add-to-cart-btn"
-                  data-name="A Joia da Coroa"
-                  data-price="58.90"
-                >
-                  <i class="fa fa-cart-plus text-lg text-white"></i>
+              <p class="product-item-desc">Burger de picanha premium com queijo Canastra Real, cogumelos salteados e aioli de trufas brancas.</p>
+              <div class="product-item-footer">
+                <span class="product-item-price">R$ 58,90</span>
+                <button type="button" class="btn-add-item add-to-cart-btn" data-id="burger-joia-da-coroa" data-name="A Joia da Coroa" data-price="58.90" aria-label="Adicionar ao carrinho">
+                  <i class="fa fa-plus"></i>
                 </button>
               </div>
             </div>
-          </article>
+          </div>
         </div>
       </section>
-      <section class="mb-16 max-w-7xl mx-auto px-4">
-        <h3 class="font-bold text-3xl mb-10 text-zinc-800">Acompanhamentos</h3>
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 md:gap-10"
-        >
-          <article class="flex gap-2">
-            <img
-              src="./assets/batata-tradicional.png"
-              alt="Fritas Cheddar & Bacon"
-              class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300 object-cover"
-            />
-            <div class="w-full flex flex-col justify-between">
-              <div>
-                <p class="font-bold text-zinc-800">Fritas Cheddar & Bacon</p>
-                <p class="text-sm text-zinc-700 font-text">
-                  Nossas clássicas batatas fritas fininhas e crocantes, servidas
-                  em uma porção generosa e mergulhadas em um creme de cheddar
-                  artesanal e finalizadas com uma chuva de cubos de bacon
-                  crocante.
-                </p>
-              </div>
-              <div class="flex items-center justify-between mt-2">
-                <p class="font-bold text-lg text-amber-600">R$ 24,90</p>
-                <button
-                  class="bg-zinc-800 px-5 rounded add-to-cart-btn"
-                  data-name="Fritas Cheddar & Bacon"
-                  data-price="24.90"
-                >
-                  <i class="fa fa-cart-plus text-lg text-white"></i>
+
+      <section class="mb-24 max-w-5xl mx-auto px-4">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i class="fas fa-utensils text-amber-500" aria-hidden="true"></i>
+            <span class="section-title-text">Acompanhamentos</span>
+          </h2>
+          <p class="section-subtitle">Complementos perfeitos para sua refeição</p>
+        </div>
+
+        <div class="products-list-container">
+          <div class="product-item-card reveal">
+            <div class="product-item-img-wrapper">
+              <img src="./assets/batata-bacon.webp" alt="Fritas Cheddar & Bacon" class="product-item-img" loading="lazy" />
+            </div>
+            <div class="product-item-info">
+              <h3 class="product-item-name">Fritas Cheddar & Bacon</h3>
+              <p class="product-item-desc">Batatas fritas crocantes mergulhadas em creme de cheddar artesanal com cubos de bacon crocante.</p>
+              <div class="product-item-footer">
+                <span class="product-item-price">R$ 24,90</span>
+                <button type="button" class="btn-add-item add-to-cart-btn" data-id="side-fritas-cheddar" data-name="Fritas Cheddar & Bacon" data-price="24.90" aria-label="Adicionar ao carrinho">
+                  <i class="fa fa-plus"></i>
                 </button>
               </div>
             </div>
-          </article>
-          <article class="flex gap-2">
-            <img
-              src="./assets/batata-rustica.png"
-              alt="Batatas Rústicas da Casa"
-              class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300 object-cover"
-            />
-            <div class="w-full flex flex-col justify-between">
-              <div>
-                <p class="font-bold text-zinc-800">Batatas Rústicas da Casa</p>
-                <p class="text-sm text-zinc-700 font-text">
-                  Cortes grossos de batata com casca, fritas até ficarem
-                  douradas e crocantes por fora, macias por dentro, e temperadas
-                  com sal grosso e alecrim. Acompanha um potinho da nossa
-                  maionese artesanal.
-                </p>
-              </div>
-              <div class="flex items-center justify-between mt-2">
-                <p class="font-bold text-lg text-amber-600">R$ 18,90</p>
-                <button
-                  class="bg-zinc-800 px-5 rounded add-to-cart-btn"
-                  data-name="Batatas Rústicas da Casa"
-                  data-price="18.90"
-                >
-                  <i class="fa fa-cart-plus text-lg text-white"></i>
+          </div>
+
+          <div class="product-item-card reveal">
+            <div class="product-item-img-wrapper">
+              <img src="./assets/batata-rustica.webp" alt="Batatas Rústicas da Casa" class="product-item-img" loading="lazy" />
+            </div>
+            <div class="product-item-info">
+              <h3 class="product-item-name">Batatas Rústicas da Casa</h3>
+              <p class="product-item-desc">Cortes grossos com casca, fritos até ficarem crocantes, temperados com sal grosso e alecrim.</p>
+              <div class="product-item-footer">
+                <span class="product-item-price">R$ 18,90</span>
+                <button type="button" class="btn-add-item add-to-cart-btn" data-id="side-batata-rustica" data-name="Batatas Rústicas da Casa" data-price="18.90" aria-label="Adicionar ao carrinho">
+                  <i class="fa fa-plus"></i>
                 </button>
               </div>
             </div>
-          </article>
-          <article class="flex gap-2">
-            <img
-              src="./assets/anel-cebola.png"
-              alt="Anéis de Cebola Crocantes"
-              class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300 object-cover"
-            />
-            <div class="w-full flex flex-col justify-between">
-              <div>
-                <p class="font-bold text-zinc-800">Anéis de Cebola Crocantes</p>
-                <p class="text-sm text-zinc-700 font-text">
-                  Anéis de cebola de verdade, empanados em nossa mistura secreta
-                  e fritos à perfeição para uma crocância sem igual. Acompanha
-                  nosso molho barbecue especial da casa para uma combinação
-                  perfeita.
-                </p>
-              </div>
-              <div class="flex items-center justify-between mt-2">
-                <p class="font-bold text-lg text-amber-600">R$ 22,90</p>
-                <button
-                  class="bg-zinc-800 px-5 rounded add-to-cart-btn"
-                  data-name="Anéis de Cebola Crocantes"
-                  data-price="22.90"
-                >
-                  <i class="fa fa-cart-plus text-lg text-white"></i>
+          </div>
+
+          <div class="product-item-card reveal">
+            <div class="product-item-img-wrapper">
+              <img src="./assets/anel-cebola.webp" alt="Anéis de Cebola Crocantes" class="product-item-img" loading="lazy" />
+            </div>
+            <div class="product-item-info">
+              <h3 class="product-item-name">Anéis de Cebola Crocantes</h3>
+              <p class="product-item-desc">Anéis de cebola empanados em mistura secreta e fritos à perfeição com molho barbecue especial.</p>
+              <div class="product-item-footer">
+                <span class="product-item-price">R$ 22,90</span>
+                <button type="button" class="btn-add-item add-to-cart-btn" data-id="side-aneis-cebola" data-name="Anéis de Cebola Crocantes" data-price="22.90" aria-label="Adicionar ao carrinho">
+                  <i class="fa fa-plus"></i>
                 </button>
               </div>
             </div>
-          </article>
+          </div>
         </div>
       </section>
-      <section class="mb-16 max-w-7xl mx-auto px-4">
-        <h3 class="font-bold text-3xl mb-10 text-zinc-800">Bebidas</h3>
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 md:gap-10"
-        >
-          <article class="flex gap-2">
-            <img
-              src="./assets/refri-1.png"
-              alt="Coca-Cola Lata"
-              class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300 object-cover"
-            />
-            <div class="w-full flex flex-col justify-between">
-              <div>
-                <p class="font-bold text-zinc-800">Coca-Cola Lata</p>
-              </div>
-              <div class="flex items-center justify-between mt-2">
-                <p class="font-bold text-lg text-amber-600">R$ 5,90</p>
-                <button
-                  class="bg-zinc-800 px-5 rounded add-to-cart-btn"
-                  data-name="Coca-Cola Lata"
-                  data-price="5.90"
-                >
-                  <i class="fa fa-cart-plus text-lg text-white"></i>
+
+      <section class="mb-24 max-w-5xl mx-auto px-4">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i class="fas fa-glass-cheers text-amber-500" aria-hidden="true"></i>
+            <span class="section-title-text">Bebidas</span>
+          </h2>
+          <p class="section-subtitle">Refrescos para acompanhar seu pedido</p>
+        </div>
+
+        <div class="products-list-container">
+          <div class="product-item-card reveal">
+            <div class="product-item-img-wrapper">
+              <img src="./assets/refri-1.webp" alt="Coca-Cola Lata" class="product-item-img" loading="lazy" />
+            </div>
+            <div class="product-item-info">
+              <h3 class="product-item-name">Coca-Cola Lata</h3>
+              <p class="product-item-desc">Refrigerante gelado e refrescante para complementar sua refeição.</p>
+              <div class="product-item-footer">
+                <span class="product-item-price">R$ 5,90</span>
+                <button type="button" class="btn-add-item add-to-cart-btn" data-id="drink-coca-lata" data-name="Coca-Cola Lata" data-price="5.90" aria-label="Adicionar ao carrinho">
+                  <i class="fa fa-plus"></i>
                 </button>
               </div>
             </div>
-          </article>
-          <article class="flex gap-2">
-            <img
-              src="./assets/refri-2.png"
-              alt="Guaraná Antarctica"
-              class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300 object-cover"
-            />
-            <div class="w-full flex flex-col justify-between">
-              <div>
-                <p class="font-bold text-zinc-800">Guaraná Antarctica</p>
-              </div>
-              <div class="flex items-center justify-between mt-2">
-                <p class="font-bold text-lg text-amber-600">R$ 5,90</p>
-                <button
-                  class="bg-zinc-800 px-5 rounded add-to-cart-btn"
-                  data-name="Guaraná Antarctica"
-                  data-price="5.90"
-                >
-                  <i class="fa fa-cart-plus text-lg text-white"></i>
+          </div>
+
+          <div class="product-item-card reveal">
+            <div class="product-item-img-wrapper">
+              <img src="./assets/refri-2.webp" alt="Guaraná Antarctica" class="product-item-img" loading="lazy" />
+            </div>
+            <div class="product-item-info">
+              <h3 class="product-item-name">Guaraná Antarctica</h3>
+              <p class="product-item-desc">Refrigerante com sabor único e refrescante para sua satisfação.</p>
+              <div class="product-item-footer">
+                <span class="product-item-price">R$ 5,90</span>
+                <button type="button" class="btn-add-item add-to-cart-btn" data-id="drink-guarana-antarctica" data-name="Guaraná Antarctica" data-price="5.90" aria-label="Adicionar ao carrinho">
+                  <i class="fa fa-plus"></i>
                 </button>
               </div>
             </div>
-          </article>
+          </div>
         </div>
       </section>
     </main>
-    <div
-      class="bg-black/60 w-full h-full fixed top-0 left-0 z-[99] flex items-center justify-center hidden"
-      id="cart-modal"
-    >
-      <div class="bg-white p-5 rounded-md w-[90%] max-w-lg">
-        <h2 class="text-center font-bold text-2xl mb-2 text-zinc-800">
-          Meu Carrinho
-        </h2>
-        <div id="cart-items" class="flex justify-between mb-2 flex-col"></div>
-        <p class="font-bold text-zinc-800">
-          Total: <span id="cart-total" class="font-bold">R$ 0,00</span>
-        </p>
-        <p class="font-bold mt-4 text-zinc-800">Endereço de entrega:</p>
-        <input
-          type="text"
-          placeholder="Digite seu endereço completo..."
-          id="address"
-          class="w-full border-2 p-2 rounded my-1"
-        />
-        <p class="text-red-500 hidden" id="address-warn">
-          Digite seu endereço completo
-        </p>
-        <div class="flex items-center justify-between mt-5 w-full">
-          <button id="close-modal-btn" class="font-bold">Fechar</button>
-          <button
-            id="checkout-btn"
-            class="bg-amber-600 text-white px-4 py-1 rounded"
-          >
-            Finalizar pedido
+
+    <div class="bg-black/60 w-full h-full fixed top-0 left-0 z-[99] flex items-center justify-center hidden" id="cart-modal" role="dialog" aria-modal="true" aria-labelledby="cart-modal-title">
+      <div class="cart-modal-content relative w-[90%] max-w-lg max-h-[90vh] flex flex-col">
+
+        <!-- Cabeçalho do modal -->
+        <div class="cart-modal-header">
+          <div class="cart-modal-header-left">
+            <div class="cart-modal-icon-wrap">
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            </div>
+            <div>
+              <h2 id="cart-modal-title" class="cart-modal-title">Meu Carrinho</h2>
+              <p class="cart-modal-subtitle"><span id="cart-item-count-label">0 itens</span> selecionados</p>
+            </div>
+          </div>
+          <button type="button" class="close-modal-x cart-modal-close" aria-label="Fechar">
+            <i class="fa fa-times" aria-hidden="true"></i>
           </button>
+        </div>
+
+        <!-- Lista de itens -->
+        <div id="cart-items" class="cart-modal-items flex-grow overflow-y-auto pr-1 min-h-[100px]"></div>
+
+        <!-- Rodapé do modal -->
+        <div class="cart-modal-footer">
+
+          <!-- Subtotal -->
+          <div class="cart-subtotal-row">
+            <div class="cart-subtotal-info">
+              <span class="cart-subtotal-label">Subtotal dos itens</span>
+              <span class="cart-subtotal-hint">
+                <i class="fa fa-truck" aria-hidden="true"></i>
+                Frete calculado na próxima etapa
+              </span>
+            </div>
+            <span id="cart-total" class="cart-subtotal-value">R$ 0,00</span>
+          </div>
+
+          <!-- Ações -->
+          <div class="cart-modal-actions">
+            <button type="button" id="close-modal-btn" class="cart-btn-secondary">
+              <i class="fa fa-arrow-left" aria-hidden="true"></i>
+              Voltar
+            </button>
+            <button type="button" id="go-to-address-btn" class="cart-btn-primary disabled:opacity-50 disabled:cursor-not-allowed">
+              <span>Continuar</span>
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="bg-black/60 w-full h-full fixed top-0 left-0 z-[100] flex items-center justify-center hidden" id="address-modal" role="dialog" aria-modal="true" aria-labelledby="address-modal-title">
+      <div class="cart-modal-content relative">
+
+        <!-- Cabeçalho do modal -->
+        <div class="cart-modal-header">
+          <div class="cart-modal-header-left">
+            <div class="cart-modal-icon-wrap">
+              <i class="fa fa-map-marker-alt" aria-hidden="true"></i>
+            </div>
+            <div>
+              <h2 id="address-modal-title" class="cart-modal-title">Endereço de Entrega</h2>
+              <p class="cart-modal-subtitle">Informe o local de entrega</p>
+            </div>
+          </div>
+          <button type="button" class="close-modal-x cart-modal-close" aria-label="Fechar">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <!-- Conteúdo do formulário -->
+        <div class="cart-modal-items overflow-y-auto flex-grow">
+          <div class="space-y-3">
+            <div>
+              <label class="block text-sm font-bold text-zinc-700 mb-1" for="cep">CEP*</label>
+              <input type="text" id="cep" placeholder="00000-000" maxlength="9" class="w-full border-2 p-2 rounded focus:border-amber-600 outline-none transition-colors" />
+              <p id="cep-loading" class="text-xs text-amber-600 mt-1 hidden">Buscando CEP...</p>
+            </div>
+            <div class="grid grid-cols-3 gap-2">
+              <div class="col-span-2">
+                <label class="block text-sm font-bold text-zinc-700 mb-1" for="street">Rua*</label>
+                <input type="text" id="street" readonly class="w-full border-2 p-2 rounded bg-zinc-50 text-zinc-500" />
+              </div>
+              <div>
+                <label class="block text-sm font-bold text-zinc-700 mb-1" for="house-number">Número*</label>
+                <input type="text" id="house-number" placeholder="Ex: 123" class="w-full border-2 p-2 rounded focus:border-amber-600 outline-none" />
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="block text-sm font-bold text-zinc-700 mb-1" for="neighborhood">Bairro*</label>
+                <input type="text" id="neighborhood" readonly class="w-full border-2 p-2 rounded bg-zinc-50 text-zinc-500" />
+              </div>
+              <div>
+                <label class="block text-sm font-bold text-zinc-700 mb-1" for="city">Cidade*</label>
+                <input type="text" id="city" readonly class="w-full border-2 p-2 rounded bg-zinc-50 text-zinc-500" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-bold text-zinc-700 mb-1" for="complement">Complemento (Opcional)</label>
+              <input type="text" id="complement" placeholder="Apto, Bloco, etc." class="w-full border-2 p-2 rounded focus:border-amber-600 outline-none" />
+            </div>
+          </div>
+          <p class="text-red-500 text-sm mt-3 hidden" id="address-warn">Preencha os campos obrigatórios (*)</p>
+        </div>
+
+        <!-- Rodapé do modal -->
+        <div class="cart-modal-footer">
+          <div class="cart-modal-actions">
+            <button type="button" id="back-to-cart-btn" class="cart-btn-secondary">
+              <i class="fa fa-arrow-left" aria-hidden="true"></i>
+              Voltar
+            </button>
+            <button type="button" id="go-to-review-btn" class="cart-btn-primary">
+              <span>Continuar</span>
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
-    <footer
-      class="w-full bg-amber-600 py-3 fixed bottom-0 z-40 flex items-center justify-center"
+
+
+    <div class="bg-black/60 w-full h-full fixed top-0 left-0 z-[101] flex items-center justify-center hidden" id="review-modal" role="dialog" aria-modal="true" aria-labelledby="review-modal-title">
+      <div class="cart-modal-content relative">
+
+        <!-- Cabeçalho do modal -->
+        <div class="cart-modal-header">
+          <div class="cart-modal-header-left">
+            <div class="cart-modal-icon-wrap">
+              <i class="fa fa-check-circle" aria-hidden="true"></i>
+            </div>
+            <div>
+              <h2 id="review-modal-title" class="cart-modal-title">Revisão do Pedido</h2>
+              <p class="cart-modal-subtitle">Confirme os dados antes de finalizar</p>
+            </div>
+          </div>
+          <button type="button" class="close-modal-x cart-modal-close" aria-label="Fechar">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <!-- Conteúdo da revisão -->
+        <div class="cart-modal-items overflow-y-auto flex-grow">
+          <div class="space-y-4">
+            <div>
+              <h3 class="font-bold text-zinc-700 mb-2 flex items-center gap-2">
+                <i class="fa fa-shopping-basket text-amber-600" aria-hidden="true"></i> Itens do Pedido
+              </h3>
+              <div id="review-items" class="bg-zinc-50 p-3 rounded-lg space-y-2 text-sm"></div>
+            </div>
+            <div>
+              <h3 class="font-bold text-zinc-700 mb-2 flex items-center gap-2">
+                <i class="fa fa-map-marker-alt text-amber-600" aria-hidden="true"></i> Endereço de Entrega
+              </h3>
+              <div id="review-address" class="bg-zinc-50 p-3 rounded-lg text-sm text-zinc-600 italic"></div>
+            </div>
+            <div class="flex justify-between items-center border-t pt-3 mt-3">
+              <span class="text-base font-bold text-zinc-700">Total Final:</span>
+              <span id="review-total" class="text-xl font-bold text-amber-600">R$ 0,00</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rodapé do modal -->
+        <div class="cart-modal-footer">
+          <div class="cart-modal-actions">
+            <button type="button" id="back-to-address-btn" class="cart-btn-secondary">
+              <i class="fa fa-arrow-left" aria-hidden="true"></i>
+              Voltar
+            </button>
+            <button type="button" id="finish-order-btn" class="cart-btn-primary" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);">
+              <i class="fab fa-whatsapp" aria-hidden="true"></i>
+              <span>Finalizar</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  <footer class="cart-footer cart-footer-hidden w-full py-4 fixed bottom-0 z-40 flex items-center justify-center">
+  <button type="button" class="cart-button" id="cart-btn" aria-label="Abrir carrinho">
+    <i class="fa fa-shopping-cart text-2xl" aria-hidden="true"></i>
+    <span class="cart-count">(<span id="cart-count">0</span>)</span>
+    <span>Meu Carrinho</span>
+  </button>
+</footer>
+
+<footer id="bottom-cart-footer" class="bottom-cart-footer">
+  <div class="bottom-cart-container">
+    <button
+      type="button"
+      class="cart-button"
+      id="bottom-cart-btn"
+      aria-label="Abrir carrinho no rodapé"
     >
-      <button
-        class="flex items-center gap-2 text-white font-bold"
-        id="cart-btn"
-      >
-        (<span id="cart-count">0</span>) Veja meu carrinho
-        <i class="fa fa-cart-plus text-lg text-white"></i>
-      </button>
-    </footer>
-    <script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/toastify-js"
-    ></script>
+      <i class="fa fa-shopping-cart text-2xl" aria-hidden="true"></i>
+      <span class="cart-count">(<span id="bottom-cart-count">0</span>)</span>
+      <span>Meu Carrinho</span>
+    </button>
+  </div>
+</footer>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="./script.js"></script>
   </body>
 </html>
