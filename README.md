@@ -1,19 +1,25 @@
 # 🍔 The Burger House
 
-Aplicação web de cardápio digital para hamburgueria, com carrinho interativo, validação de pedido, integração com WhatsApp e foco em experiência do usuário.
+Aplicação web de cardápio digital para hamburgueria, com carrinho interativo, validação de pedidos, integração com WhatsApp e foco em experiência do usuário.
+
+---
+
+## 🌐 Acesse o Projeto
+
+👉 https://burger-shop-aiib.vercel.app/
 
 ---
 
 ## 📌 Objetivo do Projeto
 
-Este projeto foi desenvolvido com o objetivo de praticar e demonstrar:
+Este projeto foi desenvolvido com o objetivo de praticar e demonstrar habilidades em desenvolvimento front-end, incluindo:
 
 * construção de interfaces modernas e responsivas;
 * manipulação do DOM com JavaScript puro;
 * gerenciamento de estado do carrinho;
 * persistência de dados com localStorage;
 * integração com APIs externas (ViaCEP);
-* foco em UX/UI para aplicações reais de delivery.
+* foco em UX/UI aplicado a sistemas reais de delivery.
 
 ---
 
@@ -26,7 +32,7 @@ Este projeto foi desenvolvido com o objetivo de praticar e demonstrar:
 * 🚫 Validação de carrinho vazio antes de prosseguir
 * 📍 Etapa de preenchimento de endereço
 * 🔎 Busca automática de endereço via CEP (ViaCEP)
-* 📦 Revisão final do pedido
+* 📦 Revisão completa do pedido
 * 📲 Envio do pedido diretamente para o WhatsApp
 * ⏰ Status dinâmico da loja (Aberto / Fechado)
 * 🎨 Feedback visual com animações e notificações (Toast)
@@ -52,7 +58,7 @@ Este projeto foi desenvolvido com o objetivo de praticar e demonstrar:
 burger-shop/
 │
 ├── index.html          # Estrutura principal da aplicação
-├── script.js           # Lógica do sistema (carrinho, validações, fluxo do pedido)
+├── script.js           # Lógica do sistema (carrinho, validações e fluxo do pedido)
 ├── styles/
 │   └── style.css       # Estilos customizados
 ├── assets/             # Imagens e recursos visuais
@@ -63,11 +69,11 @@ burger-shop/
 
 ## ⚙️ Organização da Aplicação
 
-A aplicação foi estruturada separando responsabilidades em:
+A aplicação foi estruturada com separação de responsabilidades:
 
-* **Interface (HTML):** estrutura visual do sistema
-* **Estilização (CSS/Tailwind):** layout e design
-* **Lógica (JavaScript):** controle do carrinho, validações e fluxo do pedido
+* **Interface (HTML):** estrutura visual da aplicação
+* **Estilização (CSS/Tailwind):** layout e identidade visual
+* **Lógica (JavaScript):** gerenciamento do carrinho, validações e fluxo do pedido
 * **Recursos:** imagens e assets
 
 ---
@@ -75,37 +81,42 @@ A aplicação foi estruturada separando responsabilidades em:
 ## ⭐ Diferenciais Técnicos
 
 * Persistência do carrinho utilizando localStorage
-* Fluxo completo de pedido até integração com WhatsApp
+* Fluxo completo de pedido com integração ao WhatsApp
 * Integração com API externa para preenchimento automático de endereço
 * Feedback visual com animações e notificações
 * Interface responsiva para diferentes dispositivos
-* Aplicação orientada à experiência do usuário
+* Foco em experiência do usuário (UX)
 
 ---
 
 ## 📸 Interface do Sistema
 
 ### 🏠 Página Inicial
+
 <p align="center">
   <img src="docs/images/home.png" width="800">
 </p>
 
 ### 🍔 Cardápio
+
 <p align="center">
   <img src="docs/images/menu.png" width="800">
 </p>
 
 ### 🛒 Carrinho
+
 <p align="center">
   <img src="docs/images/cart.png" width="800">
 </p>
 
 ### 📍 Endereço
+
 <p align="center">
   <img src="docs/images/address.png" width="800">
 </p>
 
 ### 📦 Revisão do Pedido
+
 <p align="center">
   <img src="docs/images/review.png" width="800">
 </p>
@@ -117,7 +128,7 @@ A aplicação foi estruturada separando responsabilidades em:
 ### 1. Clonar o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/burger-shop.git
+git clone https://github.com/felipe-frc/burger-shop.git
 ```
 
 ### 2. Acessar a pasta do projeto
@@ -142,7 +153,7 @@ npm run dev
 
 ## ⚠️ Observações
 
-* O funcionamento do envio de pedidos depende do WhatsApp Web
+* O envio de pedidos depende do WhatsApp Web
 * A busca de endereço depende da API ViaCEP
 * É necessário acesso à internet para carregamento de recursos externos
 
@@ -154,7 +165,6 @@ npm run dev
 * Sistema de autenticação de usuários
 * Painel administrativo
 * Integração com banco de dados
-* Deploy em ambiente de produção
 
 ---
 
@@ -166,4 +176,4 @@ Este projeto está sob a licença MIT.
 
 ## 👨‍💻 Autor
 
-Felipe França
+**Felipe França** 
