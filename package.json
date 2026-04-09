@@ -1,16 +1,10 @@
 {
-  "name": "burguer",
+  "name": "the-burger-house",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Cardápio digital para hamburgueria com carrinho interativo, integração com WhatsApp e busca automática de endereço por CEP.",
+  "author": "Felipe França",
+  "license": "MIT",
   "scripts": {
-    "dev": "npx tailwindcss -i ./styles/style.css -o ./output.css --watch"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "devDependencies": {
-    "tailwindcss": "^3.4.19"
+    "dev": "tailwindcss -i ./styles/style.css -o ./output.css --watch"
   }
 }
-
