@@ -21,7 +21,7 @@ jobs:
           cache: npm
 
       - name: Instalar dependências
-        run: npm install
+        run: npm ci
 
       - name: Gerar CSS de produção
         run: npm run build
@@ -29,5 +29,6 @@ jobs:
       - name: Verificar arquivos principais
         run: |
           test -f index.html
+          test -f script.js
           test -f output.css
           echo "Arquivos principais encontrados com sucesso"
