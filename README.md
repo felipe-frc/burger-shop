@@ -1,3 +1,5 @@
+[![CI (Front-end)](https://github.com/felipe-frc/burger-shop/actions/workflows/frontend-ci.yml/badge.svg)](https://github.com/felipe-frc/burger-shop/actions/workflows/frontend-ci.yml)
+
 # 🍔 The Burger House
 
 Aplicação web de cardápio digital para hamburgueria, com carrinho interativo, validação de pedidos, integração com WhatsApp e foco em experiência do usuário.
