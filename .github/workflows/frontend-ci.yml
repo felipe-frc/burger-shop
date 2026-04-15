@@ -26,7 +26,8 @@ jobs:
       - name: Gerar CSS de produção
         run: npm run build
 
-      - name: Verificar arquivo principal
+      - name: Verificar arquivos principais
         run: |
           test -f index.html
-          echo "index.html encontrado com sucesso"
+          test -f output.css
+          echo "Arquivos principais encontrados com sucesso"
