@@ -47,90 +47,139 @@
   </head>
 
   <body>
-    <header
-      class="hero-overlay w-full min-h-screen bg-zinc-900 bg-home bg-cover bg-center bg-fixed flex items-start justify-center relative"
-    >
-      <div
-        class="hero-content w-full h-full flex flex-col justify-start items-center text-center px-4 pb-20"
-      >
-        <div class="language-switcher" aria-label="Selecionar idioma">
-          <label
-            for="language-select"
-            class="sr-only"
-            data-i18n="language.label"
-          >
-            Idioma
-          </label>
-          <i class="fa fa-globe" aria-hidden="true"></i>
-          <select id="language-select" class="language-select">
-            <option value="pt-BR">PT</option>
-            <option value="en-US">EN</option>
-          </select>
-        </div>
+    <header class="w-full min-h-screen relative overflow-hidden bg-black text-white selection:bg-amber-500/30 selection:text-amber-500 flex items-center">
+      
+      <!-- Animated Background (Fullscreen) -->
+      <div class="absolute inset-0 z-0">
+        <img 
+          id="hero-burger-anim"
+          src="assets/burger-frames/burger_000.jpg" 
+          alt="Hero Background Animation" 
+          class="w-full h-full object-cover opacity-80"
+        />
+        <!-- Dark Gradient Overlay to ensure text readability -->
+        <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent pointer-events-none"></div>
+      </div>
 
-        <div class="hero-logo-wrap animate-float">
-          <img
-            src="./assets/logo-burger.webp"
-            alt="Logo da hamburgueria The Burger House"
-            width="160"
-            height="160"
-            class="w-32 h-32 md:w-40 md:h-40 rounded-full shadow-2xl border-4 border-amber-400 object-cover"
-          />
-        </div>
-
-        <div class="hero-info-stack">
-          <h1 class="hero-title font-black font-poppins" data-i18n="hero.title">
-            The Burger House
-          </h1>
-
-          <div class="hero-meta-row text-white">
-            <i
-              class="fas fa-map-marker-alt text-amber-400 text-xl"
-              aria-hidden="true"
-            ></i>
-            <p class="text-lg font-medium" data-i18n="hero.address">
-              Rua Dev 25, Uberlândia - MG
-            </p>
-          </div>
-
-          <div class="hero-meta-row text-white">
-            <i
-              class="fas fa-clock text-amber-400 text-lg"
-              aria-hidden="true"
-            ></i>
-            <p class="text-base font-medium" data-i18n="hero.hours">
-              Seg à Dom • 18h às 23h
-            </p>
-          </div>
-
-          <div
-            id="date-span"
-            class="badge-status badge-open"
-            aria-live="polite"
-          >
-            <span class="status-dot"></span>
-            <span id="status-text">Aberto agora</span>
-          </div>
-
-          <a
-            href="#menu"
-            class="hero-cta inline-flex items-center gap-2 bg-gradient-to-r from-amber-400 to-amber-500 text-zinc-900 px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
-            aria-label="Ir para o cardápio"
-            data-i18n-aria-label="hero.ctaAria"
-          >
-            <i class="fas fa-utensils" aria-hidden="true"></i>
-            <span data-i18n="hero.cta">Explorar Cardápio</span>
+      <!-- Navbar -->
+      <div class="absolute top-0 left-0 w-full z-50 px-6 py-6 md:px-12 lg:px-20">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+          <!-- Logo -->
+          <a href="#" class="flex items-center gap-2 text-2xl md:text-3xl font-bold tracking-wider text-white hover:text-amber-500 transition-colors">
+            <div class="w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center text-black font-extrabold text-xl shadow-lg shadow-amber-500/30">B</div>
+           The Burger House
           </a>
-        </div>
 
-        <div
-          class="hero-scroll-indicator absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"
-          aria-hidden="true"
-        >
-          <i class="fas fa-chevron-down text-amber-400 text-2xl"></i>
+          <!-- Navigation Links -->
+          <nav class="hidden lg:flex items-center gap-10">
+            <a href="#" class="text-sm font-semibold tracking-wide text-white/80 hover:text-amber-500 transition-colors">Home</a>
+            <a href="#" class="text-sm font-semibold tracking-wide text-white/80 hover:text-amber-500 transition-colors">About us</a>
+            <a href="#menu" class="text-sm font-semibold tracking-wide text-white/80 hover:text-amber-500 transition-colors">Menu</a>
+            <a href="#" class="text-sm font-semibold tracking-wide text-white/80 hover:text-amber-500 transition-colors">Contact us</a>
+          </nav>
+
+          <!-- CTA & Icons -->
+          <div class="hidden lg:flex items-center gap-6">
+            <button class="text-white hover:text-amber-500 transition-colors">
+              <i class="fa fa-search text-xl"></i>
+            </button>
+            <button class="text-white hover:text-amber-500 transition-colors relative" id="hero-cart-btn">
+              <i class="fa fa-shopping-cart text-xl"></i>
+              <span class="absolute -top-2 -right-2 bg-amber-500 text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center" id="hero-cart-count">0</span>
+            </button>
+            <a href="#" class="px-6 py-2.5 text-sm font-bold text-black bg-amber-500 rounded-full hover:bg-amber-400 hover:shadow-lg hover:shadow-amber-500/30 transition-all duration-300 ml-4">
+              Sign up
+            </a>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <button class="lg:hidden text-white hover:text-amber-500 transition-colors" id="mobile-menu-btn">
+            <i class="fa fa-bars text-2xl"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Hero Content -->
+      <div class="relative z-10 w-full px-6 md:px-12 lg:px-20">
+        <div class="max-w-7xl mx-auto w-full">
+          
+          <!-- Left Content (Text) -->
+          <div class="w-full lg:w-2/3 xl:w-1/2 flex flex-col items-center text-center lg:items-start lg:text-left mt-20">
+            <span class="text-amber-500 font-bold tracking-[0.2em] uppercase text-xs mb-6 inline-block">
+              Affordable and very filling
+            </span>
+            
+            <h1 class="text-5xl md:text-6xl lg:text-7xl xl:text-[80px] font-bold font-poppins leading-[1.05] mb-8">
+              Hot, fresh burgers <br />
+              made <span class="text-amber-500">for any time</span> <br />
+              cravings
+            </h1>
+            
+            <p class="text-white/80 text-base md:text-lg max-w-lg mb-10 leading-relaxed font-light">
+              Made with fresh ingredients, juicy patties, and soft buns, our burgers are grilled to perfection and served hot. Every bite is packed with rich flavor that keeps you coming back for more.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto mb-12">
+              <a href="#menu" class="w-full sm:w-auto px-8 py-4 text-center text-sm font-bold text-black bg-amber-500 rounded-full hover:bg-amber-400 hover:shadow-[0_0_20px_rgba(245,158,11,0.4)] transition-all duration-300">
+                Order now
+              </a>
+              <a href="#menu" class="w-full sm:w-auto px-8 py-4 text-center text-sm font-bold text-white border border-white/20 rounded-full hover:bg-white/10 hover:border-white/50 transition-all duration-300 backdrop-blur-sm">
+                See our menu
+              </a>
+            </div>
+            
+            <!-- Delivery Card -->
+            <div class="flex items-center gap-4 bg-white/10 border border-white/10 backdrop-blur-md rounded-2xl p-4 pr-8 w-fit hover:bg-white/20 transition-colors duration-300">
+              <div class="w-12 h-12 bg-amber-500/20 rounded-full flex items-center justify-center text-amber-500 shrink-0">
+                <i class="fas fa-clock text-xl"></i>
+              </div>
+              <p class="text-sm font-medium text-white/90">
+                We offer 24 hour delivery service
+              </p>
+            </div>
+          </div>
+          
         </div>
       </div>
     </header>
+
+    <!-- Animation Script -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const totalFrames = 80;
+        let currentFrame = 0;
+        const imgElement = document.getElementById('hero-burger-anim');
+        
+        // Preload images
+        const preloadedImages = [];
+        for(let i = 0; i < totalFrames; i++) {
+          const img = new Image();
+          const frameNum = String(i).padStart(3, '0');
+          img.src = `assets/burger-frames/burger_${frameNum}.jpg`;
+          preloadedImages.push(img);
+        }
+
+        let lastTime = performance.now();
+        const fps = 24;
+        const interval = 1000 / fps;
+
+        function animate(time) {
+          const deltaTime = time - lastTime;
+          
+          if (deltaTime >= interval) {
+            currentFrame = (currentFrame + 1) % totalFrames;
+            if(imgElement) {
+                imgElement.src = preloadedImages[currentFrame].src;
+            }
+            lastTime = time - (deltaTime % interval);
+          }
+          
+          requestAnimationFrame(animate);
+        }
+
+        requestAnimationFrame(animate);
+      });
+    </script>
 
     <nav
       id="category-nav"
