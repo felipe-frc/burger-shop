@@ -67,7 +67,7 @@ function getFocusableElements(container) {
 
   return Array.from(container.querySelectorAll(focusableSelector)).filter(
     (element) =>
-      element.offsetParent !== null || element === document.activeElement
+      element.offsetParent !== null || element === document.activeElement,
   );
 }
 
@@ -167,7 +167,7 @@ export function bindModalCloseEvents() {
           closeAllModals();
         }
       });
-    }
+    },
   );
 }
 
@@ -237,9 +237,8 @@ export function setFinishButtonLoading(isLoading) {
 export function renderMenu() {
   if (!elements.menuCategoriesContainer) return;
 
-  elements.menuCategoriesContainer.innerHTML = MENU_CATEGORIES.map(
-    renderMenuCategory
-  ).join("");
+  elements.menuCategoriesContainer.innerHTML =
+    MENU_CATEGORIES.map(renderMenuCategory).join("");
 }
 
 function renderMenuCategory(category) {
@@ -317,17 +316,28 @@ export function updateStoreStatus() {
 
   if (!elements.dateSpan || !elements.statusText) return;
 
-  if (isOpen) {
-    elements.dateSpan.classList.remove("badge-closed");
-    elements.dateSpan.classList.add("badge-open");
-    elements.statusText.textContent = translate("status.open");
-  } else {
-    elements.dateSpan.classList.remove("badge-open");
-    elements.dateSpan.classList.add("badge-closed");
-    elements.statusText.textContent = translate("status.closed");
-  }
-}
+  elements.dateSpan.classList.remove(
+    "text-emerald-200",
+    "text-red-200",
+    "text-emerald-100",
+    "text-red-100",
+    "border-emerald-400/50",
+    "border-red-400/50",
+    "bg-emerald-950/75",
+    "bg-red-950/75",
+    "badge-open",
+    "badge-closed",
+  );
 
+  if (isOpen) {
+    elements.dateSpan.classList.add("text-emerald-200");
+    elements.statusText.textContent = translate("status.open");
+    return;
+  }
+
+  elements.dateSpan.classList.add("text-red-200");
+  elements.statusText.textContent = translate("status.closed");
+}
 export function revealOnScroll() {
   const reveals = document.querySelectorAll(".reveal");
   const windowHeight = window.innerHeight;
@@ -346,7 +356,7 @@ function showFloatingCart() {
 
   elements.cartFooter.classList.remove(
     "cart-footer-hidden",
-    "cart-footer-bottom"
+    "cart-footer-bottom",
   );
   elements.cartFooter.classList.add("cart-footer-visible");
 }
@@ -355,7 +365,10 @@ function showBottomCart() {
   if (!elements.cartFooter) return;
 
   elements.cartFooter.classList.remove("cart-footer-hidden");
-  elements.cartFooter.classList.add("cart-footer-visible", "cart-footer-bottom");
+  elements.cartFooter.classList.add(
+    "cart-footer-visible",
+    "cart-footer-bottom",
+  );
 }
 
 export function hideCartFooter() {
@@ -363,7 +376,7 @@ export function hideCartFooter() {
 
   elements.cartFooter.classList.remove(
     "cart-footer-visible",
-    "cart-footer-bottom"
+    "cart-footer-bottom",
   );
   elements.cartFooter.classList.add("cart-footer-hidden");
 }
@@ -372,16 +385,16 @@ export function setupCartVisibility() {
   const menuSection = elements.menuSection;
   const categoryNav = document.getElementById("category-nav");
 
-  if (!menuSection) return;
+  if (!menuSection || !categoryNav) return;
 
   function updateCartVisibility() {
-    const navHeight = categoryNav ? categoryNav.offsetHeight : 0;
-    const menuStart = Math.max(menuSection.offsetTop - navHeight - 160, 0);
+    const navHeight = categoryNav.offsetHeight || 0;
+    const categoryNavStart = Math.max(categoryNav.offsetTop - navHeight, 0);
 
     const pageBottomThreshold =
       document.documentElement.scrollHeight - window.innerHeight - 40;
 
-    const hasReachedMenu = window.scrollY >= menuStart;
+    const hasReachedMenu = window.scrollY >= categoryNavStart;
     const hasReachedPageBottom = window.scrollY >= pageBottomThreshold;
 
     if (!hasReachedMenu) {
@@ -413,7 +426,9 @@ export function setupCategoryNavigation() {
   }
 
   const nav = document.getElementById("category-nav");
-  const navLinks = Array.from(document.querySelectorAll("[data-category-link]"));
+  const navLinks = Array.from(
+    document.querySelectorAll("[data-category-link]"),
+  );
   const sections = ["menu", "sides", "drinks"]
     .map((id) => document.getElementById(id))
     .filter(Boolean);
