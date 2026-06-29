@@ -353,6 +353,9 @@ export function bindLanguageSwitcher(onLanguageChange) {
   if (typeof document === "undefined") return;
 
   const currentLanguage = getCurrentLanguage();
+  const languageSelect = document.getElementById("language-select");
+
+  if (!languageSelect) return;
 
   const handleLanguageChange = (selectedLanguage) => {
     const newLang = setCurrentLanguage(selectedLanguage);
@@ -363,42 +366,8 @@ export function bindLanguageSwitcher(onLanguageChange) {
     }
   };
 
-  // Support for legacy select (if it still exists anywhere)
-  const languageSelect = document.getElementById("language-select");
-  if (languageSelect) {
-    languageSelect.value = currentLanguage;
-    languageSelect.addEventListener("change", () => {
-      handleLanguageChange(languageSelect.value);
-    });
-  }
-
-  // Support for new toggle buttons (desktop and mobile)
-  const toggleBtn = document.getElementById("language-toggle-btn");
-  const mobileToggleBtn = document.getElementById("mobile-language-toggle-btn");
-  
-  const updateToggleTexts = (lang) => {
-    const textElements = document.querySelectorAll('.language-toggle-text');
-    textElements.forEach(el => {
-      el.textContent = lang === SUPPORTED_LANGUAGES.EN_US ? "EN" : "PT";
-    });
-  };
-
-  updateToggleTexts(currentLanguage);
-
-  const toggleLanguage = () => {
-    const newLang = getCurrentLanguage() === SUPPORTED_LANGUAGES.PT_BR 
-      ? SUPPORTED_LANGUAGES.EN_US 
-      : SUPPORTED_LANGUAGES.PT_BR;
-    
-    updateToggleTexts(newLang);
-    handleLanguageChange(newLang);
-  };
-
-  if (toggleBtn) {
-    toggleBtn.addEventListener("click", toggleLanguage);
-  }
-  
-  if (mobileToggleBtn) {
-    mobileToggleBtn.addEventListener("click", toggleLanguage);
-  }
+  languageSelect.value = currentLanguage;
+  languageSelect.addEventListener("change", () => {
+    handleLanguageChange(languageSelect.value);
+  });
 }

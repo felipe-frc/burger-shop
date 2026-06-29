@@ -131,17 +131,6 @@
     line-height: 1.45;
   }
 
-  .hero-cta {
-    margin-top: 1rem;
-    padding: 1rem 2rem;
-    box-shadow: 0 16px 30px rgba(245, 158, 11, 0.28);
-  }
-
-  .hero-scroll-indicator {
-    bottom: 2rem;
-    pointer-events: none;
-  }
-
   .badge-status {
     display: inline-flex;
     align-items: center;
@@ -153,18 +142,6 @@
     font-size: 0.86rem;
     backdrop-filter: blur(10px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
-  }
-
-  .badge-open {
-    background: rgba(22, 163, 74, 0.18);
-    color: #dcfce7;
-    border: 1px solid rgba(34, 197, 94, 0.45);
-  }
-
-  .badge-closed {
-    background: rgba(239, 68, 68, 0.18);
-    color: #fee2e2;
-    border: 1px solid rgba(248, 113, 113, 0.45);
   }
 
   .status-dot {
@@ -1080,20 +1057,6 @@
     backdrop-filter: blur(12px);
   }
 
-  .language-select {
-    border: 0;
-    background: transparent;
-    color: #ffffff;
-    font-size: 0.85rem;
-    font-weight: 800;
-    outline: none;
-    cursor: pointer;
-  }
-
-  .language-select option {
-    color: #18181b;
-    background: #ffffff;
-  }
 }
 
 @layer utilities {
