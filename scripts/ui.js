@@ -317,27 +317,28 @@ export function updateStoreStatus() {
   if (!elements.dateSpan || !elements.statusText) return;
 
   elements.dateSpan.classList.remove(
+    "text-white",
+    "text-zinc-50",
+    "text-emerald-400",
+    "text-emerald-300",
     "text-emerald-200",
+    "text-rose-400",
+    "text-red-400",
     "text-red-200",
-    "text-emerald-100",
-    "text-red-100",
-    "border-emerald-400/50",
-    "border-red-400/50",
-    "bg-emerald-950/75",
-    "bg-red-950/75",
     "badge-open",
     "badge-closed",
   );
 
   if (isOpen) {
-    elements.dateSpan.classList.add("text-emerald-200");
+    elements.dateSpan.classList.add("text-emerald-400");
     elements.statusText.textContent = translate("status.open");
     return;
   }
 
-  elements.dateSpan.classList.add("text-red-200");
+  elements.dateSpan.classList.add("text-rose-400");
   elements.statusText.textContent = translate("status.closed");
 }
+
 export function revealOnScroll() {
   const reveals = document.querySelectorAll(".reveal");
   const windowHeight = window.innerHeight;
