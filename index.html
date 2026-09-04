@@ -51,14 +51,25 @@
       class="relative flex min-h-screen w-full items-center overflow-hidden bg-black font-['Poppins'] text-white"
       aria-label="The Burger House"
     >
-      <!-- Animated Background -->
-      <div class="absolute inset-0 z-0">
+      <!-- Optimized Hero Background -->
+      <div class="absolute inset-0 z-0" aria-hidden="true">
         <img
-          id="hero-burger-anim"
-          src="assets/burger-frames/burger_000.jpg"
-          alt="Hero Background Animation"
-          class="h-full w-full object-cover object-[70%_center] opacity-75"
+          src="assets/hero-burger-poster.jpg"
+          alt=""
+          class="hidden h-full w-full object-cover object-[70%_center] opacity-75 motion-reduce:block"
         />
+
+        <video
+          class="h-full w-full object-cover object-[70%_center] opacity-75 motion-reduce:hidden"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          poster="assets/hero-burger-poster.jpg"
+        >
+          <source src="assets/videos/hero-burger.mp4" type="video/mp4" />
+        </video>
 
         <div
           class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_42%,rgba(251,146,60,0.26),transparent_30%),linear-gradient(90deg,rgba(0,0,0,0.98)_0%,rgba(0,0,0,0.92)_30%,rgba(0,0,0,0.62)_56%,rgba(0,0,0,0.28)_76%,rgba(251,146,60,0.08)_100%)]"
@@ -196,44 +207,6 @@
         </div>
       </div>
     </header>
-
-    <!-- Animation Script -->
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const totalFrames = 80;
-        let currentFrame = 0;
-        const imgElement = document.getElementById("hero-burger-anim");
-
-        // Preload images
-        const preloadedImages = [];
-        for (let i = 0; i < totalFrames; i++) {
-          const img = new Image();
-          const frameNum = String(i).padStart(3, "0");
-          img.src = `assets/burger-frames/burger_${frameNum}.jpg`;
-          preloadedImages.push(img);
-        }
-
-        let lastTime = performance.now();
-        const fps = 24;
-        const interval = 1000 / fps;
-
-        function animate(time) {
-          const deltaTime = time - lastTime;
-
-          if (deltaTime >= interval) {
-            currentFrame = (currentFrame + 1) % totalFrames;
-            if (imgElement) {
-              imgElement.src = preloadedImages[currentFrame].src;
-            }
-            lastTime = time - (deltaTime % interval);
-          }
-
-          requestAnimationFrame(animate);
-        }
-
-        requestAnimationFrame(animate);
-      });
-    </script>
 
     <nav
       id="category-nav"
