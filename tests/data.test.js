@@ -1,9 +1,5 @@
 import { describe, expect, it } from "vitest";
-import {
-  MENU_CATEGORIES,
-  MENU_PRODUCT_BY_ID,
-  MENU_PRODUCTS,
-} from "../scripts/data.js";
+import { MENU_CATEGORIES, MENU_PRODUCT_BY_ID, MENU_PRODUCTS } from "../scripts/data.js";
 
 describe("menu data", () => {
   it("has menu categories with products", () => {

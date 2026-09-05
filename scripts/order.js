@@ -1,10 +1,5 @@
 import { WHATSAPP_PHONE_NUMBER } from "./config.js";
-import {
-  getCartSubtotal,
-  getCartTotalWithDelivery,
-  getDeliveryFee,
-  updateCart,
-} from "./cart.js";
+import { getCartSubtotal, getCartTotalWithDelivery, getDeliveryFee, updateCart } from "./cart.js";
 import {
   getAddressText,
   getIsFetchingCep,
@@ -12,10 +7,7 @@ import {
   resetAddressForm,
   validateAddressFields,
 } from "./address.js";
-import {
-  getLocalizedEntity,
-  translate,
-} from "./i18n.js";
+import { getLocalizedEntity, translate } from "./i18n.js";
 import { MENU_PRODUCT_BY_ID } from "./data.js";
 import { clearCart, getCart, getOrderType, ORDER_TYPES, resetOrderType } from "./state.js";
 import { escapeHTML, formatPrice, isStoreOpenNow } from "./utils.js";
@@ -87,8 +79,7 @@ function loadReview() {
     const itemSubtotal = item.price * item.quantity;
     const itemRow = document.createElement("div");
 
-    itemRow.className =
-      "flex items-center justify-between gap-3 border-b border-zinc-200 pb-2";
+    itemRow.className = "flex items-center justify-between gap-3 border-b border-zinc-200 pb-2";
 
     itemRow.innerHTML = `
       <div class="min-w-0">
@@ -191,9 +182,7 @@ function finishOrder() {
     message += `\n*${translate("whatsapp.notes")}:*\n${orderNotes}\n`;
   }
 
-  const url = `https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${encodeURIComponent(
-    message
-  )}`;
+  const url = `https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
 
   window.open(url, "_blank");
 

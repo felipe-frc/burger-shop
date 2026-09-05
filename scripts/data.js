@@ -159,10 +159,8 @@ export const MENU_CATEGORIES = [
         translations: {
           "en-US": {
             name: "Cheddar & Bacon Fries",
-            description:
-              "Crispy fries covered with craft cheddar cream and crispy bacon cubes.",
-            imageAlt:
-              "Portion of crispy fries with craft cheddar cream and bacon cubes.",
+            description: "Crispy fries covered with craft cheddar cream and crispy bacon cubes.",
+            imageAlt: "Portion of crispy fries with craft cheddar cream and bacon cubes.",
           },
         },
       },
@@ -173,15 +171,13 @@ export const MENU_CATEGORIES = [
           "Cortes grossos com casca, fritos até ficarem crocantes, temperados com sal grosso e alecrim.",
         price: 18.9,
         image: "./assets/batata-rustica.webp",
-        imageAlt:
-          "Porção de batatas rústicas com casca, sal grosso e alecrim.",
+        imageAlt: "Porção de batatas rústicas com casca, sal grosso e alecrim.",
         translations: {
           "en-US": {
             name: "House Rustic Potatoes",
             description:
               "Thick skin-on cuts fried until crispy, seasoned with coarse salt and rosemary.",
-            imageAlt:
-              "Portion of rustic skin-on potatoes with coarse salt and rosemary.",
+            imageAlt: "Portion of rustic skin-on potatoes with coarse salt and rosemary.",
           },
         },
       },
@@ -192,15 +188,13 @@ export const MENU_CATEGORIES = [
           "Anéis de cebola empanados em mistura secreta e fritos à perfeição com molho barbecue especial.",
         price: 22.9,
         image: "./assets/anel-cebola.webp",
-        imageAlt:
-          "Porção de anéis de cebola empanados e crocantes acompanhados de molho barbecue.",
+        imageAlt: "Porção de anéis de cebola empanados e crocantes acompanhados de molho barbecue.",
         translations: {
           "en-US": {
             name: "Crispy Onion Rings",
             description:
               "Onion rings breaded in a secret mix and fried to perfection with special barbecue sauce.",
-            imageAlt:
-              "Portion of crispy breaded onion rings served with barbecue sauce.",
+            imageAlt: "Portion of crispy breaded onion rings served with barbecue sauce.",
           },
         },
       },
@@ -221,8 +215,7 @@ export const MENU_CATEGORIES = [
       {
         id: "drink-coca-lata",
         name: "Coca-Cola Lata",
-        description:
-          "Refrigerante gelado e refrescante para complementar sua refeição.",
+        description: "Refrigerante gelado e refrescante para complementar sua refeição.",
         price: 5.9,
         image: "./assets/refri-1.webp",
         imageAlt: "Lata de Coca-Cola gelada para acompanhar o pedido.",
@@ -237,16 +230,14 @@ export const MENU_CATEGORIES = [
       {
         id: "drink-guarana-antarctica",
         name: "Guaraná Antarctica",
-        description:
-          "Refrigerante com sabor único e refrescante para sua satisfação.",
+        description: "Refrigerante com sabor único e refrescante para sua satisfação.",
         price: 5.9,
         image: "./assets/refri-2.webp",
         imageAlt: "Lata de Guaraná Antarctica gelada para acompanhar o pedido.",
         translations: {
           "en-US": {
             name: "Guaraná Antarctica",
-            description:
-              "A refreshing soda with a unique flavor for your satisfaction.",
+            description: "A refreshing soda with a unique flavor for your satisfaction.",
             imageAlt: "Cold Guaraná Antarctica can to pair with the order.",
           },
         },
@@ -257,6 +248,4 @@ export const MENU_CATEGORIES = [
 
 export const MENU_PRODUCTS = MENU_CATEGORIES.flatMap((category) => category.items);
 
-export const MENU_PRODUCT_BY_ID = new Map(
-  MENU_PRODUCTS.map((item) => [item.id, item])
-);
+export const MENU_PRODUCT_BY_ID = new Map(MENU_PRODUCTS.map((item) => [item.id, item]));

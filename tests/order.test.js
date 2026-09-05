@@ -85,7 +85,7 @@ beforeEach(() => {
     "Toastify",
     vi.fn(() => ({
       showToast: vi.fn(),
-    }))
+    })),
   );
   window.open = vi.fn();
 });

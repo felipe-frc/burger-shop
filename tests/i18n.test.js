@@ -24,11 +24,11 @@ describe("i18n", () => {
 
   it("replaces placeholders in translated strings", () => {
     expect(translate("cart.addedToast", "pt-BR", { name: "X-Burger" })).toBe(
-      "X-Burger adicionado ao carrinho!"
+      "X-Burger adicionado ao carrinho!",
     );
 
     expect(translate("cart.addedToast", "en-US", { name: "X-Burger" })).toBe(
-      "X-Burger added to cart!"
+      "X-Burger added to cart!",
     );
   });
 

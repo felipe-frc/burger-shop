@@ -14,7 +14,7 @@ describe("utils", () => {
 
   it("escapes unsafe HTML characters", () => {
     expect(escapeHTML('<script>alert("xss")</script>')).toBe(
-      "&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;"
+      "&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;",
     );
 
     expect(escapeHTML("Hambúrguer & Batata")).toBe("Hambúrguer &amp; Batata");

@@ -173,10 +173,7 @@ function setWindowScrollY(value) {
   });
 }
 
-function configurePageDimensions({
-  innerHeight = 800,
-  scrollHeight = 2400,
-} = {}) {
+function configurePageDimensions({ innerHeight = 800, scrollHeight = 2400 } = {}) {
   Object.defineProperty(window, "innerHeight", {
     configurable: true,
     value: innerHeight,
@@ -281,18 +278,13 @@ beforeEach(() => {
 
 describe("ui extended behavior", () => {
   it("logs an error when Toastify is unavailable", async () => {
-    const consoleError = vi
-      .spyOn(console, "error")
-      .mockImplementation(() => {});
+    const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
 
     const ui = await loadUiModule();
 
     ui.showToast("Mensagem de teste");
 
-    expect(consoleError).toHaveBeenCalledWith(
-      "Toastify não carregado:",
-      "Mensagem de teste",
-    );
+    expect(consoleError).toHaveBeenCalledWith("Toastify não carregado:", "Mensagem de teste");
 
     consoleError.mockRestore();
   });
@@ -382,21 +374,13 @@ describe("ui extended behavior", () => {
     expect(sides).not.toBeNull();
     expect(drinks).not.toBeNull();
 
-    expect(document.querySelector(".product-item-name").textContent).toBe(
-      "Burger Clássico",
-    );
+    expect(document.querySelector(".product-item-name").textContent).toBe("Burger Clássico");
 
-    expect(document.querySelector(".product-item-desc").textContent).toBe(
-      "Pão, carne e queijo",
-    );
+    expect(document.querySelector(".product-item-desc").textContent).toBe("Pão, carne e queijo");
 
-    expect(document.querySelector(".product-item-price").textContent).toBe(
-      "R$ 25,00",
-    );
+    expect(document.querySelector(".product-item-price").textContent).toBe("R$ 25,00");
 
-    expect(document.querySelector(".product-item-tag").textContent).toBe(
-      "Mais vendido",
-    );
+    expect(document.querySelector(".product-item-tag").textContent).toBe("Mais vendido");
 
     const image = document.querySelector(".product-item-img");
 
@@ -407,9 +391,7 @@ describe("ui extended behavior", () => {
 
     expect(addButton.dataset.id).toBe("burger-1");
 
-    expect(addButton.getAttribute("aria-label")).toBe(
-      "Adicionar Burger Clássico",
-    );
+    expect(addButton.getAttribute("aria-label")).toBe("Adicionar Burger Clássico");
   });
 
   it("updates store status for open and closed states", async () => {

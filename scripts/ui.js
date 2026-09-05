@@ -66,8 +66,7 @@ function getFocusableElements(container) {
   ].join(",");
 
   return Array.from(container.querySelectorAll(focusableSelector)).filter(
-    (element) =>
-      element.offsetParent !== null || element === document.activeElement,
+    (element) => element.offsetParent !== null || element === document.activeElement,
   );
 }
 
@@ -158,17 +157,15 @@ export function bindModalCloseEvents() {
     trapFocus(event);
   });
 
-  [elements.cartModal, elements.addressModal, elements.reviewModal].forEach(
-    (modal) => {
-      if (!modal) return;
+  [elements.cartModal, elements.addressModal, elements.reviewModal].forEach((modal) => {
+    if (!modal) return;
 
-      modal.addEventListener("click", (event) => {
-        if (event.target === modal) {
-          closeAllModals();
-        }
-      });
-    },
-  );
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        closeAllModals();
+      }
+    });
+  });
 }
 
 export function showToast(message, background = "#ef4444") {
@@ -237,8 +234,7 @@ export function setFinishButtonLoading(isLoading) {
 export function renderMenu() {
   if (!elements.menuCategoriesContainer) return;
 
-  elements.menuCategoriesContainer.innerHTML =
-    MENU_CATEGORIES.map(renderMenuCategory).join("");
+  elements.menuCategoriesContainer.innerHTML = MENU_CATEGORIES.map(renderMenuCategory).join("");
 }
 
 function renderMenuCategory(category) {
@@ -355,10 +351,7 @@ export function revealOnScroll() {
 function showFloatingCart() {
   if (!elements.cartFooter) return;
 
-  elements.cartFooter.classList.remove(
-    "cart-footer-hidden",
-    "cart-footer-bottom",
-  );
+  elements.cartFooter.classList.remove("cart-footer-hidden", "cart-footer-bottom");
   elements.cartFooter.classList.add("cart-footer-visible");
 }
 
@@ -366,19 +359,13 @@ function showBottomCart() {
   if (!elements.cartFooter) return;
 
   elements.cartFooter.classList.remove("cart-footer-hidden");
-  elements.cartFooter.classList.add(
-    "cart-footer-visible",
-    "cart-footer-bottom",
-  );
+  elements.cartFooter.classList.add("cart-footer-visible", "cart-footer-bottom");
 }
 
 export function hideCartFooter() {
   if (!elements.cartFooter) return;
 
-  elements.cartFooter.classList.remove(
-    "cart-footer-visible",
-    "cart-footer-bottom",
-  );
+  elements.cartFooter.classList.remove("cart-footer-visible", "cart-footer-bottom");
   elements.cartFooter.classList.add("cart-footer-hidden");
 }
 
@@ -392,8 +379,7 @@ export function setupCartVisibility() {
     const navHeight = categoryNav.offsetHeight || 0;
     const categoryNavStart = Math.max(categoryNav.offsetTop - navHeight, 0);
 
-    const pageBottomThreshold =
-      document.documentElement.scrollHeight - window.innerHeight - 40;
+    const pageBottomThreshold = document.documentElement.scrollHeight - window.innerHeight - 40;
 
     const hasReachedMenu = window.scrollY >= categoryNavStart;
     const hasReachedPageBottom = window.scrollY >= pageBottomThreshold;
@@ -427,9 +413,7 @@ export function setupCategoryNavigation() {
   }
 
   const nav = document.getElementById("category-nav");
-  const navLinks = Array.from(
-    document.querySelectorAll("[data-category-link]"),
-  );
+  const navLinks = Array.from(document.querySelectorAll("[data-category-link]"));
   const sections = ["menu", "sides", "drinks"]
     .map((id) => document.getElementById(id))
     .filter(Boolean);

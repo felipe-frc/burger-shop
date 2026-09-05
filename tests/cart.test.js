@@ -147,9 +147,7 @@ function setupCartDom() {
 }
 
 function setupServiceImplementations() {
-  serviceMock.findProductById.mockImplementation(
-    (id) => serviceMock.products.get(id) ?? null,
-  );
+  serviceMock.findProductById.mockImplementation((id) => serviceMock.products.get(id) ?? null);
 
   serviceMock.getCartItemCount.mockImplementation((cart) =>
     cart.reduce((total, item) => total + item.quantity, 0),
@@ -245,17 +243,13 @@ describe("cart", () => {
 
     cart.updateCart();
 
-    expect(uiMock.elements.cartItemsContainer.textContent).toContain(
-      "Carrinho vazio",
-    );
+    expect(uiMock.elements.cartItemsContainer.textContent).toContain("Carrinho vazio");
 
     expect(uiMock.elements.cartTotal.textContent).toBe("R$ 0,00");
 
     expect(uiMock.elements.cartCount.textContent).toBe("0");
 
-    expect(document.getElementById("cart-item-count-label").textContent).toBe(
-      "0 itens",
-    );
+    expect(document.getElementById("cart-item-count-label").textContent).toBe("0 itens");
 
     expect(uiMock.elements.goToAddressBtn.disabled).toBe(true);
 
@@ -289,17 +283,11 @@ describe("cart", () => {
 
     cart.updateCart();
 
-    expect(document.querySelector(".cart-item-name").textContent).toBe(
-      "Burger Localizado",
-    );
+    expect(document.querySelector(".cart-item-name").textContent).toBe("Burger Localizado");
 
-    expect(
-      document.querySelector(".cart-item-unit-price").textContent,
-    ).toContain("R$ 20,00");
+    expect(document.querySelector(".cart-item-unit-price").textContent).toContain("R$ 20,00");
 
-    expect(document.querySelector(".cart-item-subtotal").textContent).toBe(
-      "R$ 40,00",
-    );
+    expect(document.querySelector(".cart-item-subtotal").textContent).toBe("R$ 40,00");
 
     expect(uiMock.elements.cartTotal.textContent).toBe("R$ 40,00");
 
@@ -334,13 +322,9 @@ describe("cart", () => {
 
     cart.updateCart();
 
-    expect(document.querySelector(".cart-item-name").textContent).toBe(
-      "Produto Legado",
-    );
+    expect(document.querySelector(".cart-item-name").textContent).toBe("Produto Legado");
 
-    expect(document.querySelector(".cart-item-subtotal").textContent).toBe(
-      "R$ 15,00",
-    );
+    expect(document.querySelector(".cart-item-subtotal").textContent).toBe("R$ 15,00");
   });
 
   it("updates product buttons even when the cart modal elements are unavailable", async () => {
@@ -371,9 +355,7 @@ describe("cart", () => {
 
     expect(button.classList.contains("btn-add-item-active")).toBe(true);
 
-    expect(button.querySelector(".product-cart-indicator").textContent).toBe(
-      "1",
-    );
+    expect(button.querySelector(".product-cart-indicator").textContent).toBe("1");
   });
 
   it("handles increase, decrease and removal controls", async () => {
@@ -415,9 +397,7 @@ describe("cart", () => {
 
     expect(stateMock.cart).toEqual([]);
 
-    expect(uiMock.elements.cartItemsContainer.textContent).toContain(
-      "Carrinho vazio",
-    );
+    expect(uiMock.elements.cartItemsContainer.textContent).toContain("Carrinho vazio");
   });
 
   it("does not bind cart controls when the cart container is unavailable", async () => {
@@ -438,9 +418,7 @@ describe("cart", () => {
       price: 25,
     });
 
-    const consoleError = vi
-      .spyOn(console, "error")
-      .mockImplementation(() => {});
+    const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
 
     const cart = await loadCartModule();
 
@@ -461,10 +439,7 @@ describe("cart", () => {
       },
     ]);
 
-    expect(uiMock.showToast).toHaveBeenCalledWith(
-      "Burger Localizado adicionado",
-      "#16a34a",
-    );
+    expect(uiMock.showToast).toHaveBeenCalledWith("Burger Localizado adicionado", "#16a34a");
 
     expect(button.classList.contains("scale-110")).toBe(true);
 

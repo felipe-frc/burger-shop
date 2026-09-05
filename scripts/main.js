@@ -1,13 +1,6 @@
-import {
-  bindAddressEvents,
-  updateOrderTypeUI,
-} from "./address.js";
+import { bindAddressEvents, updateOrderTypeUI } from "./address.js";
 import { bindAddToCartButtons, bindCartControls, updateCart } from "./cart.js";
-import {
-  applyStaticTranslations,
-  bindLanguageSwitcher,
-  getCurrentLanguage,
-} from "./i18n.js";
+import { applyStaticTranslations, bindLanguageSwitcher, getCurrentLanguage } from "./i18n.js";
 import { bindOrderEvents } from "./order.js";
 import {
   bindModalCloseEvents,

@@ -45,8 +45,7 @@ const translations = {
     "cart.decreaseAria": "Diminuir quantidade de {name}",
     "cart.increaseAria": "Aumentar quantidade de {name}",
     "cart.addAria": "Adicionar {name} ao carrinho",
-    "cart.activeAddAria":
-      "{quantity} {unit} de {name} no carrinho. Adicionar mais uma unidade.",
+    "cart.activeAddAria": "{quantity} {unit} de {name} no carrinho. Adicionar mais uma unidade.",
     "cart.unitSingular": "unidade",
     "cart.unitPlural": "unidades",
     "cart.itemSingular": "{count} item",
@@ -88,10 +87,8 @@ const translations = {
     "address.invalidNumber": "Informe um número válido usando apenas dígitos.",
     "address.fetchFailed": "Falha ao consultar o CEP.",
     "address.notFound": "CEP não encontrado. Verifique o número informado.",
-    "address.incompleteCep":
-      "Não foi possível preencher o endereço completo com esse CEP.",
-    "address.connectionError":
-      "Erro ao buscar o CEP. Verifique sua conexão e tente novamente.",
+    "address.incompleteCep": "Não foi possível preencher o endereço completo com esse CEP.",
+    "address.connectionError": "Erro ao buscar o CEP. Verifique sua conexão e tente novamente.",
 
     "review.title": "Revisão do Pedido",
     "review.subtitle": "Confirme os dados antes de finalizar",
@@ -100,8 +97,7 @@ const translations = {
     "review.notes": "Observações do Pedido",
     "review.notesPlaceholder":
       "Ex: sem cebola, carne bem passada, alergia a glúten, enviar ketchup extra...",
-    "review.notesHint":
-      "Campo opcional. Use para informar preferências, restrições ou alergias.",
+    "review.notesHint": "Campo opcional. Use para informar preferências, restrições ou alergias.",
     "review.total": "Total Final:",
     "review.finish": "Finalizar",
     "review.empty": "Nenhum item no pedido.",
@@ -168,8 +164,7 @@ const translations = {
     "cart.decreaseAria": "Decrease quantity of {name}",
     "cart.increaseAria": "Increase quantity of {name}",
     "cart.addAria": "Add {name} to cart",
-    "cart.activeAddAria":
-      "{quantity} {unit} of {name} in cart. Add one more unit.",
+    "cart.activeAddAria": "{quantity} {unit} of {name} in cart. Add one more unit.",
     "cart.unitSingular": "unit",
     "cart.unitPlural": "units",
     "cart.itemSingular": "{count} item",
@@ -211,10 +206,8 @@ const translations = {
     "address.invalidNumber": "Enter a valid number using digits only.",
     "address.fetchFailed": "Failed to search ZIP Code.",
     "address.notFound": "ZIP Code not found. Check the entered number.",
-    "address.incompleteCep":
-      "It was not possible to fill the complete address with this ZIP Code.",
-    "address.connectionError":
-      "Error searching ZIP Code. Check your connection and try again.",
+    "address.incompleteCep": "It was not possible to fill the complete address with this ZIP Code.",
+    "address.connectionError": "Error searching ZIP Code. Check your connection and try again.",
 
     "review.title": "Order Review",
     "review.subtitle": "Confirm the details before finishing",
@@ -223,8 +216,7 @@ const translations = {
     "review.notes": "Order Notes",
     "review.notesPlaceholder":
       "Ex: no onion, well-done meat, gluten allergy, send extra ketchup...",
-    "review.notesHint":
-      "Optional field. Use it to inform preferences, restrictions or allergies.",
+    "review.notesHint": "Optional field. Use it to inform preferences, restrictions or allergies.",
     "review.total": "Final Total:",
     "review.finish": "Finish",
     "review.empty": "No items in the order.",
@@ -276,9 +268,7 @@ export function getCurrentLanguage() {
 }
 
 function setCurrentLanguage(language) {
-  const normalizedLanguage = isSupportedLanguage(language)
-    ? language
-    : DEFAULT_LANGUAGE;
+  const normalizedLanguage = isSupportedLanguage(language) ? language : DEFAULT_LANGUAGE;
 
   if (hasStorage()) {
     localStorage.setItem(LANGUAGE_STORAGE_KEY, normalizedLanguage);
@@ -288,15 +278,11 @@ function setCurrentLanguage(language) {
 }
 
 export function translate(key, language = getCurrentLanguage(), replacements = {}) {
-  const value =
-    translations[language]?.[key] ??
-    translations[DEFAULT_LANGUAGE]?.[key] ??
-    key;
+  const value = translations[language]?.[key] ?? translations[DEFAULT_LANGUAGE]?.[key] ?? key;
 
   return Object.entries(replacements).reduce(
-    (text, [placeholder, replacement]) =>
-      text.replaceAll(`{${placeholder}}`, String(replacement)),
-    value
+    (text, [placeholder, replacement]) => text.replaceAll(`{${placeholder}}`, String(replacement)),
+    value,
   );
 }
 

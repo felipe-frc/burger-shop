@@ -1,10 +1,6 @@
 import { STORE_ADDRESS } from "./config.js";
 import { translate } from "./i18n.js";
-import {
-  getAddressByCep,
-  ViaCepError,
-  VIACEP_ERROR_CODES,
-} from "./services/viacep-service.js";
+import { getAddressByCep, ViaCepError, VIACEP_ERROR_CODES } from "./services/viacep-service.js";
 import { getOrderType, ORDER_TYPES, setOrderType } from "./state.js";
 import { elements, hideAddressWarning, showAddressWarning } from "./ui.js";
 import { isValidHouseNumber } from "./utils.js";
@@ -61,18 +57,12 @@ function handleCepError(error) {
   clearDeliveryFields();
   lastFetchedCep = "";
 
-  if (
-    error instanceof ViaCepError &&
-    error.code === VIACEP_ERROR_CODES.NOT_FOUND
-  ) {
+  if (error instanceof ViaCepError && error.code === VIACEP_ERROR_CODES.NOT_FOUND) {
     showAddressWarning(translate("address.notFound"));
     return;
   }
 
-  if (
-    error instanceof ViaCepError &&
-    error.code === VIACEP_ERROR_CODES.CANCELLED
-  ) {
+  if (error instanceof ViaCepError && error.code === VIACEP_ERROR_CODES.CANCELLED) {
     return;
   }
 
@@ -101,24 +91,16 @@ export function getAddressText() {
 
   const street = elements.streetInput ? elements.streetInput.value.trim() : "";
 
-  const houseNumber = elements.houseNumberInput
-    ? elements.houseNumberInput.value.trim()
-    : "";
+  const houseNumber = elements.houseNumberInput ? elements.houseNumberInput.value.trim() : "";
 
-  const neighborhood = elements.neighborhoodInput
-    ? elements.neighborhoodInput.value.trim()
-    : "";
+  const neighborhood = elements.neighborhoodInput ? elements.neighborhoodInput.value.trim() : "";
 
   const city = elements.cityInput ? elements.cityInput.value.trim() : "";
 
-  const complement = elements.complementInput
-    ? elements.complementInput.value.trim()
-    : "";
+  const complement = elements.complementInput ? elements.complementInput.value.trim() : "";
 
   return `${street}, ${houseNumber} - ${neighborhood}, ${city}${
-    complement
-      ? ` | ${translate("address.complementPrefix")}: ${complement}`
-      : ""
+    complement ? ` | ${translate("address.complementPrefix")}: ${complement}` : ""
   }`;
 }
 
@@ -128,19 +110,13 @@ export function validateAddressFields() {
     return true;
   }
 
-  const cep = elements.cepInput
-    ? elements.cepInput.value.replace(/\D/g, "")
-    : "";
+  const cep = elements.cepInput ? elements.cepInput.value.replace(/\D/g, "") : "";
 
-  const number = elements.houseNumberInput
-    ? elements.houseNumberInput.value.trim()
-    : "";
+  const number = elements.houseNumberInput ? elements.houseNumberInput.value.trim() : "";
 
   const street = elements.streetInput ? elements.streetInput.value.trim() : "";
 
-  const neighborhood = elements.neighborhoodInput
-    ? elements.neighborhoodInput.value.trim()
-    : "";
+  const neighborhood = elements.neighborhoodInput ? elements.neighborhoodInput.value.trim() : "";
 
   const city = elements.cityInput ? elements.cityInput.value.trim() : "";
 
@@ -302,10 +278,7 @@ function handleHouseNumberInput() {
     return;
   }
 
-  elements.houseNumberInput.value = elements.houseNumberInput.value.replace(
-    /\D/g,
-    "",
-  );
+  elements.houseNumberInput.value = elements.houseNumberInput.value.replace(/\D/g, "");
 
   hideAddressWarning();
 }

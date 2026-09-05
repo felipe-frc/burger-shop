@@ -41,10 +41,7 @@ function createAddress(data) {
   };
 }
 
-export async function getAddressByCep(
-  cep,
-  { timeoutMs = DEFAULT_TIMEOUT_MS } = {},
-) {
+export async function getAddressByCep(cep, { timeoutMs = DEFAULT_TIMEOUT_MS } = {}) {
   const normalizedCep = normalizeCep(cep);
 
   validateCep(normalizedCep);
@@ -69,19 +66,13 @@ export async function getAddressByCep(
     });
 
     if (!response.ok) {
-      throw new ViaCepError(
-        VIACEP_ERROR_CODES.REQUEST_FAILED,
-        "Não foi possível consultar o CEP.",
-      );
+      throw new ViaCepError(VIACEP_ERROR_CODES.REQUEST_FAILED, "Não foi possível consultar o CEP.");
     }
 
     const data = await response.json();
 
     if (data.erro) {
-      throw new ViaCepError(
-        VIACEP_ERROR_CODES.NOT_FOUND,
-        "CEP não encontrado.",
-      );
+      throw new ViaCepError(VIACEP_ERROR_CODES.NOT_FOUND, "CEP não encontrado.");
     }
 
     return createAddress(data);

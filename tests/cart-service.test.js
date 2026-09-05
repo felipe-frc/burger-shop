@@ -249,9 +249,7 @@ describe("cart-service", () => {
       },
     ];
 
-    expect(getCartTotalWithDelivery(cart, ORDER_TYPES.DELIVERY)).toBeCloseTo(
-      73.8
-    );
+    expect(getCartTotalWithDelivery(cart, ORDER_TYPES.DELIVERY)).toBeCloseTo(73.8);
   });
 
   it("deve calcular o total sem entrega para retirada", () => {
@@ -266,8 +264,6 @@ describe("cart-service", () => {
       },
     ];
 
-    expect(getCartTotalWithDelivery(cart, ORDER_TYPES.PICKUP)).toBeCloseTo(
-      68.8
-    );
+    expect(getCartTotalWithDelivery(cart, ORDER_TYPES.PICKUP)).toBeCloseTo(68.8);
   });
 });

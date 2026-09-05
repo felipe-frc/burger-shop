@@ -7,20 +7,12 @@ import {
   increaseCartItemQuantity,
   removeProductFromCart,
 } from "./cart-service.js";
-import {
-  getLocalizedEntity,
-  translate,
-  translateItemCount,
-} from "./i18n.js";
+import { getLocalizedEntity, translate, translateItemCount } from "./i18n.js";
 import { getCart, setCart } from "./state.js";
 import { escapeHTML, formatPrice } from "./utils.js";
 import { elements, showToast } from "./ui.js";
 
-export {
-  getCartSubtotal,
-  getDeliveryFee,
-  getCartTotalWithDelivery,
-} from "./cart-service.js";
+export { getCartSubtotal, getDeliveryFee, getCartTotalWithDelivery } from "./cart-service.js";
 
 function getLocalizedCartItem(item) {
   const product = findProductById(item.id);
@@ -55,9 +47,7 @@ function updateProductButtonsState() {
     const localizedProduct = product ? getLocalizedEntity(product) : null;
 
     if (item) {
-      const unit = translate(
-        item.quantity === 1 ? "cart.unitSingular" : "cart.unitPlural"
-      );
+      const unit = translate(item.quantity === 1 ? "cart.unitSingular" : "cart.unitPlural");
 
       button.classList.add("btn-add-item-active");
       button.setAttribute(
@@ -66,7 +56,7 @@ function updateProductButtonsState() {
           quantity: item.quantity,
           unit,
           name: localizedProduct ? localizedProduct.name : item.name,
-        })
+        }),
       );
 
       if (indicator) {
@@ -82,7 +72,7 @@ function updateProductButtonsState() {
       "aria-label",
       translate("cart.addAria", undefined, {
         name: localizedProduct ? localizedProduct.name : "produto",
-      })
+      }),
     );
 
     if (indicator) {
@@ -197,10 +187,7 @@ function addItemToCart(button) {
   setCart(updatedCart);
   updateCart();
   animateAddToCart(button);
-  showToast(
-    translate("cart.addedToast", undefined, { name: localizedProduct.name }),
-    "#16a34a"
-  );
+  showToast(translate("cart.addedToast", undefined, { name: localizedProduct.name }), "#16a34a");
 }
 
 function animateAddToCart(button) {

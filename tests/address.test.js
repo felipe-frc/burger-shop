@@ -70,7 +70,7 @@ describe("address", () => {
 
     expect(address.validateAddressFields()).toBe(true);
     expect(address.getAddressText()).toBe(
-      `${translate("address.pickupPrefix")} - ${STORE_ADDRESS}`
+      `${translate("address.pickupPrefix")} - ${STORE_ADDRESS}`,
     );
     expect(document.getElementById("delivery-fields").classList.contains("hidden")).toBe(true);
     expect(document.getElementById("pickup-info").classList.contains("hidden")).toBe(false);
@@ -88,7 +88,7 @@ describe("address", () => {
 
     expect(address.validateAddressFields()).toBe(false);
     expect(document.getElementById("address-warn").textContent).toBe(
-      translate("address.invalidCep")
+      translate("address.invalidCep"),
     );
   });
 
@@ -101,7 +101,7 @@ describe("address", () => {
       vi.fn().mockResolvedValue({
         ok: true,
         json: async () => ({ erro: true }),
-      })
+      }),
     );
 
     address.bindAddressEvents();
@@ -113,9 +113,7 @@ describe("address", () => {
     await flushPromises();
 
     expect(fetch).toHaveBeenCalledOnce();
-    expect(document.getElementById("address-warn").textContent).toBe(
-      translate("address.notFound")
-    );
+    expect(document.getElementById("address-warn").textContent).toBe(translate("address.notFound"));
     expect(document.getElementById("street").value).toBe("");
     expect(document.getElementById("neighborhood").value).toBe("");
     expect(document.getElementById("city").value).toBe("");
@@ -142,7 +140,7 @@ describe("address", () => {
 
     expect(fetch).toHaveBeenCalledOnce();
     expect(document.getElementById("address-warn").textContent).toBe(
-      translate("address.connectionError")
+      translate("address.connectionError"),
     );
     expect(document.getElementById("street").value).toBe("");
     expect(document.getElementById("neighborhood").value).toBe("");

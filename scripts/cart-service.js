@@ -11,15 +11,10 @@ export function getCartSubtotal(cart = getCart()) {
 }
 
 export function getDeliveryFee(cart = getCart(), orderType = getOrderType()) {
-  return cart.length > 0 && orderType === ORDER_TYPES.DELIVERY
-    ? DELIVERY_FEE
-    : 0;
+  return cart.length > 0 && orderType === ORDER_TYPES.DELIVERY ? DELIVERY_FEE : 0;
 }
 
-export function getCartTotalWithDelivery(
-  cart = getCart(),
-  orderType = getOrderType()
-) {
+export function getCartTotalWithDelivery(cart = getCart(), orderType = getOrderType()) {
   return getCartSubtotal(cart) + getDeliveryFee(cart, orderType);
 }
 
@@ -39,7 +34,7 @@ export function addProductToCart(cart, product) {
             ...item,
             quantity: item.quantity + 1,
           }
-        : item
+        : item,
     );
   }
 
@@ -65,7 +60,7 @@ export function increaseCartItemQuantity(cart, productId) {
           ...item,
           quantity: item.quantity + 1,
         }
-      : item
+      : item,
   );
 }
 
@@ -77,7 +72,7 @@ export function decreaseCartItemQuantity(cart, productId) {
             ...item,
             quantity: item.quantity - 1,
           }
-        : item
+        : item,
     )
     .filter((item) => item.quantity > 0);
 }

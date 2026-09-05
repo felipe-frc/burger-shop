@@ -64,9 +64,7 @@ async function openCart(page) {
 test("deve simular o fluxo completo de compra com entrega", async ({ page }) => {
   await page.goto("/");
 
-  await expect(
-    page.getByRole("heading", { name: /The Burger House/i })
-  ).toBeVisible();
+  await expect(page.getByRole("heading", { name: /The Burger House/i })).toBeVisible();
 
   await addFirstProductToCart(page);
   await openCart(page);
@@ -113,14 +111,10 @@ test("deve simular o fluxo completo de compra com entrega", async ({ page }) => 
   expect(decodedUrl).toContain("Sem cebola");
 });
 
-test("deve permitir retirada no local sem preencher endereço", async ({
-  page,
-}) => {
+test("deve permitir retirada no local sem preencher endereço", async ({ page }) => {
   await page.goto("/");
 
-  await expect(
-    page.getByRole("heading", { name: /The Burger House/i })
-  ).toBeVisible();
+  await expect(page.getByRole("heading", { name: /The Burger House/i })).toBeVisible();
 
   await addFirstProductToCart(page);
   await openCart(page);
@@ -130,15 +124,15 @@ test("deve permitir retirada no local sem preencher endereço", async ({
   await expect(page.locator("#address-modal")).toBeVisible();
 
   await page.evaluate(() => {
-  const pickupInput = document.querySelector("#order-type-pickup");
+    const pickupInput = document.querySelector("#order-type-pickup");
 
-  if (!pickupInput) {
-    throw new Error("Campo de retirada no local não encontrado.");
-  }
+    if (!pickupInput) {
+      throw new Error("Campo de retirada no local não encontrado.");
+    }
 
-  pickupInput.checked = true;
-  pickupInput.dispatchEvent(new Event("change", { bubbles: true }));
-});
+    pickupInput.checked = true;
+    pickupInput.dispatchEvent(new Event("change", { bubbles: true }));
+  });
 
   await expect(page.locator("#pickup-info")).toBeVisible();
   await expect(page.locator("#delivery-fields")).toBeHidden();
@@ -184,9 +178,7 @@ test("deve manter o fluxo bloqueado quando o carrinho ficar vazio antes da revis
   await expect(page.locator("#go-to-address-btn")).toBeDisabled();
 });
 
-test("deve trocar o idioma da interface e refletir os textos do pedido", async ({
-  page,
-}) => {
+test("deve trocar o idioma da interface e refletir os textos do pedido", async ({ page }) => {
   await page.goto("/");
 
   await page.locator("#language-select").selectOption("en-US");
