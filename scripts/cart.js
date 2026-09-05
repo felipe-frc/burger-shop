@@ -7,9 +7,13 @@ import {
   increaseCartItemQuantity,
   removeProductFromCart,
 } from "./cart-service.js";
+
 import { getLocalizedEntity, translate, translateItemCount } from "./i18n.js";
+
 import { getCart, setCart } from "./state.js";
+
 import { escapeHTML, formatPrice } from "./utils.js";
+
 import { elements, showToast } from "./ui.js";
 
 export { getCartSubtotal, getDeliveryFee, getCartTotalWithDelivery } from "./cart-service.js";
@@ -37,19 +41,29 @@ function updateProceedButtonState() {
 
 function updateProductButtonsState() {
   const cart = getCart();
-  const buttons = document.querySelectorAll(".add-to-cart-btn");
+
+  const buttons = /** @type {NodeListOf<HTMLButtonElement>} */ (
+    document.querySelectorAll(".add-to-cart-btn")
+  );
 
   buttons.forEach((button) => {
     const id = button.dataset.id;
+
+    if (!id) return;
+
     const item = cart.find((cartItem) => cartItem.id === id);
+
     const indicator = button.querySelector(".product-cart-indicator");
+
     const product = findProductById(id);
+
     const localizedProduct = product ? getLocalizedEntity(product) : null;
 
     if (item) {
       const unit = translate(item.quantity === 1 ? "cart.unitSingular" : "cart.unitPlural");
 
       button.classList.add("btn-add-item-active");
+
       button.setAttribute(
         "aria-label",
         translate("cart.activeAddAria", undefined, {
@@ -60,7 +74,7 @@ function updateProductButtonsState() {
       );
 
       if (indicator) {
-        indicator.textContent = item.quantity;
+        indicator.textContent = String(item.quantity);
         indicator.classList.remove("hidden");
       }
 
@@ -68,6 +82,7 @@ function updateProductButtonsState() {
     }
 
     button.classList.remove("btn-add-item-active");
+
     button.setAttribute(
       "aria-label",
       translate("cart.addAria", undefined, {
@@ -112,6 +127,7 @@ export function updateCart() {
       div.innerHTML = `
         <div class="cart-item-main">
           <p class="cart-item-name">${escapeHTML(localizedItem.name)}</p>
+
           <p class="cart-item-unit-price">
             ${formatPrice(item.price)} ${escapeHTML(translate("cart.unitPriceSuffix"))}
           </p>
@@ -121,7 +137,11 @@ export function updateCart() {
               type="button"
               class="cart-quantity-btn minus-btn"
               data-id="${escapeHTML(item.id)}"
-              aria-label="${escapeHTML(translate("cart.decreaseAria", undefined, { name: localizedItem.name }))}"
+              aria-label="${escapeHTML(
+                translate("cart.decreaseAria", undefined, {
+                  name: localizedItem.name,
+                }),
+              )}"
             >
               -
             </button>
@@ -132,7 +152,11 @@ export function updateCart() {
               type="button"
               class="cart-quantity-btn plus-btn"
               data-id="${escapeHTML(item.id)}"
-              aria-label="${escapeHTML(translate("cart.increaseAria", undefined, { name: localizedItem.name }))}"
+              aria-label="${escapeHTML(
+                translate("cart.increaseAria", undefined, {
+                  name: localizedItem.name,
+                }),
+              )}"
             >
               +
             </button>
@@ -146,7 +170,11 @@ export function updateCart() {
             type="button"
             class="cart-item-remove remove-btn"
             data-id="${escapeHTML(item.id)}"
-            aria-label="${escapeHTML(translate("cart.removeAria", undefined, { name: localizedItem.name }))}"
+            aria-label="${escapeHTML(
+              translate("cart.removeAria", undefined, {
+                name: localizedItem.name,
+              }),
+            )}"
           >
             ${escapeHTML(translate("cart.remove"))}
           </button>
@@ -158,7 +186,8 @@ export function updateCart() {
   }
 
   elements.cartTotal.textContent = formatPrice(getCartSubtotal(cart));
-  elements.cartCount.textContent = count;
+
+  elements.cartCount.textContent = String(count);
 
   const cartItemCountLabel = document.getElementById("cart-item-count-label");
 
@@ -170,10 +199,16 @@ export function updateCart() {
   updateProceedButtonState();
 }
 
+/**
+ * @param {HTMLButtonElement | null} button
+ */
 function addItemToCart(button) {
   if (!button) return;
 
   const id = button.dataset.id;
+
+  if (!id) return;
+
   const product = findProductById(id);
 
   if (!product) {
@@ -182,14 +217,24 @@ function addItemToCart(button) {
   }
 
   const localizedProduct = getLocalizedEntity(product);
+
   const updatedCart = addProductToCart(getCart(), product);
 
   setCart(updatedCart);
   updateCart();
   animateAddToCart(button);
-  showToast(translate("cart.addedToast", undefined, { name: localizedProduct.name }), "#16a34a");
+
+  showToast(
+    translate("cart.addedToast", undefined, {
+      name: localizedProduct.name,
+    }),
+    "#16a34a",
+  );
 }
 
+/**
+ * @param {HTMLButtonElement | null} button
+ */
 function animateAddToCart(button) {
   if (!button) return;
 
@@ -212,9 +257,17 @@ function animateAddToCart(button) {
 
 export function bindAddToCartButtons() {
   document.addEventListener("click", (event) => {
-    const button = event.target.closest(".add-to-cart-btn");
+    const target = event.target;
 
-    if (!button) return;
+    if (!(target instanceof Element)) {
+      return;
+    }
+
+    const button = target.closest(".add-to-cart-btn");
+
+    if (!(button instanceof HTMLButtonElement)) {
+      return;
+    }
 
     event.preventDefault();
     event.stopPropagation();
@@ -227,12 +280,21 @@ export function bindCartControls() {
   if (!elements.cartItemsContainer) return;
 
   elements.cartItemsContainer.addEventListener("click", (event) => {
-    const removeBtn = event.target.closest(".remove-btn");
-    const plusBtn = event.target.closest(".plus-btn");
-    const minusBtn = event.target.closest(".minus-btn");
+    const target = event.target;
 
-    if (removeBtn) {
+    if (!(target instanceof Element)) {
+      return;
+    }
+
+    const removeBtn = target.closest(".remove-btn");
+    const plusBtn = target.closest(".plus-btn");
+    const minusBtn = target.closest(".minus-btn");
+
+    if (removeBtn instanceof HTMLButtonElement) {
       const id = removeBtn.dataset.id;
+
+      if (!id) return;
+
       const updatedCart = removeProductFromCart(getCart(), id);
 
       setCart(updatedCart);
@@ -240,8 +302,11 @@ export function bindCartControls() {
       return;
     }
 
-    if (plusBtn) {
+    if (plusBtn instanceof HTMLButtonElement) {
       const id = plusBtn.dataset.id;
+
+      if (!id) return;
+
       const updatedCart = increaseCartItemQuantity(getCart(), id);
 
       setCart(updatedCart);
@@ -249,8 +314,11 @@ export function bindCartControls() {
       return;
     }
 
-    if (minusBtn) {
+    if (minusBtn instanceof HTMLButtonElement) {
       const id = minusBtn.dataset.id;
+
+      if (!id) return;
+
       const updatedCart = decreaseCartItemQuantity(getCart(), id);
 
       setCart(updatedCart);

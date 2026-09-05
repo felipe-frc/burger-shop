@@ -3,56 +3,143 @@ import { MENU_CATEGORIES } from "./data.js";
 import { getLocalizedEntity, translate } from "./i18n.js";
 import { escapeHTML, formatPrice, isStoreOpenNow } from "./utils.js";
 
+/**
+ * @typedef {{
+ *   text: string,
+ *   duration: number,
+ *   gravity: string,
+ *   position: string,
+ *   stopOnFocus: boolean,
+ *   style: {
+ *     background: string,
+ *     color: string,
+ *     borderRadius: string
+ *   }
+ * }} ToastifyOptions
+ */
+
+/**
+ * @typedef {{
+ *   showToast: () => void
+ * }} ToastifyInstance
+ */
+
+/**
+ * @typedef {(options: ToastifyOptions) => ToastifyInstance} ToastifyFactory
+ */
+
+/** @type {HTMLElement | null} */
 let activeModal = null;
+
+/** @type {HTMLElement | null} */
 let previouslyFocusedElement = null;
+
+/** @type {(() => void) | null} */
 let cleanupCategoryNavigation = null;
 
 export const elements = {
   get menuSection() {
     return document.getElementById("menu");
   },
-  menuCategoriesContainer: document.getElementById("menu-categories"),
 
-  cartModal: document.getElementById("cart-modal"),
-  addressModal: document.getElementById("address-modal"),
-  reviewModal: document.getElementById("review-modal"),
+  menuCategoriesContainer: /** @type {HTMLElement | null} */ (
+    document.getElementById("menu-categories")
+  ),
 
-  cartBtn: document.getElementById("cart-btn"),
-  cartFooter: document.querySelector(".cart-footer"),
+  cartModal: /** @type {HTMLElement | null} */ (document.getElementById("cart-modal")),
 
-  closeModalBtn: document.getElementById("close-modal-btn"),
-  goToAddressBtn: document.getElementById("go-to-address-btn"),
-  backToCartBtn: document.getElementById("back-to-cart-btn"),
-  goToReviewBtn: document.getElementById("go-to-review-btn"),
-  backToAddressBtn: document.getElementById("back-to-address-btn"),
-  finishOrderBtn: document.getElementById("finish-order-btn"),
+  addressModal: /** @type {HTMLElement | null} */ (document.getElementById("address-modal")),
 
-  cartItemsContainer: document.getElementById("cart-items"),
-  cartTotal: document.getElementById("cart-total"),
-  cartCount: document.getElementById("cart-count"),
+  reviewModal: /** @type {HTMLElement | null} */ (document.getElementById("review-modal")),
 
-  cepInput: document.getElementById("cep"),
-  streetInput: document.getElementById("street"),
-  neighborhoodInput: document.getElementById("neighborhood"),
-  cityInput: document.getElementById("city"),
-  houseNumberInput: document.getElementById("house-number"),
-  complementInput: document.getElementById("complement"),
-  addressWarn: document.getElementById("address-warn"),
-  cepLoading: document.getElementById("cep-loading"),
+  cartBtn: /** @type {HTMLButtonElement | null} */ (document.getElementById("cart-btn")),
 
-  reviewItems: document.getElementById("review-items"),
-  reviewAddress: document.getElementById("review-address"),
-  reviewTotal: document.getElementById("review-total"),
-  orderNotesInput: document.getElementById("order-notes"),
+  cartFooter: /** @type {HTMLElement | null} */ (document.querySelector(".cart-footer")),
 
-  orderTypeInputs: document.querySelectorAll("input[name='order-type']"),
-  deliveryFields: document.getElementById("delivery-fields"),
-  pickupInfo: document.getElementById("pickup-info"),
+  closeModalBtn: /** @type {HTMLButtonElement | null} */ (
+    document.getElementById("close-modal-btn")
+  ),
 
-  dateSpan: document.getElementById("date-span"),
-  statusText: document.getElementById("status-text"),
+  goToAddressBtn: /** @type {HTMLButtonElement | null} */ (
+    document.getElementById("go-to-address-btn")
+  ),
+
+  backToCartBtn: /** @type {HTMLButtonElement | null} */ (
+    document.getElementById("back-to-cart-btn")
+  ),
+
+  goToReviewBtn: /** @type {HTMLButtonElement | null} */ (
+    document.getElementById("go-to-review-btn")
+  ),
+
+  backToAddressBtn: /** @type {HTMLButtonElement | null} */ (
+    document.getElementById("back-to-address-btn")
+  ),
+
+  finishOrderBtn: /** @type {HTMLButtonElement | null} */ (
+    document.getElementById("finish-order-btn")
+  ),
+
+  cartItemsContainer: /** @type {HTMLElement | null} */ (document.getElementById("cart-items")),
+
+  cartTotal: /** @type {HTMLElement | null} */ (document.getElementById("cart-total")),
+
+  cartCount: /** @type {HTMLElement | null} */ (document.getElementById("cart-count")),
+
+  cepInput: /** @type {HTMLInputElement | null} */ (document.getElementById("cep")),
+
+  streetInput: /** @type {HTMLInputElement | null} */ (document.getElementById("street")),
+
+  neighborhoodInput: /** @type {HTMLInputElement | null} */ (
+    document.getElementById("neighborhood")
+  ),
+
+  cityInput: /** @type {HTMLInputElement | null} */ (document.getElementById("city")),
+
+  houseNumberInput: /** @type {HTMLInputElement | null} */ (
+    document.getElementById("house-number")
+  ),
+
+  complementInput: /** @type {HTMLInputElement | null} */ (document.getElementById("complement")),
+
+  addressWarn: /** @type {HTMLElement | null} */ (document.getElementById("address-warn")),
+
+  cepLoading: /** @type {HTMLElement | null} */ (document.getElementById("cep-loading")),
+
+  reviewItems: /** @type {HTMLElement | null} */ (document.getElementById("review-items")),
+
+  reviewAddress: /** @type {HTMLElement | null} */ (document.getElementById("review-address")),
+
+  reviewTotal: /** @type {HTMLElement | null} */ (document.getElementById("review-total")),
+
+  orderNotesInput: /** @type {HTMLTextAreaElement | null} */ (
+    document.getElementById("order-notes")
+  ),
+
+  orderTypeInputs: /** @type {NodeListOf<HTMLInputElement>} */ (
+    document.querySelectorAll("input[name='order-type']")
+  ),
+
+  deliveryFields: /** @type {HTMLElement | null} */ (document.getElementById("delivery-fields")),
+
+  pickupInfo: /** @type {HTMLElement | null} */ (document.getElementById("pickup-info")),
+
+  dateSpan: /** @type {HTMLElement | null} */ (document.getElementById("date-span")),
+
+  statusText: /** @type {HTMLElement | null} */ (document.getElementById("status-text")),
 };
 
+/**
+ * @returns {ToastifyFactory | undefined}
+ */
+function getToastify() {
+  return /** @type {typeof globalThis & { Toastify?: ToastifyFactory }} */ (globalThis).Toastify;
+}
+
+/**
+ * @param {HTMLElement | null} container
+ * @returns {HTMLElement[]}
+ */
 function getFocusableElements(container) {
   if (!container) return [];
 
@@ -65,11 +152,18 @@ function getFocusableElements(container) {
     "[tabindex]:not([tabindex='-1'])",
   ].join(",");
 
-  return Array.from(container.querySelectorAll(focusableSelector)).filter(
+  const focusableElements = /** @type {NodeListOf<HTMLElement>} */ (
+    container.querySelectorAll(focusableSelector)
+  );
+
+  return Array.from(focusableElements).filter(
     (element) => element.offsetParent !== null || element === document.activeElement,
   );
 }
 
+/**
+ * @param {HTMLElement} modal
+ */
 function focusFirstElement(modal) {
   const focusableElements = getFocusableElements(modal);
 
@@ -82,8 +176,13 @@ function focusFirstElement(modal) {
   modal.focus();
 }
 
+/**
+ * @param {KeyboardEvent} event
+ */
 function trapFocus(event) {
-  if (!activeModal || event.key !== "Tab") return;
+  if (!activeModal || event.key !== "Tab") {
+    return;
+  }
 
   const focusableElements = getFocusableElements(activeModal);
 
@@ -94,6 +193,7 @@ function trapFocus(event) {
   }
 
   const firstElement = focusableElements[0];
+
   const lastElement = focusableElements[focusableElements.length - 1];
 
   if (event.shiftKey && document.activeElement === firstElement) {
@@ -108,15 +208,21 @@ function trapFocus(event) {
   }
 }
 
+/**
+ * @param {HTMLElement | null} modal
+ */
 export function openModal(modal) {
   closeAllModals(false);
 
   if (!modal) return;
 
-  previouslyFocusedElement = document.activeElement;
+  previouslyFocusedElement =
+    document.activeElement instanceof HTMLElement ? document.activeElement : null;
+
   activeModal = modal;
 
   modal.classList.remove("hidden");
+
   document.body.style.overflow = "hidden";
 
   requestAnimationFrame(() => {
@@ -124,12 +230,24 @@ export function openModal(modal) {
   });
 }
 
+/**
+ * @param {boolean} [restoreFocus]
+ */
 export function closeAllModals(restoreFocus = true) {
-  if (elements.cartModal) elements.cartModal.classList.add("hidden");
-  if (elements.addressModal) elements.addressModal.classList.add("hidden");
-  if (elements.reviewModal) elements.reviewModal.classList.add("hidden");
+  if (elements.cartModal) {
+    elements.cartModal.classList.add("hidden");
+  }
+
+  if (elements.addressModal) {
+    elements.addressModal.classList.add("hidden");
+  }
+
+  if (elements.reviewModal) {
+    elements.reviewModal.classList.add("hidden");
+  }
 
   document.body.style.overflow = "";
+
   activeModal = null;
 
   if (
@@ -168,13 +286,20 @@ export function bindModalCloseEvents() {
   });
 }
 
+/**
+ * @param {string} message
+ * @param {string} [background]
+ */
 export function showToast(message, background = "#ef4444") {
-  if (typeof Toastify === "undefined") {
+  const toastify = getToastify();
+
+  if (!toastify) {
     console.error("Toastify não carregado:", message);
+
     return;
   }
 
-  Toastify({
+  toastify({
     text: message,
     duration: TOAST_DURATION_MS,
     gravity: "top",
@@ -192,10 +317,14 @@ export function showClosedStoreMessage() {
   showToast(translate("status.closedMessage"));
 }
 
+/**
+ * @param {string} message
+ */
 export function showAddressWarning(message) {
   if (!elements.addressWarn) return;
 
   elements.addressWarn.textContent = message;
+
   elements.addressWarn.classList.remove("hidden");
 }
 
@@ -205,6 +334,9 @@ export function hideAddressWarning() {
   elements.addressWarn.classList.add("hidden");
 }
 
+/**
+ * @param {boolean} isLoading
+ */
 export function setFinishButtonLoading(isLoading) {
   const button = elements.finishOrderBtn;
 
@@ -212,18 +344,23 @@ export function setFinishButtonLoading(isLoading) {
 
   if (isLoading) {
     button.disabled = true;
+
     button.dataset.originalHtml = button.innerHTML;
+
     button.classList.add("opacity-80", "cursor-not-allowed");
+
     button.innerHTML = `
       <span class="inline-flex items-center gap-2">
         <span class="w-5 h-5 border-2 border-white/40 border-t-white rounded-full animate-spin"></span>
         ${translate("order.sending")}
       </span>
     `;
+
     return;
   }
 
   button.disabled = false;
+
   button.classList.remove("opacity-80", "cursor-not-allowed");
 
   if (button.dataset.originalHtml) {
@@ -232,11 +369,20 @@ export function setFinishButtonLoading(isLoading) {
 }
 
 export function renderMenu() {
-  if (!elements.menuCategoriesContainer) return;
+  if (!elements.menuCategoriesContainer) {
+    return;
+  }
 
   elements.menuCategoriesContainer.innerHTML = MENU_CATEGORIES.map(renderMenuCategory).join("");
 }
 
+/**
+ * @param {object} category
+ * @param {string} category.id
+ * @param {string} category.icon
+ * @param {Array<object>} category.items
+ * @returns {string}
+ */
 function renderMenuCategory(category) {
   const localizedCategory = getLocalizedEntity(category);
 
@@ -258,6 +404,13 @@ function renderMenuCategory(category) {
   `;
 }
 
+/**
+ * @param {object} product
+ * @param {string} product.id
+ * @param {string} product.image
+ * @param {number} product.price
+ * @returns {string}
+ */
 function renderProductCard(product) {
   const localizedProduct = getLocalizedEntity(product);
 
@@ -296,9 +449,16 @@ function renderProductCard(product) {
             type="button"
             class="btn-add-item add-to-cart-btn"
             data-id="${escapeHTML(product.id)}"
-            aria-label="${escapeHTML(translate("cart.addAria", undefined, { name: localizedProduct.name }))}"
+            aria-label="${escapeHTML(
+              translate("cart.addAria", undefined, {
+                name: localizedProduct.name,
+              }),
+            )}"
           >
-            <span class="product-cart-indicator hidden" data-product-count="${escapeHTML(product.id)}">0</span>
+            <span
+              class="product-cart-indicator hidden"
+              data-product-count="${escapeHTML(product.id)}"
+            >0</span>
             <i class="fa fa-plus" aria-hidden="true"></i>
           </button>
         </div>
@@ -310,7 +470,9 @@ function renderProductCard(product) {
 export function updateStoreStatus() {
   const isOpen = isStoreOpenNow();
 
-  if (!elements.dateSpan || !elements.statusText) return;
+  if (!elements.dateSpan || !elements.statusText) {
+    return;
+  }
 
   elements.dateSpan.classList.remove(
     "text-white",
@@ -327,16 +489,20 @@ export function updateStoreStatus() {
 
   if (isOpen) {
     elements.dateSpan.classList.add("text-emerald-400");
+
     elements.statusText.textContent = translate("status.open");
+
     return;
   }
 
   elements.dateSpan.classList.add("text-rose-400");
+
   elements.statusText.textContent = translate("status.closed");
 }
 
 export function revealOnScroll() {
   const reveals = document.querySelectorAll(".reveal");
+
   const windowHeight = window.innerHeight;
 
   reveals.forEach((element) => {
@@ -352,6 +518,7 @@ function showFloatingCart() {
   if (!elements.cartFooter) return;
 
   elements.cartFooter.classList.remove("cart-footer-hidden", "cart-footer-bottom");
+
   elements.cartFooter.classList.add("cart-footer-visible");
 }
 
@@ -359,6 +526,7 @@ function showBottomCart() {
   if (!elements.cartFooter) return;
 
   elements.cartFooter.classList.remove("cart-footer-hidden");
+
   elements.cartFooter.classList.add("cart-footer-visible", "cart-footer-bottom");
 }
 
@@ -366,22 +534,28 @@ export function hideCartFooter() {
   if (!elements.cartFooter) return;
 
   elements.cartFooter.classList.remove("cart-footer-visible", "cart-footer-bottom");
+
   elements.cartFooter.classList.add("cart-footer-hidden");
 }
 
 export function setupCartVisibility() {
   const menuSection = elements.menuSection;
-  const categoryNav = document.getElementById("category-nav");
 
-  if (!menuSection || !categoryNav) return;
+  const categoryNav = /** @type {HTMLElement | null} */ (document.getElementById("category-nav"));
+
+  if (!menuSection || !categoryNav) {
+    return;
+  }
 
   function updateCartVisibility() {
     const navHeight = categoryNav.offsetHeight || 0;
+
     const categoryNavStart = Math.max(categoryNav.offsetTop - navHeight, 0);
 
     const pageBottomThreshold = document.documentElement.scrollHeight - window.innerHeight - 40;
 
     const hasReachedMenu = window.scrollY >= categoryNavStart;
+
     const hasReachedPageBottom = window.scrollY >= pageBottomThreshold;
 
     if (!hasReachedMenu) {
@@ -409,22 +583,47 @@ export function setupCartVisibility() {
 export function setupCategoryNavigation() {
   if (typeof cleanupCategoryNavigation === "function") {
     cleanupCategoryNavigation();
+
     cleanupCategoryNavigation = null;
   }
 
-  const nav = document.getElementById("category-nav");
-  const navLinks = Array.from(document.querySelectorAll("[data-category-link]"));
-  const sections = ["menu", "sides", "drinks"]
-    .map((id) => document.getElementById(id))
-    .filter(Boolean);
+  const nav = /** @type {HTMLElement | null} */ (document.getElementById("category-nav"));
 
-  if (!nav || navLinks.length === 0 || sections.length === 0) return;
+  const navLinks = /** @type {HTMLElement[]} */ (
+    Array.from(document.querySelectorAll("[data-category-link]")).filter(
+      (link) => link instanceof HTMLElement,
+    )
+  );
+
+  const sections = /** @type {HTMLElement[]} */ (
+    ["menu", "sides", "drinks"]
+      .map((id) => document.getElementById(id))
+      .filter((section) => section instanceof HTMLElement)
+  );
+
+  if (!nav || navLinks.length === 0 || sections.length === 0) {
+    return;
+  }
 
   let isClickScrolling = false;
+
+  /** @type {number | null} */
   let clickScrollTimeout = null;
+
+  /** @type {number | null} */
   let scrollFrame = null;
+
+  /**
+   * @type {Map<
+   *   HTMLElement,
+   *   (event: MouseEvent) => void
+   * >}
+   */
   const clickHandlers = new Map();
 
+  /**
+   * @param {string} sectionId
+   */
   function setActiveLink(sectionId) {
     navLinks.forEach((link) => {
       const isActive = link.dataset.categoryLink === sectionId;
@@ -441,6 +640,7 @@ export function setupCategoryNavigation() {
 
   function isNearPageBottom() {
     const scrollPosition = window.scrollY + window.innerHeight;
+
     const pageHeight = document.documentElement.scrollHeight;
 
     return scrollPosition >= pageHeight - 80;
@@ -452,6 +652,7 @@ export function setupCategoryNavigation() {
     }
 
     const navHeight = nav.offsetHeight || 0;
+
     const referenceLine = navHeight + 140;
 
     let currentSectionId = sections[0].id;
@@ -470,7 +671,7 @@ export function setupCategoryNavigation() {
   function updateActiveLinkOnScroll() {
     if (isClickScrolling) return;
 
-    if (scrollFrame) {
+    if (scrollFrame !== null) {
       window.cancelAnimationFrame(scrollFrame);
     }
 
@@ -480,18 +681,24 @@ export function setupCategoryNavigation() {
   }
 
   navLinks.forEach((link) => {
+    /**
+     * @param {MouseEvent} event
+     */
     const clickHandler = (event) => {
       event.preventDefault();
 
       const sectionId = link.dataset.categoryLink;
+
       const section = sectionId ? document.getElementById(sectionId) : null;
 
       if (!section) return;
 
       const navHeight = nav.offsetHeight || 0;
+
       const targetPosition = Math.max(section.offsetTop - navHeight - 24, 0);
 
       isClickScrolling = true;
+
       setActiveLink(sectionId);
 
       window.scrollTo({
@@ -499,17 +706,19 @@ export function setupCategoryNavigation() {
         behavior: "smooth",
       });
 
-      if (clickScrollTimeout) {
+      if (clickScrollTimeout !== null) {
         window.clearTimeout(clickScrollTimeout);
       }
 
       clickScrollTimeout = window.setTimeout(() => {
         setActiveLink(getCurrentSectionId());
+
         isClickScrolling = false;
       }, 900);
     };
 
     clickHandlers.set(link, clickHandler);
+
     link.addEventListener("click", clickHandler);
   });
 
@@ -527,13 +736,14 @@ export function setupCategoryNavigation() {
     });
 
     window.removeEventListener("scroll", updateActiveLinkOnScroll);
+
     window.removeEventListener("resize", updateActiveLinkOnScroll);
 
-    if (clickScrollTimeout) {
+    if (clickScrollTimeout !== null) {
       window.clearTimeout(clickScrollTimeout);
     }
 
-    if (scrollFrame) {
+    if (scrollFrame !== null) {
       window.cancelAnimationFrame(scrollFrame);
     }
   };

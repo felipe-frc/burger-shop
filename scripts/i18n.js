@@ -288,7 +288,10 @@ export function translate(key, language = getCurrentLanguage(), replacements = {
 
 export function translateItemCount(count, language = getCurrentLanguage()) {
   const key = count === 1 ? "cart.itemSingular" : "cart.itemPlural";
-  return translate(key, language, { count });
+
+  return translate(key, language, {
+    count,
+  });
 }
 
 export function getLocalizedEntity(entity, language = getCurrentLanguage()) {
@@ -307,29 +310,58 @@ export function applyStaticTranslations(language = getCurrentLanguage()) {
 
   document.documentElement.lang = htmlLang;
 
-  document.querySelectorAll("[data-i18n]").forEach((element) => {
+  const translatedElements = /** @type {NodeListOf<HTMLElement>} */ (
+    document.querySelectorAll("[data-i18n]")
+  );
+
+  translatedElements.forEach((element) => {
     const key = element.dataset.i18n;
+
+    if (!key) return;
+
     element.textContent = translate(key, language);
   });
 
-  document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
+  const placeholderElements = /** @type {NodeListOf<HTMLElement>} */ (
+    document.querySelectorAll("[data-i18n-placeholder]")
+  );
+
+  placeholderElements.forEach((element) => {
     const key = element.dataset.i18nPlaceholder;
+
+    if (!key) return;
+
     element.setAttribute("placeholder", translate(key, language));
   });
 
-  document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
+  const ariaLabelElements = /** @type {NodeListOf<HTMLElement>} */ (
+    document.querySelectorAll("[data-i18n-aria-label]")
+  );
+
+  ariaLabelElements.forEach((element) => {
     const key = element.dataset.i18nAriaLabel;
+
+    if (!key) return;
+
     element.setAttribute("aria-label", translate(key, language));
   });
 
   document.title = translate("meta.title", language);
 
   const description = document.querySelector('meta[name="description"]');
+
   const ogTitle = document.querySelector('meta[property="og:title"]');
+
   const ogDescription = document.querySelector('meta[property="og:description"]');
 
-  if (description) description.setAttribute("content", translate("meta.description", language));
-  if (ogTitle) ogTitle.setAttribute("content", translate("meta.ogTitle", language));
+  if (description) {
+    description.setAttribute("content", translate("meta.description", language));
+  }
+
+  if (ogTitle) {
+    ogTitle.setAttribute("content", translate("meta.ogTitle", language));
+  }
+
   if (ogDescription) {
     ogDescription.setAttribute("content", translate("meta.ogDescription", language));
   }
@@ -339,12 +371,16 @@ export function bindLanguageSwitcher(onLanguageChange) {
   if (typeof document === "undefined") return;
 
   const currentLanguage = getCurrentLanguage();
-  const languageSelect = document.getElementById("language-select");
+
+  const languageSelect = /** @type {HTMLSelectElement | null} */ (
+    document.getElementById("language-select")
+  );
 
   if (!languageSelect) return;
 
   const handleLanguageChange = (selectedLanguage) => {
     const newLang = setCurrentLanguage(selectedLanguage);
+
     applyStaticTranslations(newLang);
 
     if (typeof onLanguageChange === "function") {
@@ -353,6 +389,7 @@ export function bindLanguageSwitcher(onLanguageChange) {
   };
 
   languageSelect.value = currentLanguage;
+
   languageSelect.addEventListener("change", () => {
     handleLanguageChange(languageSelect.value);
   });
