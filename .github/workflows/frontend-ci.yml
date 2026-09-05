@@ -36,6 +36,9 @@ jobs:
       - name: Verificar formatação
         run: npm run format:check
 
+      - name: Verificar tipos do JavaScript
+        run: npm run typecheck
+
       - name: Executar testes com cobertura
         run: npm run test:coverage
 
