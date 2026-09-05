@@ -26,6 +26,7 @@
     "e2e:ui": "npm run build && playwright test --ui"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.57.0",
     "@vitest/coverage-v8": "^4.1.6",

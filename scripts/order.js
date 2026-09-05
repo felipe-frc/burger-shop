@@ -64,7 +64,9 @@ function loadReview() {
   elements.reviewItems.innerHTML = "";
 
   if (cart.length === 0) {
-    elements.reviewItems.innerHTML = `<p class="text-zinc-500 italic">${escapeHTML(translate("review.empty"))}</p>`;
+    elements.reviewItems.innerHTML = `<p class="text-zinc-500 italic">${escapeHTML(
+      translate("review.empty"),
+    )}</p>`;
     elements.reviewAddress.textContent = translate("review.addressMissing");
     elements.reviewTotal.textContent = formatPrice(0);
     return;
@@ -88,7 +90,7 @@ function loadReview() {
         </p>
       </div>
 
-      <span class="font-semibold text-amber-600 whitespace-nowrap">
+      <span class="font-semibold text-amber-700 whitespace-nowrap">
         ${formatPrice(itemSubtotal)}
       </span>
     `;

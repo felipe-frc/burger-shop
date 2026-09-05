@@ -3,9 +3,8 @@ dist
 coverage
 test-results
 playwright-report
-
 output.css
-
 assets
 docs
 .vscode
+.prettierrc.json
