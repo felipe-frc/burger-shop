@@ -16,20 +16,20 @@ Mais do que uma interface, o projeto foi estruturado para demonstrar competênci
 
 ### 🎯 O que este projeto demonstra
 
-| Competência | Aplicação no projeto |
-| --- | --- |
-| JavaScript | ES Modules, DOM, eventos, estado e regras de negócio |
-| Arquitetura | Separação entre dados, UI, estado, serviços e regras de domínio |
-| Integração | Consumo da API ViaCEP com tratamento de falhas |
-| Persistência | Carrinho e idioma armazenados no `localStorage` |
-| Internacionalização | Interface e cardápio em Português e Inglês |
-| Testes | Vitest, jsdom, Playwright e axe-core |
-| Qualidade | ESLint, Prettier, TypeScript `checkJs` e quality gates |
-| Acessibilidade | Navegação por teclado, foco em modais, ARIA e auditoria automatizada |
-| Performance | Otimização de mídia e auditoria com Lighthouse |
-| Segurança | Auditoria de dependências com `npm audit` |
-| CI/CD | Pipeline GitHub Actions com Quality → Build → E2E |
-| Deploy | Publicação contínua na Vercel |
+| Competência         | Aplicação no projeto                                                 |
+| ------------------- | -------------------------------------------------------------------- |
+| JavaScript          | ES Modules, DOM, eventos, estado e regras de negócio                 |
+| Arquitetura         | Separação entre dados, UI, estado, serviços e regras de domínio      |
+| Integração          | Consumo da API ViaCEP com tratamento de falhas                       |
+| Persistência        | Carrinho e idioma armazenados no `localStorage`                      |
+| Internacionalização | Interface e cardápio em Português e Inglês                           |
+| Testes              | Vitest, jsdom, Playwright e axe-core                                 |
+| Qualidade           | ESLint, Prettier, TypeScript `checkJs` e quality gates               |
+| Acessibilidade      | Navegação por teclado, foco em modais, ARIA e auditoria automatizada |
+| Performance         | Otimização de mídia e auditoria com Lighthouse                       |
+| Segurança           | Auditoria de dependências com `npm audit`                            |
+| CI/CD               | Pipeline GitHub Actions com Quality → Build → E2E                    |
+| Deploy              | Publicação contínua na Vercel                                        |
 
 ---
 
@@ -54,16 +54,16 @@ Mais do que uma interface, o projeto foi estruturado para demonstrar competênci
 
 ## 🚀 Funcionalidades
 
-| Área | Recursos |
-| --- | --- |
-| 🍔 Cardápio | Produtos por categoria, imagens, descrições, preços, tags e tradução |
-| 🛒 Carrinho | Adição, remoção, quantidade, subtotal, taxa, total e persistência |
-| 🚚 Entrega / Retirada | Fluxos independentes com tratamento da taxa de entrega |
-| 📍 Endereço | Consulta ViaCEP, preenchimento automático e validações |
-| 📦 Revisão | Produtos, quantidades, valores, modalidade, endereço e observações |
-| 💬 WhatsApp | Geração da mensagem final e limpeza do carrinho |
-| 🌎 Idiomas | Português/Inglês com persistência da preferência |
-| 🕒 Loja | Status Aberto/Fechado calculado dinamicamente |
+| Área                  | Recursos                                                             |
+| --------------------- | -------------------------------------------------------------------- |
+| 🍔 Cardápio           | Produtos por categoria, imagens, descrições, preços, tags e tradução |
+| 🛒 Carrinho           | Adição, remoção, quantidade, subtotal, taxa, total e persistência    |
+| 🚚 Entrega / Retirada | Fluxos independentes com tratamento da taxa de entrega               |
+| 📍 Endereço           | Consulta ViaCEP, preenchimento automático e validações               |
+| 📦 Revisão            | Produtos, quantidades, valores, modalidade, endereço e observações   |
+| 💬 WhatsApp           | Geração da mensagem final e limpeza do carrinho                      |
+| 🌎 Idiomas            | Português/Inglês com persistência da preferência                     |
+| 🕒 Loja               | Status Aberto/Fechado calculado dinamicamente                        |
 
 ### 🍔 Cardápio
 
@@ -89,11 +89,13 @@ Mais do que uma interface, o projeto foi estruturado para demonstrar competênci
 ### 🚚 Entrega ou retirada
 
 **Entrega**
+
 - mantém a taxa de entrega
 - direciona para o formulário de endereço
 - exige dados válidos antes da revisão
 
 **Retirada no local**
+
 - dispensa o preenchimento do endereço
 - remove automaticamente a taxa de entrega
 - segue diretamente para a revisão
@@ -146,18 +148,18 @@ Na finalização:
 
 A acessibilidade faz parte da implementação e da estratégia de testes.
 
-| Recurso | Aplicação |
-| --- | --- |
-| `aria-live` | Comunicação de atualizações dinâmicas |
-| `aria-modal` | Identificação dos modais |
-| `aria-describedby` | Associação entre campos e mensagens |
-| `role="alert"` | Mensagens importantes e erros |
-| Focus trap | Mantém a navegação dentro do modal |
-| Teclado | Navegação e fechamento com `Esc` |
+| Recurso               | Aplicação                               |
+| --------------------- | --------------------------------------- |
+| `aria-live`           | Comunicação de atualizações dinâmicas   |
+| `aria-modal`          | Identificação dos modais                |
+| `aria-describedby`    | Associação entre campos e mensagens     |
+| `role="alert"`        | Mensagens importantes e erros           |
+| Focus trap            | Mantém a navegação dentro do modal      |
+| Teclado               | Navegação e fechamento com `Esc`        |
 | Gerenciamento de foco | Foco automático e restauração ao fechar |
-| Overlay | Fechamento controlado dos modais |
-| Alt text | Descrição das imagens |
-| Contraste | Revisão dos elementos críticos |
+| Overlay               | Fechamento controlado dos modais        |
+| Alt text              | Descrição das imagens                   |
+| Contraste             | Revisão dos elementos críticos          |
 
 ### 🧪 Auditorias automatizadas
 
@@ -179,28 +181,28 @@ As verificações consideram regras relacionadas a:
 
 ## 🛠️ Tecnologias
 
-| Categoria | Tecnologia |
-| --- | --- |
-| Estrutura | HTML5 |
-| Linguagem | JavaScript ES6+ |
-| Estilização | Tailwind CSS + CSS customizado |
-| Build / Dev Server | Vite |
-| Persistência | localStorage |
-| API externa | ViaCEP |
-| Notificações | Toastify JS |
-| Ícones | Font Awesome |
-| Tipografia | Google Fonts |
-| Testes | Vitest |
-| Cobertura | Vitest Coverage V8 |
-| E2E | Playwright |
-| Acessibilidade automatizada | axe-core |
-| Ambiente de testes | jsdom |
-| Lint | ESLint |
-| Formatação | Prettier |
-| Typecheck | TypeScript `checkJs` |
-| CI/CD | GitHub Actions |
-| Deploy | Vercel |
-| Versionamento | Git / GitHub |
+| Categoria                   | Tecnologia                     |
+| --------------------------- | ------------------------------ |
+| Estrutura                   | HTML5                          |
+| Linguagem                   | JavaScript ES6+                |
+| Estilização                 | Tailwind CSS + CSS customizado |
+| Build / Dev Server          | Vite                           |
+| Persistência                | localStorage                   |
+| API externa                 | ViaCEP                         |
+| Notificações                | Toastify JS                    |
+| Ícones                      | Font Awesome                   |
+| Tipografia                  | Google Fonts                   |
+| Testes                      | Vitest                         |
+| Cobertura                   | Vitest Coverage V8             |
+| E2E                         | Playwright                     |
+| Acessibilidade automatizada | axe-core                       |
+| Ambiente de testes          | jsdom                          |
+| Lint                        | ESLint                         |
+| Formatação                  | Prettier                       |
+| Typecheck                   | TypeScript `checkJs`           |
+| CI/CD                       | GitHub Actions                 |
+| Deploy                      | Vercel                         |
+| Versionamento               | Git / GitHub                   |
 
 ---
 
@@ -208,20 +210,20 @@ As verificações consideram regras relacionadas a:
 
 A estrutura separa responsabilidades para facilitar manutenção, testes e evolução do projeto.
 
-| Módulo | Responsabilidade |
-| --- | --- |
-| `scripts/data.js` | Produtos e dados do cardápio |
-| `scripts/cart-service.js` | Regras de negócio do carrinho |
-| `scripts/cart.js` | Interface e eventos do carrinho |
-| `scripts/state.js` | Estado compartilhado e persistência |
-| `scripts/address.js` | Formulário e regras de endereço |
-| `scripts/services/viacep-service.js` | Comunicação com ViaCEP |
-| `scripts/order.js` | Revisão e finalização |
-| `scripts/i18n.js` | Internacionalização |
-| `scripts/ui.js` | Interface, modais e navegação |
-| `scripts/config.js` | Configurações gerais |
-| `scripts/main.js` | Inicialização da aplicação |
-| `scripts/utils.js` | Funções utilitárias |
+| Módulo                               | Responsabilidade                    |
+| ------------------------------------ | ----------------------------------- |
+| `scripts/data.js`                    | Produtos e dados do cardápio        |
+| `scripts/cart-service.js`            | Regras de negócio do carrinho       |
+| `scripts/cart.js`                    | Interface e eventos do carrinho     |
+| `scripts/state.js`                   | Estado compartilhado e persistência |
+| `scripts/address.js`                 | Formulário e regras de endereço     |
+| `scripts/services/viacep-service.js` | Comunicação com ViaCEP              |
+| `scripts/order.js`                   | Revisão e finalização               |
+| `scripts/i18n.js`                    | Internacionalização                 |
+| `scripts/ui.js`                      | Interface, modais e navegação       |
+| `scripts/config.js`                  | Configurações gerais                |
+| `scripts/main.js`                    | Inicialização da aplicação          |
+| `scripts/utils.js`                   | Funções utilitárias                 |
 
 ### 📁 Estrutura do repositório
 
@@ -344,24 +346,24 @@ Resumo final dos produtos, valores, modalidade, endereço e observações.
 
 ### 📊 Estado atual
 
-| Métrica | Resultado |
-| --- | ---: |
-| Arquivos de teste Vitest | **11** |
-| Testes automatizados | **60/60** |
-| Testes com falha | **0** |
-| E2E desktop | **11/11** |
-| E2E mobile | **11/11** |
-| Execuções E2E totais | **22/22** |
-| Vulnerabilidades npm | **0** |
+| Métrica                  | Resultado |
+| ------------------------ | --------: |
+| Arquivos de teste Vitest |    **11** |
+| Testes automatizados     | **60/60** |
+| Testes com falha         |     **0** |
+| E2E desktop              | **11/11** |
+| E2E mobile               | **11/11** |
+| Execuções E2E totais     | **22/22** |
+| Vulnerabilidades npm     |     **0** |
 
 ### 📈 Cobertura e quality gates
 
-| Métrica | Cobertura atual | Quality Gate |
-| --- | ---: | ---: |
-| Statements | **75.63%** | 75% |
-| Branches | **58.81%** | 55% |
-| Functions | **85.62%** | 80% |
-| Lines | **78.89%** | 75% |
+| Métrica    | Cobertura atual | Quality Gate |
+| ---------- | --------------: | -----------: |
+| Statements |      **75.63%** |          75% |
+| Branches   |      **58.81%** |          55% |
+| Functions  |      **85.62%** |          80% |
+| Lines      |      **78.89%** |          75% |
 
 > Se a cobertura cair abaixo dos limites definidos, o CI falha automaticamente.
 
@@ -421,22 +423,22 @@ O projeto foi auditado com **Google Lighthouse** em Chrome Incognito utilizando 
 
 ### 📊 Lighthouse
 
-| Categoria | Pontuação |
-| --- | ---: |
-| Performance | **95** |
-| Accessibility | **100** |
-| Best Practices | **100** |
-| SEO | **100** |
+| Categoria      | Pontuação |
+| -------------- | --------: |
+| Performance    |    **95** |
+| Accessibility  |   **100** |
+| Best Practices |   **100** |
+| SEO            |   **100** |
 
 ### ⚙️ Métricas
 
-| Métrica | Resultado |
-| --- | ---: |
-| First Contentful Paint | **1.7 s** |
+| Métrica                  | Resultado |
+| ------------------------ | --------: |
+| First Contentful Paint   | **1.7 s** |
 | Largest Contentful Paint | **2.7 s** |
-| Total Blocking Time | **10 ms** |
-| Cumulative Layout Shift | **0.008** |
-| Speed Index | **1.9 s** |
+| Total Blocking Time      | **10 ms** |
+| Cumulative Layout Shift  | **0.008** |
+| Speed Index              | **1.9 s** |
 
 ### 🖼️ Otimização de mídia
 
@@ -550,21 +552,21 @@ http://localhost:5173
 
 ### Comandos disponíveis
 
-| Objetivo | Comando |
-| --- | --- |
-| Instalar dependências | `npm ci` |
-| Atualizar dependências em desenvolvimento | `npm install` |
-| Iniciar desenvolvimento | `npm run dev` |
-| Gerar build | `npm run build` |
-| Visualizar build | `npm run preview` |
-| Executar lint | `npm run lint` |
-| Verificar formatação | `npm run format:check` |
-| Executar typecheck | `npm run typecheck` |
-| Rodar testes | `npm test` |
-| Rodar testes com cobertura | `npm run test:coverage` |
-| Rodar E2E desktop + mobile | `npm run e2e` |
-| Rodar somente E2E mobile | `npx playwright test --project=mobile-chromium` |
-| Auditar dependências | `npm audit` |
+| Objetivo                                  | Comando                                         |
+| ----------------------------------------- | ----------------------------------------------- |
+| Instalar dependências                     | `npm ci`                                        |
+| Atualizar dependências em desenvolvimento | `npm install`                                   |
+| Iniciar desenvolvimento                   | `npm run dev`                                   |
+| Gerar build                               | `npm run build`                                 |
+| Visualizar build                          | `npm run preview`                               |
+| Executar lint                             | `npm run lint`                                  |
+| Verificar formatação                      | `npm run format:check`                          |
+| Executar typecheck                        | `npm run typecheck`                             |
+| Rodar testes                              | `npm test`                                      |
+| Rodar testes com cobertura                | `npm run test:coverage`                         |
+| Rodar E2E desktop + mobile                | `npm run e2e`                                   |
+| Rodar somente E2E mobile                  | `npx playwright test --project=mobile-chromium` |
+| Auditar dependências                      | `npm audit`                                     |
 
 O build final é gerado em:
 
@@ -576,44 +578,44 @@ dist/
 
 ## 🧠 Decisões de desenvolvimento
 
-| Decisão | Motivo |
-| --- | --- |
-| JavaScript Vanilla | Aprofundar fundamentos da linguagem, DOM, eventos e módulos |
-| Vite | Modernizar o ambiente de desenvolvimento e build |
-| ES Modules | Separar responsabilidades e reduzir arquivos monolíticos |
-| `cart-service.js` | Isolar regras do carrinho da interface |
-| `state.js` | Centralizar estado e persistência |
-| Service ViaCEP | Separar comunicação HTTP da lógica do formulário |
-| i18n | Concentrar textos e permitir troca dinâmica de idioma |
-| axe-core + Playwright | Automatizar verificações de acessibilidade |
-| Testes em camadas | Proteger regras, DOM e fluxos completos |
-| Quality gates | Impedir queda de cobertura abaixo dos limites |
-| ESLint + Prettier + Typecheck | Melhorar consistência e detecção antecipada de problemas |
-| GitHub Actions | Automatizar qualidade, segurança, build e E2E |
-| Vercel | Automatizar o deploy de produção |
+| Decisão                       | Motivo                                                      |
+| ----------------------------- | ----------------------------------------------------------- |
+| JavaScript Vanilla            | Aprofundar fundamentos da linguagem, DOM, eventos e módulos |
+| Vite                          | Modernizar o ambiente de desenvolvimento e build            |
+| ES Modules                    | Separar responsabilidades e reduzir arquivos monolíticos    |
+| `cart-service.js`             | Isolar regras do carrinho da interface                      |
+| `state.js`                    | Centralizar estado e persistência                           |
+| Service ViaCEP                | Separar comunicação HTTP da lógica do formulário            |
+| i18n                          | Concentrar textos e permitir troca dinâmica de idioma       |
+| axe-core + Playwright         | Automatizar verificações de acessibilidade                  |
+| Testes em camadas             | Proteger regras, DOM e fluxos completos                     |
+| Quality gates                 | Impedir queda de cobertura abaixo dos limites               |
+| ESLint + Prettier + Typecheck | Melhorar consistência e detecção antecipada de problemas    |
+| GitHub Actions                | Automatizar qualidade, segurança, build e E2E               |
+| Vercel                        | Automatizar o deploy de produção                            |
 
 ---
 
 ## 🧾 Releases
 
-| Versão | Categoria | Destaque |
-| --- | --- | --- |
-| **v2.7.0** | 🚀 Atual | Hardening técnico, 60 testes, E2E desktop/mobile, acessibilidade, Lighthouse, SEO e segurança |
-| [v2.6.0](https://github.com/felipe-frc/the-burger-house/releases/tag/v2.6.0) | 🧪 Testes | Testes E2E com Playwright |
-| [v2.5.0](https://github.com/felipe-frc/the-burger-house/releases/tag/v2.5.0) | ♻️ Refatoração | Refatoração do carrinho e cobertura de testes |
-| [v2.4.1](https://github.com/felipe-frc/the-burger-house/releases/tag/v2.4.1) | 🛠️ Manutenção | Documentação, CI e otimização da logo |
-| [v2.4.0](https://github.com/felipe-frc/the-burger-house/releases/tag/v2.4.0) | 🌎 Feature | Internacionalização inicial |
-| [v2.3.0](https://github.com/felipe-frc/the-burger-house/releases/tag/v2.3.0) | 🧪 Testes | Testes automatizados com Vitest |
-| v2.2.2 | 🩹 Correção | Correções de consistência estrutural |
-| v2.2.1 | ⚡ Melhoria | Melhorias de SEO e performance |
-| v2.2.0 | ✨ Feature | Retirada no local e melhorias no carrinho |
-| v2.1.0 | ✨ Feature | Campo de observações no pedido |
-| v2.0.0 | 🚀 Major | Melhorias de navegação e UX |
-| v1.3.0 | ♿ Melhoria | Acessibilidade e experiência nos modais |
-| v1.2.1 | 🩹 Correção | Correções de CI e produção |
-| v1.2.0 | 🩹 Correção | Correções no formulário de endereço |
-| v1.1.0 | ♻️ Refatoração | Refatoração estrutural |
-| v1.0.0 | 🎉 Inicial | Primeira versão estável |
+| Versão                                                                       | Categoria      | Destaque                                                                                      |
+| ---------------------------------------------------------------------------- | -------------- | --------------------------------------------------------------------------------------------- |
+| **v2.7.0**                                                                   | 🚀 Atual       | Hardening técnico, 60 testes, E2E desktop/mobile, acessibilidade, Lighthouse, SEO e segurança |
+| [v2.6.0](https://github.com/felipe-frc/the-burger-house/releases/tag/v2.6.0) | 🧪 Testes      | Testes E2E com Playwright                                                                     |
+| [v2.5.0](https://github.com/felipe-frc/the-burger-house/releases/tag/v2.5.0) | ♻️ Refatoração | Refatoração do carrinho e cobertura de testes                                                 |
+| [v2.4.1](https://github.com/felipe-frc/the-burger-house/releases/tag/v2.4.1) | 🛠️ Manutenção  | Documentação, CI e otimização da logo                                                         |
+| [v2.4.0](https://github.com/felipe-frc/the-burger-house/releases/tag/v2.4.0) | 🌎 Feature     | Internacionalização inicial                                                                   |
+| [v2.3.0](https://github.com/felipe-frc/the-burger-house/releases/tag/v2.3.0) | 🧪 Testes      | Testes automatizados com Vitest                                                               |
+| v2.2.2                                                                       | 🩹 Correção    | Correções de consistência estrutural                                                          |
+| v2.2.1                                                                       | ⚡ Melhoria    | Melhorias de SEO e performance                                                                |
+| v2.2.0                                                                       | ✨ Feature     | Retirada no local e melhorias no carrinho                                                     |
+| v2.1.0                                                                       | ✨ Feature     | Campo de observações no pedido                                                                |
+| v2.0.0                                                                       | 🚀 Major       | Melhorias de navegação e UX                                                                   |
+| v1.3.0                                                                       | ♿ Melhoria    | Acessibilidade e experiência nos modais                                                       |
+| v1.2.1                                                                       | 🩹 Correção    | Correções de CI e produção                                                                    |
+| v1.2.0                                                                       | 🩹 Correção    | Correções no formulário de endereço                                                           |
+| v1.1.0                                                                       | ♻️ Refatoração | Refatoração estrutural                                                                        |
+| v1.0.0                                                                       | 🎉 Inicial     | Primeira versão estável                                                                       |
 
 📦 [Consultar histórico completo de releases](https://github.com/felipe-frc/the-burger-house/releases)
 
