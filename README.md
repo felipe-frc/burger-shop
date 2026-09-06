@@ -1,1100 +1,465 @@
-[![CI (Front-end)](https://github.com/felipe-frc/the-burger-house/actions/workflows/frontend-ci.yml/badge.svg)](https://github.com/felipe-frc/the-burger-house/actions)
-
-[![Deploy Vercel](https://img.shields.io/badge/deploy-Vercel-black?logo=vercel)](https://burger-shop-aiib.vercel.app/)
-
-![Version](https://img.shields.io/badge/version-2.7.0-blue)
-
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
-
-![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript&logoColor=black)
-
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?logo=tailwindcss&logoColor=white)
-
-![Vitest](https://img.shields.io/badge/tests-60%20passing-6E9F18?logo=vitest&logoColor=white)
-
-![Playwright](https://img.shields.io/badge/E2E-22%20passing-2EAD33?logo=playwright&logoColor=white)
-
-![Lighthouse](https://img.shields.io/badge/Lighthouse-95%20%7C%20100%20%7C%20100%20%7C%20100-4285F4?logo=lighthouse&logoColor=white)
-
-![Security](https://img.shields.io/badge/npm%20audit-0%20vulnerabilities-brightgreen)
-
-![License](https://img.shields.io/badge/license-MIT-green)
-
 # 🍔 The Burger House
 
-Aplicação web de cardápio digital para hamburgueria desenvolvida com **HTML5**, **JavaScript Vanilla**, **Tailwind CSS** e **Vite**, com foco em arquitetura front-end, manipulação do DOM, gerenciamento de estado, integração com API externa, acessibilidade, testes automatizados, performance, segurança e experiência do usuário.
+Aplicação web de **cardápio digital para hamburgueria**, desenvolvida com **HTML5, JavaScript Vanilla, Tailwind CSS e Vite**, com fluxo completo de pedido, integração com WhatsApp, internacionalização, acessibilidade, testes automatizados, performance, segurança e CI/CD.
 
-O projeto simula um fluxo real de pedidos: o cliente navega pelo cardápio, adiciona produtos ao carrinho, escolhe entre **entrega ou retirada no local**, consulta automaticamente o endereço pelo CEP, revisa o pedido e finaliza o atendimento diretamente pelo WhatsApp.
+🌐 [Deploy](https://burger-shop-aiib.vercel.app/) • 📂 [Repositório](https://github.com/felipe-frc/the-burger-house) • 🧪 [GitHub Actions](https://github.com/felipe-frc/the-burger-house/actions) • 📦 [Releases](https://github.com/felipe-frc/the-burger-house/releases)
 
-Além das funcionalidades visíveis, o projeto possui uma base técnica preparada para portfólio profissional, com **JavaScript modular**, separação entre regras de negócio e interface, testes unitários e E2E, auditorias automatizadas de acessibilidade, quality gates de cobertura, lint, formatação, typecheck, CI/CD, otimização de performance e validação de segurança das dependências.
-
----
-
-## 🔗 Links Rápidos
-
-- 🌐 **Deploy:** [The Burger House na Vercel](https://burger-shop-aiib.vercel.app/)
-
-- 📂 **Repositório:** [github.com/felipe-frc/the-burger-house](https://github.com/felipe-frc/the-burger-house)
-
-- 🧪 **Actions:** [GitHub Actions](https://github.com/felipe-frc/the-burger-house/actions)
-
-- 📦 **Releases:** [Histórico de versões](https://github.com/felipe-frc/the-burger-house/releases)
-
-> 🚀 A aplicação está publicada na **Vercel** e recebe novos deploys a partir das atualizações enviadas para a branch `main`.
+[![CI (Front-end)](https://github.com/felipe-frc/the-burger-house/actions/workflows/frontend-ci.yml/badge.svg)](https://github.com/felipe-frc/the-burger-house/actions) [![Deploy Vercel](https://img.shields.io/badge/deploy-Vercel-black?logo=vercel)](https://burger-shop-aiib.vercel.app/) ![Version](https://img.shields.io/badge/version-2.7.0-blue) ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript&logoColor=black) ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?logo=tailwindcss&logoColor=white) ![Vitest](https://img.shields.io/badge/tests-60%20passing-6E9F18?logo=vitest&logoColor=white) ![Playwright](https://img.shields.io/badge/E2E-22%20passing-2EAD33?logo=playwright&logoColor=white) ![Lighthouse](https://img.shields.io/badge/Lighthouse-95%20%7C%20100%20%7C%20100%20%7C%20100-4285F4?logo=lighthouse&logoColor=white) ![Security](https://img.shields.io/badge/npm%20audit-0%20vulnerabilities-brightgreen)
 
 ---
 
-## 📌 Objetivo do Projeto
+## 📌 Sobre o projeto
 
-O **The Burger House** foi criado para demonstrar, em um projeto front-end completo de portfólio, conhecimentos práticos em desenvolvimento web moderno sem depender de frameworks JavaScript.
+O **The Burger House** simula uma experiência real de compra em uma hamburgueria. O cliente pode navegar pelo cardápio, adicionar produtos ao carrinho, escolher entre **entrega ou retirada**, consultar endereço por CEP, revisar o pedido e finalizar o atendimento pelo WhatsApp.
 
-O projeto cobre desde a interface até qualidade, automação e publicação, incluindo:
+Mais do que uma interface, o projeto foi estruturado para demonstrar competências de desenvolvimento front-end em um cenário próximo ao profissional: **arquitetura modular, regras de negócio isoladas, gerenciamento de estado, consumo de API, testes em múltiplas camadas, acessibilidade, performance, segurança e automação com CI/CD**.
 
-- desenvolvimento com **HTML5**, **CSS3** e **JavaScript Vanilla**;
+### 🎯 O que este projeto demonstra
 
-- modularização com ES Modules;
-
-- manipulação do DOM;
-
-- renderização dinâmica de produtos;
-
-- separação entre regra de negócio e interface;
-
-- gerenciamento de estado;
-
-- persistência com `localStorage`;
-
-- integração com a API **ViaCEP**;
-
-- tratamento de erros de integração;
-
-- validações de formulário;
-
-- internacionalização em Português e Inglês;
-
-- acessibilidade e navegação por teclado;
-
-- testes automatizados com **Vitest**;
-
-- testes E2E com **Playwright**;
-
-- auditorias de acessibilidade com **axe-core**;
-
-- cobertura de código com **Vitest Coverage V8**;
-
-- quality gates de cobertura;
-
-- lint com **ESLint**;
-
-- formatação com **Prettier**;
-
-- verificação de tipos em JavaScript;
-
-- build de produção com **Vite**;
-
-- otimização de performance;
-
-- SEO técnico;
-
-- validação de segurança com `npm audit`;
-
-- integração contínua com **GitHub Actions**;
-
-- deploy com **Vercel**;
-
-- documentação técnica para portfólio profissional.
+| Competência | Aplicação no projeto |
+| --- | --- |
+| JavaScript | ES Modules, DOM, eventos, estado e regras de negócio |
+| Arquitetura | Separação entre dados, UI, estado, serviços e regras de domínio |
+| Integração | Consumo da API ViaCEP com tratamento de falhas |
+| Persistência | Carrinho e idioma armazenados no `localStorage` |
+| Internacionalização | Interface e cardápio em Português e Inglês |
+| Testes | Vitest, jsdom, Playwright e axe-core |
+| Qualidade | ESLint, Prettier, TypeScript `checkJs` e quality gates |
+| Acessibilidade | Navegação por teclado, foco em modais, ARIA e auditoria automatizada |
+| Performance | Otimização de mídia e auditoria com Lighthouse |
+| Segurança | Auditoria de dependências com `npm audit` |
+| CI/CD | Pipeline GitHub Actions com Quality → Build → E2E |
+| Deploy | Publicação contínua na Vercel |
 
 ---
 
-## ⭐ Destaques Técnicos
+## ⭐ Destaques técnicos
 
-- Arquitetura JavaScript organizada em módulos por responsabilidade;
-
-- regras de negócio do carrinho isoladas em `cart-service.js`;
-
-- estado compartilhado centralizado em `state.js`;
-
-- integração ViaCEP isolada em `scripts/services/viacep-service.js`;
-
-- renderização dinâmica do cardápio;
-
-- persistência do carrinho e idioma no `localStorage`;
-
-- fluxo completo de entrega e retirada;
-
-- internacionalização inicial em Português e Inglês;
-
-- tratamento de CEP inválido e falhas de rede;
-
-- navegação acessível em modais com focus trap;
-
-- auditorias automatizadas de acessibilidade com axe-core;
-
-- **60 testes automatizados passando**;
-
-- **22 execuções E2E passando em desktop e mobile**;
-
-- cobertura protegida por thresholds mínimos;
-
-- lint com ESLint;
-
-- formatação validada com Prettier;
-
-- typecheck aplicado ao JavaScript;
-
-- build de produção com Vite;
-
-- CI dividido em quality, build e E2E;
-
-- logo principal otimizada de aproximadamente **1,56 MB para cerca de 8 KB**;
-
-- Lighthouse Mobile com **95 em Performance**;
-
-- Lighthouse com **100 em Accessibility**;
-
-- Lighthouse com **100 em Best Practices**;
-
-- Lighthouse com **100 em SEO**;
-
-- `robots.txt` válido;
-
-- dependências revisadas com **0 vulnerabilidades no npm audit**.
+- **60/60 testes automatizados** com Vitest
+- **22/22 execuções E2E** com Playwright: 11 desktop + 11 mobile
+- Auditorias de acessibilidade com **axe-core**
+- Cobertura protegida por **quality gates**
+- Integração ViaCEP isolada em `scripts/services/viacep-service.js`
+- Regras do carrinho isoladas em `cart-service.js`
+- Estado compartilhado centralizado em `state.js`
+- Internacionalização em **Português e Inglês**
+- Logo principal otimizada de aproximadamente **1,56 MB para ~8 KB**
+- Open Graph utilizando o asset otimizado
+- Lighthouse Mobile: **95 Performance / 100 Accessibility / 100 Best Practices / 100 SEO**
+- `robots.txt` válido
+- **0 vulnerabilidades** no `npm audit`
+- Auditoria de segurança integrada ao CI
 
 ---
 
 ## 🚀 Funcionalidades
 
+| Área | Recursos |
+| --- | --- |
+| 🍔 Cardápio | Produtos por categoria, imagens, descrições, preços, tags e tradução |
+| 🛒 Carrinho | Adição, remoção, quantidade, subtotal, taxa, total e persistência |
+| 🚚 Entrega / Retirada | Fluxos independentes com tratamento da taxa de entrega |
+| 📍 Endereço | Consulta ViaCEP, preenchimento automático e validações |
+| 📦 Revisão | Produtos, quantidades, valores, modalidade, endereço e observações |
+| 💬 WhatsApp | Geração da mensagem final e limpeza do carrinho |
+| 🌎 Idiomas | Português/Inglês com persistência da preferência |
+| 🕒 Loja | Status Aberto/Fechado calculado dinamicamente |
+
 ### 🍔 Cardápio
 
-- Exibição do cardápio separado por categorias;
-
-- categorias de Hambúrgueres, Acompanhamentos e Bebidas;
-
-- renderização dinâmica dos produtos via JavaScript;
-
-- dados centralizados em módulo próprio;
-
-- imagens, descrições e preços;
-
-- tags de destaque por produto;
-
-- navegação rápida por categorias;
-
-- animações de entrada durante o scroll;
-
-- tradução dinâmica dos dados do cardápio.
+- Exibição por categorias: Hambúrgueres, Acompanhamentos e Bebidas
+- Renderização dinâmica via JavaScript
+- Dados centralizados em módulo próprio
+- Imagens, descrições, preços e tags
+- Navegação rápida por categorias
+- Animações de entrada durante o scroll
+- Tradução dinâmica dos produtos
 
 ### 🛒 Carrinho
 
-- Adição de produtos;
+- Adicionar e remover produtos
+- Incrementar e decrementar quantidade
+- Remoção automática ao chegar a zero
+- Cálculo de subtotal, taxa de entrega e total
+- Persistência com `localStorage`
+- Validação de carrinho vazio
+- Feedback visual com toast
+- Regras principais isoladas em `cart-service.js`
 
-- remoção de produtos;
+### 🚚 Entrega ou retirada
 
-- incremento de quantidade;
+**Entrega**
+- mantém a taxa de entrega
+- direciona para o formulário de endereço
+- exige dados válidos antes da revisão
 
-- decremento de quantidade;
+**Retirada no local**
+- dispensa o preenchimento do endereço
+- remove automaticamente a taxa de entrega
+- segue diretamente para a revisão
 
-- remoção automática quando a quantidade chega a zero;
+### 📍 Endereço de entrega
 
-- cálculo automático do subtotal;
+- Consulta automática por CEP
+- Integração com a API ViaCEP
+- Preenchimento automático de rua, bairro e cidade
+- Validação do CEP e número do endereço
+- Tratamento de CEP inexistente
+- Tratamento de falhas de rede
+- Mensagens de erro acessíveis
+- Indicação visual dos campos preenchidos automaticamente
 
-- cálculo da taxa de entrega;
+### 📦 Revisão e finalização
 
-- cálculo do total final;
+A revisão apresenta:
 
-- persistência do carrinho no `localStorage`;
+- produtos selecionados
+- quantidade de cada item
+- subtotal
+- taxa de entrega
+- total final
+- tipo de pedido
+- endereço, quando aplicável
+- campo opcional de observações
 
-- validação de carrinho vazio;
+Na finalização:
 
-- indicador visual de produtos adicionados;
-
-- feedback com toast;
-
-- regras principais isoladas em `cart-service.js`.
-
-### 🚚 Entrega ou Retirada
-
-O cliente pode selecionar a forma de recebimento antes de continuar o checkout.
-
-#### 🚚 Entrega
-
-- mantém a taxa de entrega;
-
-- direciona o cliente para o formulário de endereço;
-
-- exige dados válidos antes da revisão.
-
-#### 🏪 Retirada no Local
-
-- pula o preenchimento do endereço;
-
-- remove automaticamente a taxa de entrega;
-
-- direciona diretamente para a revisão do pedido.
-
-### 📍 Endereço de Entrega
-
-- consulta automática pelo CEP;
-
-- integração com a API ViaCEP;
-
-- preenchimento automático de rua;
-
-- preenchimento automático de bairro;
-
-- preenchimento automático de cidade;
-
-- validação de CEP;
-
-- tratamento de CEP inexistente;
-
-- tratamento de falha de rede;
-
-- validação do número do endereço;
-
-- indicação visual de campos preenchidos automaticamente;
-
-- mensagens de erro acessíveis.
-
-### 📦 Revisão do Pedido
-
-A etapa de revisão apresenta:
-
-- produtos selecionados;
-
-- quantidade de cada item;
-
-- subtotal;
-
-- taxa de entrega;
-
-- total final;
-
-- tipo de pedido;
-
-- endereço quando aplicável;
-
-- campo opcional de observações;
-
-- botão de finalização.
-
-### 💬 Finalização via WhatsApp
-
-O pedido final é transformado em uma mensagem estruturada contendo os dados necessários para atendimento.
-
-Após a finalização:
-
-- a mensagem é enviada para o WhatsApp;
-
-- o carrinho é limpo;
-
-- os dados persistidos do pedido são atualizados;
-
-- a aplicação fica pronta para um novo pedido.
+- o pedido é convertido em uma mensagem estruturada
+- o WhatsApp é aberto para envio
+- o carrinho é limpo
+- os dados persistidos são atualizados
+- a aplicação fica pronta para um novo pedido
 
 ### 🌎 Internacionalização
 
-- suporte inicial a Português;
-
-- suporte inicial a Inglês;
-
-- seletor de idioma;
-
-- persistência da preferência no `localStorage`;
-
-- tradução dos principais textos da interface;
-
-- tradução do cardápio renderizado dinamicamente;
-
-- atualização da interface ao trocar o idioma;
-
-- testes automatizados para a camada de internacionalização.
-
-### 🕒 Status da Loja
-
-- status **Aberto / Fechado** calculado dinamicamente;
-
-- horário baseado nas configurações da loja;
-
-- atualização visual do estado apresentado ao cliente.
+- Português e Inglês
+- Seletor de idioma
+- Persistência da preferência no `localStorage`
+- Tradução dos principais textos
+- Tradução do cardápio dinâmico
+- Atualização imediata da interface ao trocar o idioma
+- Cobertura automatizada da camada de i18n
 
 ---
 
 ## ♿ Acessibilidade
 
-A acessibilidade faz parte tanto da implementação quanto dos testes automatizados do projeto.
+A acessibilidade faz parte da implementação e da estratégia de testes.
 
-Entre os recursos disponíveis estão:
+| Recurso | Aplicação |
+| --- | --- |
+| `aria-live` | Comunicação de atualizações dinâmicas |
+| `aria-modal` | Identificação dos modais |
+| `aria-describedby` | Associação entre campos e mensagens |
+| `role="alert"` | Mensagens importantes e erros |
+| Focus trap | Mantém a navegação dentro do modal |
+| Teclado | Navegação e fechamento com `Esc` |
+| Gerenciamento de foco | Foco automático e restauração ao fechar |
+| Overlay | Fechamento controlado dos modais |
+| Alt text | Descrição das imagens |
+| Contraste | Revisão dos elementos críticos |
 
-- `aria-live`;
+### 🧪 Auditorias automatizadas
 
-- `aria-modal`;
+O projeto utiliza **axe-core integrado ao Playwright** para auditar automaticamente:
 
-- `aria-describedby`;
+- página inicial
+- carrinho
+- formulário de endereço
+- revisão do pedido
 
-- `role="alert"` em mensagens importantes;
+As verificações consideram regras relacionadas a:
 
-- textos alternativos para imagens;
-
-- gerenciamento de foco em modais;
-
-- focus trap;
-
-- foco automático ao abrir modal;
-
-- fechamento pela tecla `Esc`;
-
-- fechamento pelo overlay;
-
-- navegação por teclado;
-
-- contraste revisado em elementos importantes.
-
-### 🧪 Auditorias Automatizadas
-
-O projeto utiliza **axe-core integrado ao Playwright**.
-
-São auditados automaticamente:
-
-- página inicial;
-
-- modal do carrinho;
-
-- formulário de endereço;
-
-- revisão do pedido.
-
-As verificações utilizam regras relacionadas a:
-
-- WCAG 2.0 A;
-
-- WCAG 2.0 AA;
-
-- WCAG 2.1 A;
-
-- WCAG 2.1 AA.
+- WCAG 2.0 A
+- WCAG 2.0 AA
+- WCAG 2.1 A
+- WCAG 2.1 AA
 
 ---
 
 ## 🛠️ Tecnologias
 
-| Camada                      | Tecnologia                     |
-
-| --------------------------- | ------------------------------ |
-
-| Estrutura                   | HTML5                          |
-
-| Linguagem                   | JavaScript ES6+                |
-
-| Estilização                 | Tailwind CSS + CSS customizado |
-
-| Build / Dev Server          | Vite                           |
-
-| Persistência                | localStorage                   |
-
-| API de endereço             | ViaCEP                         |
-
-| Notificações                | Toastify JS                    |
-
-| Ícones                      | Font Awesome                   |
-
-| Tipografia                  | Google Fonts                   |
-
-| Testes                      | Vitest                         |
-
-| Cobertura                   | Vitest Coverage V8             |
-
-| Testes E2E                  | Playwright                     |
-
-| Acessibilidade automatizada | axe-core                       |
-
-| Ambiente de testes          | jsdom                          |
-
-| Lint                        | ESLint                         |
-
-| Formatação                  | Prettier                       |
-
-| Typecheck                   | TypeScript `checkJs`           |
-
-| CI/CD                       | GitHub Actions                 |
-
-| Deploy                      | Vercel                         |
-
-| Versionamento               | Git / GitHub                   |
+| Categoria | Tecnologia |
+| --- | --- |
+| Estrutura | HTML5 |
+| Linguagem | JavaScript ES6+ |
+| Estilização | Tailwind CSS + CSS customizado |
+| Build / Dev Server | Vite |
+| Persistência | localStorage |
+| API externa | ViaCEP |
+| Notificações | Toastify JS |
+| Ícones | Font Awesome |
+| Tipografia | Google Fonts |
+| Testes | Vitest |
+| Cobertura | Vitest Coverage V8 |
+| E2E | Playwright |
+| Acessibilidade automatizada | axe-core |
+| Ambiente de testes | jsdom |
+| Lint | ESLint |
+| Formatação | Prettier |
+| Typecheck | TypeScript `checkJs` |
+| CI/CD | GitHub Actions |
+| Deploy | Vercel |
+| Versionamento | Git / GitHub |
 
 ---
 
-## 🏗️ Estrutura do Projeto
+## 🏗️ Arquitetura
+
+A estrutura separa responsabilidades para facilitar manutenção, testes e evolução do projeto.
+
+| Módulo | Responsabilidade |
+| --- | --- |
+| `scripts/data.js` | Produtos e dados do cardápio |
+| `scripts/cart-service.js` | Regras de negócio do carrinho |
+| `scripts/cart.js` | Interface e eventos do carrinho |
+| `scripts/state.js` | Estado compartilhado e persistência |
+| `scripts/address.js` | Formulário e regras de endereço |
+| `scripts/services/viacep-service.js` | Comunicação com ViaCEP |
+| `scripts/order.js` | Revisão e finalização |
+| `scripts/i18n.js` | Internacionalização |
+| `scripts/ui.js` | Interface, modais e navegação |
+| `scripts/config.js` | Configurações gerais |
+| `scripts/main.js` | Inicialização da aplicação |
+| `scripts/utils.js` | Funções utilitárias |
+
+### 📁 Estrutura do repositório
 
 ```txt
-
 the-burger-house/
-
 │
-
 ├── .github/
-
-│   └── workflows/
-
-│       └── frontend-ci.yml              # Pipeline de CI
-
+│   └── workflows/
+│       └── frontend-ci.yml
 │
-
 ├── assets/
-
-│   ├── optimized/
-
-│   │   └── logo-burger.webp             # Logo otimizada da hero
-
-│   └── ...                               # Demais recursos visuais
-
+│   ├── optimized/
+│   │   └── logo-burger.webp
+│   └── ...
 │
-
 ├── docs/
-
-│   └── images/
-
-│       ├── home.png
-
-│       ├── cardapio.png
-
-│       ├── cart.png
-
-│       ├── pedido.png
-
-│       ├── endereco.png
-
-│       └── revisao.png
-
+│   └── images/
+│       ├── home.png
+│       ├── cardapio.png
+│       ├── cart.png
+│       ├── pedido.png
+│       ├── endereco.png
+│       └── revisao.png
 │
-
 ├── public/
-
-│   └── robots.txt                        # Regras públicas para crawlers
-
+│   └── robots.txt
 │
-
 ├── scripts/
-
-│   ├── services/
-
-│   │   └── viacep-service.js             # Comunicação com a API ViaCEP
-
-│   │
-
-│   ├── address.js                        # Formulário e regras de endereço
-
-│   ├── cart-service.js                   # Regras de negócio do carrinho
-
-│   ├── cart.js                           # Interface e eventos do carrinho
-
-│   ├── config.js                         # Configurações gerais
-
-│   ├── data.js                           # Produtos e dados do cardápio
-
-│   ├── i18n.js                           # Internacionalização
-
-│   ├── main.js                           # Inicialização da aplicação
-
-│   ├── order.js                          # Revisão e finalização do pedido
-
-│   ├── state.js                          # Estado compartilhado
-
-│   ├── ui.js                             # Interface, modais e navegação
-
-│   └── utils.js                          # Funções utilitárias
-
+│   ├── services/
+│   │   └── viacep-service.js
+│   ├── address.js
+│   ├── cart-service.js
+│   ├── cart.js
+│   ├── config.js
+│   ├── data.js
+│   ├── i18n.js
+│   ├── main.js
+│   ├── order.js
+│   ├── state.js
+│   ├── ui.js
+│   └── utils.js
 │
-
 ├── styles/
-
-│   └── style.css                         # Fonte principal dos estilos
-
+│   └── style.css
 │
-
 ├── tests/
-
-│   ├── e2e/
-
-│   │   ├── accessibility.e2e.js          # E2E de acessibilidade
-
-│   │   └── checkout.e2e.js               # E2E dos fluxos de pedido
-
-│   │
-
-│   ├── address.test.js
-
-│   ├── cart-service.test.js
-
-│   ├── cart.test.js
-
-│   ├── data.test.js
-
-│   ├── i18n.test.js
-
-│   ├── main.test.js
-
-│   ├── order.test.js
-
-│   ├── ui-extended.test.js
-
-│   ├── ui.test.js
-
-│   ├── utils.test.js
-
-│   └── viacep-service.test.js
-
+│   ├── e2e/
+│   │   ├── accessibility.e2e.js
+│   │   └── checkout.e2e.js
+│   ├── address.test.js
+│   ├── cart-service.test.js
+│   ├── cart.test.js
+│   ├── data.test.js
+│   ├── i18n.test.js
+│   ├── main.test.js
+│   ├── order.test.js
+│   ├── ui-extended.test.js
+│   ├── ui.test.js
+│   ├── utils.test.js
+│   └── viacep-service.test.js
 │
-
 ├── .gitignore
-
 ├── .prettierignore
-
 ├── .prettierrc.json
-
 ├── eslint.config.js
-
 ├── index.html
-
 ├── jsconfig.json
-
 ├── LICENSE
-
 ├── package.json
-
 ├── package-lock.json
-
 ├── playwright.config.js
-
 ├── README.md
-
 ├── tailwind.config.js
-
 └── vercel.json
-
 ```
 
 ---
 
-## 📸 Interface do Sistema
+## 📸 Interface
 
-### 🏠 Página Inicial
+### 🏠 Página inicial
 
-Tela inicial com hero section, identidade visual da hamburgueria, informações de atendimento e status dinâmico da loja.
+Hero section, identidade visual da hamburgueria, informações de atendimento e status dinâmico da loja.
 
 ![Home](docs/images/home.png)
 
----
-
 ### 🍔 Cardápio
 
-Produtos organizados por categorias, com imagem, descrição, preço, destaque e botão para adicionar ao carrinho.
+Produtos organizados por categorias, com imagem, descrição, preço, destaque e ação para adicionar ao carrinho.
 
 ![Cardápio](docs/images/cardapio.png)
 
----
-
 ### 🛒 Carrinho
 
-Modal responsável pela edição do pedido antes do checkout, incluindo quantidade, subtotal, taxa e total.
+Edição do pedido com quantidade, subtotal, taxa e total.
 
 ![Carrinho](docs/images/cart.png)
 
----
+### 🚚 Tipo de pedido
 
-### 🚚 Tipo de Pedido
-
-Etapa em que o cliente escolhe entre **Entrega** ou **Retirada no local**.
+Escolha entre **Entrega** ou **Retirada no local**.
 
 ![Tipo de Pedido](docs/images/pedido.png)
 
----
+### 📍 Endereço de entrega
 
-### 📍 Endereço de Entrega
-
-Formulário com consulta automática do CEP, preenchimento assistido e validações.
+Consulta automática do CEP, preenchimento assistido e validações.
 
 ![Endereço](docs/images/endereco.png)
 
----
+### 📦 Revisão do pedido
 
-### 📦 Revisão do Pedido
-
-Resumo final contendo produtos, valores, tipo de pedido, endereço e observações antes da finalização.
+Resumo final dos produtos, valores, modalidade, endereço e observações.
 
 ![Revisão](docs/images/revisao.png)
 
 ---
 
-## ⚙️ Como Executar o Projeto
-
-### Pré-requisitos
-
-- Node.js 20 ou superior;
-
-- npm;
-
-- Git instalado.
-
----
-
-### 1. Clone o repositório
-
-```bash
-
-git clone https://github.com/felipe-frc/the-burger-house.git
-
-```
-
----
-
-### 2. Acesse a pasta
-
-```bash
-
-cd the-burger-house
-
-```
-
----
-
-### 3. Instale as dependências
-
-Para uma instalação reprodutível utilizando o `package-lock.json`:
-
-```bash
-
-npm ci
-
-```
-
-Durante o desenvolvimento, também é possível utilizar:
-
-```bash
-
-npm install
-
-```
-
----
-
-### 4. Execute o ambiente de desenvolvimento
-
-```bash
-
-npm run dev
-
-```
-
-O comando inicia simultaneamente:
-
-- Tailwind CSS em modo watch;
-
-- servidor de desenvolvimento do Vite.
-
-Após iniciar, o terminal exibirá uma URL local semelhante a:
-
-```txt
-
-http://localhost:5173
-
-```
-
-Abra o endereço no navegador.
-
----
-
-### 5. Gere o build de produção
-
-```bash
-
-npm run build
-
-```
-
-O Vite gera os arquivos finais dentro de:
-
-```txt
-
-dist/
-
-```
-
----
-
-### 6. Visualize o build de produção
-
-```bash
-
-npm run preview
-
-```
-
----
-
-### 7. Execute o lint
-
-```bash
-
-npm run lint
-
-```
-
----
-
-### 8. Verifique a formatação
-
-```bash
-
-npm run format:check
-
-```
-
----
-
-### 9. Execute o typecheck
-
-```bash
-
-npm run typecheck
-
-```
-
----
-
-### 10. Execute os testes
-
-```bash
-
-npm test
-
-```
-
----
-
-### 11. Execute os testes com cobertura
-
-```bash
-
-npm run test:coverage
-
-```
-
----
-
-### 12. Execute os testes E2E
-
-Desktop e mobile:
-
-```bash
-
-npm run e2e
-
-```
-
-Somente mobile:
-
-```bash
-
-npx playwright test --project=mobile-chromium
-
-```
-
----
-
-### 13. Execute a auditoria de segurança
-
-```bash
-
-npm audit
-
-```
-
----
-
-## ✅ Qualidade e Testes
-
-O projeto possui diferentes camadas de validação para proteger regras de negócio, interface, integrações e fluxos completos do usuário.
-
-### 📊 Estado Atual
-
-| Métrica                  | Resultado |
-
-| ------------------------ | --------: |
-
-| Arquivos de teste Vitest |    **11** |
-
-| Testes automatizados     |    **60** |
-
-| Testes com falha         |     **0** |
-
-| E2E desktop              | **11/11** |
-
-| E2E mobile               | **11/11** |
-
-| Execuções E2E totais     | **22/22** |
-
-| Vulnerabilidades npm     |     **0** |
-
-### 📈 Cobertura
-
-| Métrica    | Cobertura Atual | Quality Gate |
-
-| ---------- | --------------: | -----------: |
-
-| Statements |      **75.63%** |          75% |
-
-| Branches   |      **58.81%** |          55% |
-
-| Functions  |      **85.62%** |          80% |
-
-| Lines      |      **78.89%** |          75% |
-
-Caso a cobertura fique abaixo dos limites definidos, o workflow de CI falha automaticamente.
-
-### 🧪 Testes com Vitest
-
-A suíte cobre componentes e módulos como:
-
-- `address.js`;
-
-- `viacep-service.js`;
-
-- `cart-service.js`;
-
-- `cart.js`;
-
-- `data.js`;
-
-- `i18n.js`;
-
-- `main.js`;
-
-- `order.js`;
-
-- `ui.js`;
-
-- `utils.js`.
+## ✅ Qualidade e testes
+
+### 📊 Estado atual
+
+| Métrica | Resultado |
+| --- | ---: |
+| Arquivos de teste Vitest | **11** |
+| Testes automatizados | **60/60** |
+| Testes com falha | **0** |
+| E2E desktop | **11/11** |
+| E2E mobile | **11/11** |
+| Execuções E2E totais | **22/22** |
+| Vulnerabilidades npm | **0** |
+
+### 📈 Cobertura e quality gates
+
+| Métrica | Cobertura atual | Quality Gate |
+| --- | ---: | ---: |
+| Statements | **75.63%** | 75% |
+| Branches | **58.81%** | 55% |
+| Functions | **85.62%** | 80% |
+| Lines | **78.89%** | 75% |
+
+> Se a cobertura cair abaixo dos limites definidos, o CI falha automaticamente.
+
+### 🧪 Vitest
+
+A suíte cobre:
+
+- `address.js`
+- `viacep-service.js`
+- `cart-service.js`
+- `cart.js`
+- `data.js`
+- `i18n.js`
+- `main.js`
+- `order.js`
+- `ui.js`
+- `utils.js`
 
 Entre os cenários validados estão:
 
-- consistência dos dados do cardápio;
+- consistência dos dados do cardápio
+- formatação de preços
+- escape de HTML
+- regras do carrinho
+- quantidade de produtos
+- subtotal, taxa e total
+- estado da interface
+- inicialização da aplicação
+- internacionalização
+- endereço
+- ViaCEP
+- revisão do pedido
 
-- formatação de preços;
+### 🎭 Playwright
 
-- escape de HTML;
+A suíte possui **11 cenários por projeto de navegador**:
 
-- regras do carrinho;
+- Chromium Desktop
+- Chromium Mobile com perfil Pixel 5
 
-- quantidade de produtos;
+Os E2E validam:
 
-- subtotal;
-
-- taxa de entrega;
-
-- total final;
-
-- estado da interface;
-
-- inicialização da aplicação;
-
-- internacionalização;
-
-- endereço;
-
-- ViaCEP;
-
-- revisão do pedido.
-
-### 🎭 Testes E2E com Playwright
-
-A suíte possui **11 cenários por projeto de navegador**.
-
-Os cenários são executados em:
-
-- Chromium Desktop;
-
-- Chromium Mobile com perfil Pixel 5.
-
-Os testes de checkout validam:
-
-- fluxo completo de compra com entrega;
-
-- retirada no local sem endereço;
-
-- CEP inválido;
-
-- bloqueio quando o carrinho fica vazio;
-
-- troca de idioma;
-
-- observações longas;
-
-- remoção de produto antes da revisão.
-
-Os testes de acessibilidade validam:
-
-- página inicial;
-
-- carrinho;
-
-- formulário de endereço;
-
-- revisão do pedido.
+- compra completa com entrega
+- retirada no local sem endereço
+- CEP inválido
+- bloqueio quando o carrinho fica vazio
+- troca de idioma
+- observações longas
+- remoção de produto antes da revisão
+- acessibilidade da página inicial, carrinho, endereço e revisão
 
 ---
 
-## 🚀 Performance, Acessibilidade e SEO
+## ⚡ Performance, SEO e segurança
 
 O projeto foi auditado com **Google Lighthouse** em Chrome Incognito utilizando perfil Mobile.
 
-### 📊 Resultado Atual
+### 📊 Lighthouse
 
-| Categoria      | Pontuação |
+| Categoria | Pontuação |
+| --- | ---: |
+| Performance | **95** |
+| Accessibility | **100** |
+| Best Practices | **100** |
+| SEO | **100** |
 
-| -------------- | --------: |
+### ⚙️ Métricas
 
-| Performance    |    **95** |
-
-| Accessibility  |   **100** |
-
-| Best Practices |   **100** |
-
-| SEO            |   **100** |
-
-### ⚡ Métricas de Performance
-
-| Métrica                  | Resultado |
-
-| ------------------------ | --------: |
-
-| First Contentful Paint   | **1.7 s** |
-
+| Métrica | Resultado |
+| --- | ---: |
+| First Contentful Paint | **1.7 s** |
 | Largest Contentful Paint | **2.7 s** |
+| Total Blocking Time | **10 ms** |
+| Cumulative Layout Shift | **0.008** |
+| Speed Index | **1.9 s** |
 
-| Total Blocking Time      | **10 ms** |
+### 🖼️ Otimização de mídia
 
-| Cumulative Layout Shift  | **0.008** |
-
-| Speed Index              | **1.9 s** |
-
-### 🖼️ Otimização da Logo
-
-A imagem principal da hero originalmente possuía aproximadamente:
+A logo principal passou de aproximadamente **1.56 MB para ~8 KB**.
 
 ```txt
-
-1.56 MB
-
-```
-
-Após otimização:
-
-```txt
-
-\~8 KB
-
-```
-
-A alteração contribuiu para a evolução de:
-
-```txt
-
 Performance: 74 → 95
-
-LCP:        10.6 s → 2.7 s
-
+LCP:         10.6 s → 2.7 s
 ```
+
+A versão otimizada também é utilizada no **Open Graph**.
 
 ### 🔎 SEO
 
-Entre as melhorias aplicadas estão:
+- `meta description`
+- Open Graph com asset otimizado
+- `robots.txt` válido
+- imagens com dimensões definidas
+- textos alternativos
+- estrutura semântica
+- mídia principal otimizada
 
-- `meta description`;
-
-- Open Graph com asset otimizado;
-
-- `robots.txt` válido;
-
-- imagens com dimensões definidas;
-
-- textos alternativos;
-
-- estrutura semântica;
-
-- otimização da mídia principal.
-
----
-
-## 🔁 CI/CD
-
-O projeto possui pipeline de integração contínua configurada com **GitHub Actions**.
-
-A pipeline está dividida em três jobs.
-
-### 🧪 Quality
-
-Executa:
-
-```bash
-
-npm ci
-
-npm audit
-
-npm run lint
-
-npm run format:check
-
-npm run typecheck
-
-npm run test:coverage
-
-```
-
-A etapa de qualidade também executa `npm audit`, fazendo com que vulnerabilidades conhecidas nas dependências sejam detectadas automaticamente pelo CI antes das etapas de build e E2E.
-
-O relatório de cobertura também é publicado como artifact temporário da execução.
-
-### 🏗️ Build
-
-Após a conclusão da etapa de qualidade:
-
-```bash
-
-npm ci
-
-npm run build
-
-```
-
-O build só é executado quando o job anterior termina com sucesso.
-
-### 🎭 E2E
-
-Depois do build, o workflow:
-
-1. instala as dependências;
-
-2. instala o Chromium utilizado pelo Playwright;
-
-3. gera o build de produção;
-
-4. inicia o servidor Vite;
-
-5. aguarda o servidor responder;
-
-6. executa os testes E2E;
-
-7. valida desktop e mobile.
-
-Isso garante que alterações enviadas ao repositório sejam verificadas antes de serem consideradas estáveis.
-
----
-
-## 🔐 Segurança
-
-A árvore de dependências é validada com:
+### 🔐 Segurança
 
 ```bash
 npm audit
@@ -1106,234 +471,186 @@ Estado atual:
 found 0 vulnerabilities
 ```
 
-A auditoria de dependências também faz parte do job **Quality** do GitHub Actions.
+A auditoria também faz parte do job **Quality** do GitHub Actions. Caso uma vulnerabilidade conhecida seja detectada, o pipeline pode falhar antes das etapas de Build e E2E.
 
-Isso significa que, além da validação local, novas alterações enviadas ao repositório passam automaticamente por:
-
-```bash
-npm audit
-```
-
-Caso sejam detectadas vulnerabilidades conhecidas nas dependências, o job de qualidade falha antes das etapas de build e E2E.
-
-Durante o fechamento da versão atual, as dependências vulneráveis foram atualizadas de forma controlada, sem utilização de `--force`.
-
-Após as atualizações, foram executados novamente:
-
-- `npm audit`;
-- lint;
-- Prettier;
-- typecheck;
-- testes com cobertura;
-- build;
-- E2E desktop;
-- E2E mobile.
-
-Todos permaneceram funcionando corretamente.
+As dependências vulneráveis identificadas durante o hardening foram atualizadas de forma controlada, **sem `--force`**.
 
 ---
 
-## ⚠️ Observações
+## 🔁 CI/CD
 
-- A consulta de endereço depende da disponibilidade da API ViaCEP;
-
-- é necessário acesso à internet para consulta real de CEP;
-
-- a finalização depende da abertura do WhatsApp;
-
-- o carrinho é persistido no `localStorage`;
-
-- a preferência de idioma também é persistida no navegador;
-
-- o diretório `coverage/` é gerado localmente e não deve ser versionado;
-
-- relatórios do Playwright são temporários e não fazem parte do código-fonte;
-
-- o `output.css` é um artefato gerado pelo processo de desenvolvimento/build;
-
-- a fonte principal dos estilos permanece em `styles/style.css`.
-
----
-
-## 🧠 Decisões de Desenvolvimento
-
-### JavaScript Vanilla
-
-O projeto foi mantido sem framework JavaScript para aprofundar conceitos fundamentais da linguagem, manipulação do DOM, módulos ES, gerenciamento de estado, eventos e separação de responsabilidades.
-
-### Vite como Ferramenta de Desenvolvimento e Build
-
-O Vite foi adotado para modernizar o fluxo de desenvolvimento, fornecer servidor local rápido e gerar um build de produção otimizado.
-
-### Modularização do JavaScript
-
-A aplicação foi dividida em módulos responsáveis por:
-
-- dados;
-
-- carrinho;
-
-- regra de negócio;
-
-- estado;
-
-- interface;
-
-- endereço;
-
-- integração externa;
-
-- internacionalização;
-
-- pedido;
-
-- utilitários.
-
-Essa organização reduz arquivos monolíticos e melhora manutenção e testabilidade.
-
-### Separação das Regras do Carrinho
-
-As regras do carrinho foram extraídas para `cart-service.js`.
-
-Com isso, operações como adicionar, remover, incrementar, decrementar, calcular subtotal, taxa e total podem ser testadas sem depender da interface.
-
-### Estado Centralizado
-
-O módulo `state.js` concentra o estado compartilhado da aplicação e sua persistência.
-
-Essa abordagem evita acessos ao `localStorage` espalhados por diferentes módulos.
-
-### Integração ViaCEP em Service Próprio
-
-A comunicação com a API ViaCEP foi isolada em:
+O GitHub Actions executa um pipeline encadeado:
 
 ```txt
-
-scripts/services/viacep-service.js
-
+Quality
+   ↓
+Build
+   ↓
+E2E
 ```
 
-Dessa forma, a responsabilidade de rede fica separada da lógica do formulário.
+### 🧪 Quality
 
-### Internacionalização
+```bash
+npm ci
+npm audit
+npm run lint
+npm run format:check
+npm run typecheck
+npm run test:coverage
+```
 
-A camada de internacionalização concentra os textos e permite alterar dinamicamente a interface entre Português e Inglês.
+Valida segurança, qualidade do JavaScript, formatação, tipos e cobertura. O relatório de cobertura também é publicado como artifact temporário.
 
-A preferência selecionada é persistida entre sessões.
+### 🏗️ Build
 
-### Acessibilidade Automatizada
+```bash
+npm ci
+npm run build
+```
 
-Além de aplicar boas práticas diretamente na interface, o projeto utiliza axe-core junto ao Playwright para verificar automaticamente violações conhecidas de acessibilidade.
+Só é executado após o job **Quality** terminar com sucesso.
 
-### Testes em Camadas
+### 🎭 E2E
 
-A estratégia atual combina:
+O workflow:
 
-- testes unitários;
+1. instala as dependências
+2. instala o Chromium
+3. gera o build de produção
+4. sobe o servidor local do Vite
+5. aguarda o servidor responder
+6. executa os E2E
+7. valida desktop e mobile
 
-- testes de integração com DOM;
+---
 
-- E2E;
+## ⚙️ Como executar
 
-- auditorias de acessibilidade.
+### Pré-requisitos
 
-Isso amplia a proteção contra regressões.
+- Node.js 20 ou superior
+- npm
+- Git
 
-### Quality Gates de Cobertura
+### Instalação
 
-Os thresholds transformam a cobertura em uma regra automatizada de qualidade.
+```bash
+git clone https://github.com/felipe-frc/the-burger-house.git
+cd the-burger-house
+npm ci
+npm run dev
+```
 
-Se uma alteração fizer a cobertura cair abaixo dos limites definidos, o CI falha.
+O ambiente local será disponibilizado em uma URL semelhante a:
 
-### ESLint + Prettier + Typecheck
+```txt
+http://localhost:5173
+```
 
-Essas ferramentas foram adicionadas para proteger diferentes aspectos da base:
+### Comandos disponíveis
 
-- ESLint → qualidade e padrões do JavaScript;
+| Objetivo | Comando |
+| --- | --- |
+| Instalar dependências | `npm ci` |
+| Atualizar dependências em desenvolvimento | `npm install` |
+| Iniciar desenvolvimento | `npm run dev` |
+| Gerar build | `npm run build` |
+| Visualizar build | `npm run preview` |
+| Executar lint | `npm run lint` |
+| Verificar formatação | `npm run format:check` |
+| Executar typecheck | `npm run typecheck` |
+| Rodar testes | `npm test` |
+| Rodar testes com cobertura | `npm run test:coverage` |
+| Rodar E2E desktop + mobile | `npm run e2e` |
+| Rodar somente E2E mobile | `npx playwright test --project=mobile-chromium` |
+| Auditar dependências | `npm audit` |
 
-- Prettier → consistência de formatação;
+O build final é gerado em:
 
-- Typecheck → detecção antecipada de erros estruturais em JavaScript.
+```txt
+dist/
+```
 
-### CI/CD com GitHub Actions
+---
 
-A pipeline automatiza qualidade, auditoria de segurança, testes, build e E2E, aproximando o projeto de um fluxo profissional de desenvolvimento.
+## 🧠 Decisões de desenvolvimento
 
-### Deploy na Vercel
-
-A aplicação é publicada na Vercel e permanece sincronizada com o código enviado para o repositório.
+| Decisão | Motivo |
+| --- | --- |
+| JavaScript Vanilla | Aprofundar fundamentos da linguagem, DOM, eventos e módulos |
+| Vite | Modernizar o ambiente de desenvolvimento e build |
+| ES Modules | Separar responsabilidades e reduzir arquivos monolíticos |
+| `cart-service.js` | Isolar regras do carrinho da interface |
+| `state.js` | Centralizar estado e persistência |
+| Service ViaCEP | Separar comunicação HTTP da lógica do formulário |
+| i18n | Concentrar textos e permitir troca dinâmica de idioma |
+| axe-core + Playwright | Automatizar verificações de acessibilidade |
+| Testes em camadas | Proteger regras, DOM e fluxos completos |
+| Quality gates | Impedir queda de cobertura abaixo dos limites |
+| ESLint + Prettier + Typecheck | Melhorar consistência e detecção antecipada de problemas |
+| GitHub Actions | Automatizar qualidade, segurança, build e E2E |
+| Vercel | Automatizar o deploy de produção |
 
 ---
 
 ## 🧾 Releases
 
-| Versão                                                                       | Destaque                                                                                      |
+| Versão | Categoria | Destaque |
+| --- | --- | --- |
+| **v2.7.0** | 🚀 Atual | Hardening técnico, 60 testes, E2E desktop/mobile, acessibilidade, Lighthouse, SEO e segurança |
+| [v2.6.0](https://github.com/felipe-frc/the-burger-house/releases/tag/v2.6.0) | 🧪 Testes | Testes E2E com Playwright |
+| [v2.5.0](https://github.com/felipe-frc/the-burger-house/releases/tag/v2.5.0) | ♻️ Refatoração | Refatoração do carrinho e cobertura de testes |
+| [v2.4.1](https://github.com/felipe-frc/the-burger-house/releases/tag/v2.4.1) | 🛠️ Manutenção | Documentação, CI e otimização da logo |
+| [v2.4.0](https://github.com/felipe-frc/the-burger-house/releases/tag/v2.4.0) | 🌎 Feature | Internacionalização inicial |
+| [v2.3.0](https://github.com/felipe-frc/the-burger-house/releases/tag/v2.3.0) | 🧪 Testes | Testes automatizados com Vitest |
+| v2.2.2 | 🩹 Correção | Correções de consistência estrutural |
+| v2.2.1 | ⚡ Melhoria | Melhorias de SEO e performance |
+| v2.2.0 | ✨ Feature | Retirada no local e melhorias no carrinho |
+| v2.1.0 | ✨ Feature | Campo de observações no pedido |
+| v2.0.0 | 🚀 Major | Melhorias de navegação e UX |
+| v1.3.0 | ♿ Melhoria | Acessibilidade e experiência nos modais |
+| v1.2.1 | 🩹 Correção | Correções de CI e produção |
+| v1.2.0 | 🩹 Correção | Correções no formulário de endereço |
+| v1.1.0 | ♻️ Refatoração | Refatoração estrutural |
+| v1.0.0 | 🎉 Inicial | Primeira versão estável |
 
-| ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-
-| **v2.7.0**                                                                   | Hardening técnico, 60 testes, E2E desktop/mobile, acessibilidade, Lighthouse, SEO e segurança |
-
-| [v2.6.0](https://github.com/felipe-frc/the-burger-house/releases/tag/v2.6.0) | Testes E2E com Playwright                                                                     |
-
-| [v2.5.0](https://github.com/felipe-frc/the-burger-house/releases/tag/v2.5.0) | Refatoração do carrinho e cobertura de testes                                                 |
-
-| [v2.4.1](https://github.com/felipe-frc/the-burger-house/releases/tag/v2.4.1) | Documentação, CI e otimização da logo                                                         |
-
-| [v2.4.0](https://github.com/felipe-frc/the-burger-house/releases/tag/v2.4.0) | Internacionalização inicial                                                                   |
-
-| [v2.3.0](https://github.com/felipe-frc/the-burger-house/releases/tag/v2.3.0) | Testes automatizados com Vitest                                                               |
-
-| v2.2.2                                                                       | Correções de consistência estrutural                                                          |
-
-| v2.2.1                                                                       | Melhorias de SEO e performance                                                                |
-
-| v2.2.0                                                                       | Retirada no local e melhorias no carrinho                                                     |
-
-| v2.1.0                                                                       | Campo de observações no pedido                                                                |
-
-| v2.0.0                                                                       | Melhorias de navegação e UX                                                                   |
-
-| v1.3.0                                                                       | Acessibilidade e experiência nos modais                                                       |
-
-| v1.2.1                                                                       | Correções de CI e produção                                                                    |
-
-| v1.2.0                                                                       | Correções no formulário de endereço                                                           |
-
-| v1.1.0                                                                       | Refatoração estrutural                                                                        |
-
-| v1.0.0                                                                       | Primeira versão estável                                                                       |
-
-> A release `v2.7.0` será publicada após a validação final desta versão.
+📦 [Consultar histórico completo de releases](https://github.com/felipe-frc/the-burger-house/releases)
 
 ---
 
-## 📈 Melhorias Futuras
+## 🔮 Melhorias futuras
 
-- adicionar busca de produtos;
+- 🔎 Busca de produtos
+- 🧩 Filtros no cardápio
+- 📝 Observações específicas por item
+- 🚚 Cálculo de entrega por região ou faixa de CEP
+- 🗄️ Backend para persistência de pedidos
+- 🔐 Autenticação
+- 🧑‍💼 Painel administrativo
+- 💾 Banco de dados
+- 🧾 Histórico de pedidos
+- 📦 Acompanhamento do status do pedido
 
-- adicionar filtros no cardápio;
+---
 
-- permitir observações específicas por item;
+## ⚠️ Observações
 
-- calcular entrega por região ou faixa de CEP;
-
-- integrar backend para persistência de pedidos;
-
-- adicionar autenticação;
-
-- criar painel administrativo;
-
-- integrar banco de dados;
-
-- criar histórico de pedidos;
-
-- adicionar acompanhamento do status do pedido.
+- A consulta de endereço depende da disponibilidade da API ViaCEP
+- É necessário acesso à internet para consulta real de CEP
+- A finalização depende da abertura do WhatsApp
+- O carrinho é persistido no `localStorage`
+- A preferência de idioma também é persistida no navegador
+- `coverage/` é gerado localmente e não deve ser versionado
+- Relatórios do Playwright são temporários
+- `output.css` é gerado pelo processo de desenvolvimento/build
+- A fonte principal dos estilos permanece em `styles/style.css`
 
 ---
 
 ## 📄 Licença
 
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Este projeto está sob a licença **MIT**. Consulte o arquivo [LICENSE](LICENSE).
 
 ---
 
@@ -1341,4 +658,4 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 **Marcos Felipe França**
 
-[LinkedIn](https://www.linkedin.com/in/marcosfelipefrc) · [GitHub](https://github.com/felipe-frc)
+[LinkedIn](https://www.linkedin.com/in/marcosfelipefrc) • [GitHub](https://github.com/felipe-frc)
